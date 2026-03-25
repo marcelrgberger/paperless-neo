@@ -135,7 +135,7 @@ INSTALLED_APPS = [
     "allauth.headless",
     "drf_spectacular",
     "drf_spectacular_sidecar",
-    "mcp_server",
+    # "mcp_server",  # Disabled: incompatible with Granian ASGI (original_request AttributeError)
     "treenode",
     *env_apps,
 ]

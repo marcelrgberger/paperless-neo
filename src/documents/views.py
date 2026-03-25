@@ -3398,7 +3398,7 @@ class RemoteVersionView(GenericAPIView):
         if remote_version is None:
             try:
                 resp = httpx.get(
-                    "https://api.github.com/repos/paperless-ngx/paperless-ngx/releases/latest",
+                    "https://api.github.com/repos/marcelrgberger/paperless-neo/releases/latest",
                     headers={"Accept": "application/json"},
                 )
                 resp.raise_for_status()

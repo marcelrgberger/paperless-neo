@@ -394,7 +394,7 @@ urlpatterns = [
             ],
         ),
     ),
-    path("", include("mcp_server.urls")),
+    # path("", include("mcp_server.urls")),  # Disabled: incompatible with Granian ASGI
     # Root of the Frontend
     re_path(
         r".*",

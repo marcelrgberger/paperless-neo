@@ -87,7 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
             )
           ) {
             this.toastService.show({
-              content: $localize`Document ${status.filename} was added to Paperless-ngx.`,
+              content: $localize`Document ${status.filename} was added to Paperless Neo.`,
               delay: 10000,
               actionName: $localize`Open document`,
               action: () => {
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
             })
           } else {
             this.toastService.show({
-              content: $localize`Document ${status.filename} was added to Paperless-ngx.`,
+              content: $localize`Document ${status.filename} was added to Paperless Neo.`,
               delay: 10000,
             })
           }
@@ -126,7 +126,7 @@ export class AppComponent implements OnInit, OnDestroy {
           )
         ) {
           this.toastService.show({
-            content: $localize`Document ${status.filename} is being processed by Paperless-ngx.`,
+            content: $localize`Document ${status.filename} is being processed by Paperless Neo.`,
             delay: 5000,
           })
         }
@@ -172,7 +172,7 @@ export class AppComponent implements OnInit, OnDestroy {
       },
       {
         anchorId: 'tour.upload-widget',
-        content: $localize`Drag-and-drop documents here to start uploading or place them in the consume folder. You can also drag-and-drop documents anywhere on all other pages of the web app. Once you do, Paperless-ngx will start training its machine learning algorithms.`,
+        content: $localize`Drag-and-drop documents here to start uploading or place them in the consume folder. You can also drag-and-drop documents anywhere on all other pages of the web app. Once you do, Paperless Neo will start training its machine learning algorithms.`,
         route: '/dashboard',
       },
       {
@@ -239,7 +239,7 @@ export class AppComponent implements OnInit, OnDestroy {
         content:
           $localize`There are <em>tons</em> more features and info we didn't cover here, but this should get you started. Check out the documentation or visit the project on GitHub to learn more or to report issues.` +
           '<br/><br/>' +
-          $localize`Lastly, on behalf of every contributor to this community-supported project, thank you for using Paperless-ngx!`,
+          $localize`Lastly, on behalf of every contributor to this community-supported project, thank you for using Paperless Neo!`,
         route: '/dashboard',
         isOptional: false,
         backdropConfig: {
