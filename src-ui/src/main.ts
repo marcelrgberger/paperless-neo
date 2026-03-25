@@ -4,6 +4,9 @@ import {
   provideAppInitializer,
   provideZoneChangeDetection,
 } from '@angular/core'
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
+import { providePrimeNG } from 'primeng/config'
+import Aura from '@primeng/themes/aura'
 
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import { DatePipe, registerLocaleData } from '@angular/common'
@@ -372,6 +375,20 @@ const icons = {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: '[data-bs-theme="dark"]',
+          cssLayer: {
+            name: 'primeng',
+            order: 'primeng, bootstrap'
+          }
+        }
+      },
+      ripple: true
+    }),
     provideZoneChangeDetection(),
     importProvidersFrom(
       BrowserModule,

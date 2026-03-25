@@ -1,4 +1,7 @@
 @use "sass:meta";
+
+// PrimeNG CSS layer for coexistence with Bootstrap
+@layer primeng, bootstrap;
 // bs variables
 $grid-gutter-width: 1.5rem;
 $border-radius: .375rem;
