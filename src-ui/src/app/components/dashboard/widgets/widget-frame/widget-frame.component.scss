@@ -1,3 +1,70 @@
+:host {
+  display: block;
+}
+
 i-bs {
-    cursor: move;
+  cursor: move;
+}
+
+.card {
+  border-radius: 18px !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+
+  .card-header {
+    background: transparent;
+    padding: 0 0 14px 0;
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .badge {
+      font-weight: 600;
+    }
+
+    a {
+      color: #4DA8DA;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #7ec8e3;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 14px 0 0 0;
+  }
+}
+
+:host-context([data-bs-theme="dark"]) .card {
+  background: var(--neo-bg-card, rgba(16, 25, 43, 0.72)) !important;
+  border: 1px solid var(--neo-border-default, rgba(255, 255, 255, 0.08)) !important;
+  box-shadow: var(--neo-shadow-sm, 0 4px 18px rgba(0, 0, 0, 0.18));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 20px;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.16) !important;
+  }
+
+  .card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    .card-title {
+      color: var(--neo-text-strong, #f4f8fc);
+    }
+  }
+
+  .card-body {
+    color: var(--neo-text-strong, #f4f8fc);
+  }
 }

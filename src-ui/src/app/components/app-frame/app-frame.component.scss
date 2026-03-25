@@ -8,7 +8,10 @@
   left: 0;
   z-index: 995; /* Behind the navbar */
   padding: 50px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  background: var(--neo-bg-sidebar, rgba(9, 15, 28, 0.88));
+  border-right: 1px solid var(--neo-border-subtle, rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   overflow-y: auto;
   --pngx-sidebar-width: 100%;
   max-width: var(--pngx-sidebar-width);
@@ -29,15 +32,15 @@
 
   // These come from the col-* classes for non-slim sidebar, needed for animation
   @media (min-width: 768px) {
-    --pngx-sidebar-width: 25%;
+    --pngx-sidebar-width: 272px;
   }
 
   @media (min-width: 992px) {
-    --pngx-sidebar-width: 16.66666667%;
+    --pngx-sidebar-width: 272px;
   }
 
   @media (min-width: 2400px) {
-    --pngx-sidebar-width: 8.33333333%;
+    --pngx-sidebar-width: 272px;
   }
 }
 @media (max-width: 767.98px) {
@@ -142,7 +145,7 @@ main {
   position: relative;
   top: 0;
   height: 100%;
-  padding-top: 0.5rem;
+  padding: 20px 16px;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   min-height: min-content;
@@ -157,24 +160,68 @@ main {
 .sidebar .nav-link {
   font-weight: 500;
   white-space: nowrap;
-
-  &:hover, &.active, &:focus {
-    color: var(--bs-primary);
-  }
-
-  &:focus-visible {
-    outline: none;
-    background-color: var(--bs-body-bg);
-  }
-
-  &.active {
-    font-weight: bold;
-  }
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  color: var(--color-text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background-color 160ms ease, color 160ms ease;
+  border: 1px solid transparent;
 
   i-bs {
     position: relative;
     top: -1px;
   }
+
+  // Override the default me-2 gap since we use CSS gap now
+  .me-2 {
+    margin-right: 0 !important;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-text-strong);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, rgba(77, 168, 218, 0.15), rgba(46, 134, 193, 0.1));
+    border: 1px solid rgba(77, 168, 218, 0.18);
+    color: var(--color-text-strong);
+    font-weight: bold;
+  }
+
+  &:focus {
+    color: var(--color-text-strong);
+  }
+
+  &:focus-visible {
+    outline: none;
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+// Dark mode sidebar overrides
+:host-context([data-bs-theme="dark"]) .sidebar .nav-link {
+  &:hover, &:focus-visible {
+    background: rgba(255, 255, 255, 0.04);
+  }
+  &.active {
+    color: #fff;
+  }
+}
+
+// Badge styles
+.sidebar .badge,
+.sidebar .nav-link .badge {
+  background: rgba(77, 168, 218, 0.12) !important;
+  border: 1px solid rgba(77, 168, 218, 0.14);
+  border-radius: 999px;
+  color: #b8e1f7 !important;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
 }
 
 .attributes-row .attributes-expand-btn {
@@ -187,8 +234,14 @@ main {
 }
 
 .sidebar-heading {
-  font-size: 0.75rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--color-text-faint, #6b7a90) !important;
+  margin: 24px 0 8px 14px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .nav {
@@ -243,6 +296,13 @@ main {
 /*
  * Navbar
  */
+.navbar {
+  background: var(--neo-bg-elevated, #10192b) !important;
+  border-bottom: 1px solid var(--neo-border-subtle, rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: none !important;
+}
 
 .navbar-brand {
   font-size: 1rem;
@@ -292,6 +352,34 @@ main {
 
   a i-bs, button i-bs {
     opacity: 0.6;
+  }
+}
+
+// Search bar styling
+.search-container {
+  ::ng-deep {
+    input,
+    .form-control,
+    [type="search"],
+    [type="text"] {
+      background: rgba(255, 255, 255, 0.04) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 12px !important;
+      color: var(--color-text-muted, #94a3b8);
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+
+      &::placeholder {
+        color: var(--color-text-faint, #6b7a90);
+      }
+
+      &:focus {
+        border-color: rgba(77, 168, 218, 0.5) !important;
+        box-shadow: 0 0 0 3px rgba(77, 168, 218, 0.15) !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        color: var(--color-text-strong, #f4f8fc);
+        outline: none;
+      }
+    }
   }
 }
 

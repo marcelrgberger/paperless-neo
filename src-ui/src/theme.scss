@@ -1,23 +1,29 @@
 @use "sass:color";
-@mixin paperless-green {
-  // base color e.g. #17541f = hsl(128, 57%, 21%)
-  --pngx-primary: 128, 57%;
-  --pngx-primary-lightness: 21%;
+@mixin paperless-neo {
+  // base color e.g. #2E86C1 = hsl(201, 62%, 47%) — Neo blue
+  --pngx-primary: 201, 55%;
+  --pngx-primary-lightness: 47%;
 }
 
 :root {
-  @include paperless-green;
+  @include paperless-neo;
   --pngx-primary-text-contrast: var(--bs-light);
+
+  // Light mode text tokens
+  --color-text-strong: #14233a;
+  --color-text-default: #31445f;
+  --color-text-muted: #64748b;
+  --color-text-faint: #8a97ab;
 
   --bs-primary: hsl(var(--pngx-primary), var(--pngx-primary-lightness));
   --bs-border-color: var(--bs-gray-400);
-  --pngx-primary-faded: hsl(var(--pngx-primary), calc(var(--pngx-primary-lightness) + 76%));
-  --pngx-primary-lighten-10: hsl(var(--pngx-primary), calc(var(--pngx-primary-lightness) + 10%));
-  --pngx-primary-lighten-30: hsl(var(--pngx-primary), calc(var(--pngx-primary-lightness) + 30%));
-  --pngx-primary-darken-5: hsl(var(--pngx-primary), calc(var(--pngx-primary-lightness) - 5%));
-  --pngx-primary-darken-15: hsl(var(--pngx-primary), calc(var(--pngx-primary-lightness) - 15%));
-  --pngx-primary-darken-18: hsl(var(--pngx-primary), calc(var(--pngx-primary-lightness) - 18%));
-  --pngx-primary-darken-27: hsl(var(--pngx-primary), calc(var(--pngx-primary-lightness) - 27%));
+  --pngx-primary-faded: hsl(var(--pngx-primary), min(calc(var(--pngx-primary-lightness) + 45%), 92%));
+  --pngx-primary-lighten-10: hsl(var(--pngx-primary), min(calc(var(--pngx-primary-lightness) + 10%), 100%));
+  --pngx-primary-lighten-30: hsl(var(--pngx-primary), min(calc(var(--pngx-primary-lightness) + 30%), 100%));
+  --pngx-primary-darken-5: hsl(var(--pngx-primary), max(calc(var(--pngx-primary-lightness) - 5%), 0%));
+  --pngx-primary-darken-15: hsl(var(--pngx-primary), max(calc(var(--pngx-primary-lightness) - 15%), 0%));
+  --pngx-primary-darken-18: hsl(var(--pngx-primary), max(calc(var(--pngx-primary-lightness) - 18%), 0%));
+  --pngx-primary-darken-27: hsl(var(--pngx-primary), max(calc(var(--pngx-primary-lightness) - 27%), 0%));
   --pngx-success-darken-10: hsl(152, 69%, 11%); // based on success #198754
   --pngx-bg-alt: #fff;
   --pngx-bg-darker: var(--bs-gray-100);
@@ -27,6 +33,26 @@
   --pngx-toast-max-width: 340px;
   --bs-info: var(--pngx-bg-alt2);
   --bs-info-rgb: 233, 236, 239;
+
+  // Neo design system — light mode
+  --neo-bg-app: #f4f8fc;
+  --neo-bg-elevated: #ffffff;
+  --neo-bg-card: #ffffff;
+  --neo-bg-sidebar: #f0f4f8;
+  --neo-border-subtle: rgba(0, 0, 0, 0.06);
+  --neo-border-default: rgba(0, 0, 0, 0.10);
+  --neo-border-strong: rgba(0, 0, 0, 0.16);
+  --neo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --neo-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --neo-shadow-brand: 0 4px 16px rgba(46, 134, 193, 0.15);
+  --neo-radius-sm: 10px;
+  --neo-radius-md: 14px;
+  --neo-radius-lg: 18px;
+  --neo-glass-blur: 16px;
+  --neo-text-strong: #14233a;
+  --neo-text-default: #31445f;
+  --neo-text-muted: #64748b;
+
   @media screen and (min-width: 1024px) {
     --pngx-toast-max-width: 450px;
   }
@@ -34,7 +60,7 @@
 
 // Dark text colors allow for maintain contrast with theme color changes
 $text-color-light-bg: #212529;
-$text-color-dark-bg: #abb2bf;
+$text-color-dark-bg: #d6deea;
 $text-color-dark-bg-accent: color.adjust($text-color-dark-bg, $lightness: 10%);
 // Taken from bootstrap
 $form-check-input-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$text-color-light-bg}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/></svg>");
@@ -67,35 +93,56 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 }
 
 // Dark mode
-@mixin paperless-green-dark-mode {
-  --pngx-primary-lightness: 31%;
+@mixin paperless-neo-dark-mode {
+  --pngx-primary-lightness: 52%;
   --bs-primary: hsl(var(--pngx-primary),var(--pngx-primary-lightness));
 }
 
 @mixin dark-mode {
   color-scheme: dark;
   --pngx-body-color-accent: #{$text-color-dark-bg-accent};
-  --pngx-bg-alt: #242529;
-  --pngx-bg-alt2: #232323;
-  --pngx-bg-darker: #101216;
+  --pngx-bg-alt: #10192b;
+  --pngx-bg-alt2: #0f1726;
+  --pngx-bg-darker: #080e1a;
   --pngx-bg-disabled: var(--pngx-bg-alt);
   --pngx-focus-alpha: 0.6;
   --pngx-primary-faded: var(--pngx-primary-darken-15);
   --pngx-primary-text-contrast: var(--bs-body-color);
   --bs-body-color: #{$text-color-dark-bg};
-  --bs-secondary-color: #6c757d;
+  --bs-secondary-color: #94a3b8;
   --bs-danger: #b71631;
   --bs-danger-rgb: 183, 22, 49;
-  --bs-body-bg: #161618;
-  --bs-body-bg-rgb: 22, 22, 24;
-  --bs-light: #1c1c1f;
-  --bs-light-rgb: 28, 28, 31;
+  --bs-body-bg: #0b1220;
+  --bs-body-bg-rgb: 11, 18, 32;
+  --bs-light: #111a2e;
+  --bs-light-rgb: 17, 26, 46;
   --bs-info: var(--pngx-bg-alt);
-  --bs-info-rgb: 36, 36, 39;
-  --bs-border-color: #47494f;
+  --bs-info-rgb: 16, 25, 43;
+  --bs-border-color: rgba(255, 255, 255, 0.10);
   --bs-tertiary-bg: var(--pngx-bg-darker);
   --bs-dark-border-subtle: var(--pngx-bg-darker);
-  --bs-border-color-translucent: rgba(0, 0, 0, .175); // override bs
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.06);
+
+  // Neo design system — dark mode
+  --neo-bg-app: #0b1220;
+  --neo-bg-elevated: #10192b;
+  --neo-bg-card: rgba(16, 25, 43, 0.7);
+  --neo-bg-sidebar: rgba(11, 18, 32, 0.85);
+  --neo-border-subtle: rgba(255, 255, 255, 0.06);
+  --neo-border-default: rgba(255, 255, 255, 0.10);
+  --neo-border-strong: rgba(255, 255, 255, 0.16);
+  --neo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --neo-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --neo-shadow-brand: 0 4px 24px rgba(77, 168, 218, 0.18);
+  --neo-text-strong: #f4f8fc;
+  --neo-text-default: #d6deea;
+  --neo-text-muted: #94a3b8;
+
+  // Dark mode text tokens
+  --color-text-strong: #f4f8fc;
+  --color-text-default: #d6deea;
+  --color-text-muted: #94a3b8;
+  --color-text-faint: #6b7a90;
 
   .text-dark, .text-light {
     color: var(--bs-body-color) !important;
@@ -121,7 +168,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .btn-dark {
-    --bs-btn-color: $text-color-dark-bg;
+    --bs-btn-color: #{$text-color-dark-bg};
     --bs-btn-bg: var(--pngx-bg-alt);
     --bs-btn-border-color: var(--pngx-bg-alt);
     --bs-btn-hover-bg: var(--bs-light);
@@ -156,7 +203,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .form-control:hover::file-selector-button {
-    background-color:var(--pngx-bg-dark) !important
+    background-color: var(--pngx-bg-darker) !important;
   }
 
   .search-container {
@@ -166,21 +213,25 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .card {
-    background-color: var(--bs-body-bg);
-    --bs-card-cap-bg: var(--bs-body-bg-rgb);
+    background-color: var(--neo-bg-card);
+    backdrop-filter: blur(var(--neo-glass-blur));
+    -webkit-backdrop-filter: blur(var(--neo-glass-blur));
+    --bs-card-cap-bg: rgb(var(--bs-body-bg-rgb));
+    border-color: var(--neo-border-subtle);
+    border-radius: var(--neo-radius-md);
 
     .card-header {
-      background-color: rgba(0, 0, 0, 0.12);
+      background-color: rgba(0, 0, 0, 0.15);
     }
   }
 
   .row-cols-paperless-cards .card, pngx-document-card-large .card {
-    --bs-border-color-translucent: rgba(0, 0, 0, .3);
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.06);
   }
 
   .modal-content, .modal-header, .modal-body, .modal-footer {
-    background-color: var(--bs-body-bg);
-    border-color: var(--bs-border-color);
+    background-color: var(--neo-bg-elevated);
+    border-color: var(--neo-border-subtle);
   }
 
   app-tag .badge {
@@ -258,7 +309,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .card .table {
-    border-color: var(--bs-gray-800);
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   .alert-secondary {
@@ -325,11 +376,11 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 
 [data-bs-theme="dark"] {
   body:not(.primary-light):not(.primary-dark) {
-    @include paperless-green-dark-mode;
+    @include paperless-neo-dark-mode;
 
     .navbar.bg-primary {
-      // navbar is og green in dark mode
-      @include paperless-green;
+      // navbar uses Neo blue in dark mode
+      @include paperless-neo;
     }
   }
 
@@ -342,15 +393,15 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
     body {
       // no custom theme color
       &:not(.primary-light):not(.primary-dark) {
-        @include paperless-green-dark-mode;
+        @include paperless-neo-dark-mode;
 
         .navbar.bg-primary {
-          // navbar is og green in dark mode
-          @include paperless-green;
+          // navbar uses Neo blue in dark mode
+          @include paperless-neo;
         }
 
         .navbar.bg-primary .dropdown-menu {
-          @include paperless-green-dark-mode;
+          @include paperless-neo-dark-mode;
         }
       }
 

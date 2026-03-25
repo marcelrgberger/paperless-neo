@@ -1,11 +1,51 @@
 .card-text {
   font-size: 90%;
+  color: #94a3b8;
+}
+
+.document-card {
+  border-radius: 16px !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-3px);
+
+    .doc-img {
+      transform: scale(1.03);
+    }
+
+    .card-footer .btn-group {
+      opacity: 1;
+    }
+  }
+}
+
+:host-context([data-bs-theme="dark"]) .document-card {
+  background: var(--neo-bg-card, rgba(19, 30, 50, 0.78)) !important;
+  border: 1px solid var(--neo-border-default, rgba(255, 255, 255, 0.08)) !important;
+  box-shadow: var(--neo-shadow-sm, 0 4px 18px rgba(0, 0, 0, 0.18));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  &:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28), 0 10px 30px rgba(46, 134, 193, 0.15);
+    border-color: rgba(77, 168, 218, 0.24) !important;
+  }
 }
 
 .doc-img {
   object-fit: cover;
   object-position: top left;
   height: 180px;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.doc-img-container {
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
 }
 
 .document-card-check {
@@ -14,9 +54,16 @@
   top: 0;
   left: 0;
   padding: 0.5rem;
-  border-top-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   pointer-events: none;
+
+  :host-context([data-bs-theme="dark"]) & {
+    background: rgba(16, 25, 43, 0.72);
+  }
 
   .form-check {
     padding: 0;
@@ -39,22 +86,71 @@
   top: 142px;
 }
 
+.card-body {
+  background: transparent !important;
+
+  .card-text {
+    .fw-bold,
+    .btn-link {
+      font-weight: 600;
+    }
+  }
+}
+
 .card-info {
   line-height: 1;
 
   button {
     line-height: 1;
+    background: transparent !important;
+  }
 
-    &:hover,
-    &:focus {
-      background-color: transparent !important;
-      color: var(--bs-primary);
+  small {
+    font-size: 12px;
+  }
+}
+
+.card-footer {
+  background: transparent !important;
+
+  .btn-group {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+
+    .btn {
+      padding-top: .10rem;
     }
   }
 }
 
-.card-footer .btn {
-  padding-top: .10rem;
+:host-context([data-bs-theme="dark"]) {
+  .card-body .card-text {
+    .fw-bold, .btn-link { color: var(--neo-text-strong, #f4f8fc); }
+  }
+
+  .card-info {
+    button:hover, button:focus {
+      background-color: rgba(255, 255, 255, 0.04) !important;
+      color: #4DA8DA;
+    }
+    small { color: var(--neo-text-muted, #94a3b8); }
+  }
+
+  .card-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    .btn-group .btn {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+
+      &:hover {
+        background: rgba(77, 168, 218, 0.12);
+        color: #4DA8DA;
+        border-color: rgba(77, 168, 218, 0.24);
+      }
+    }
+  }
 }
 
 ::ng-deep .tooltip-inner {
