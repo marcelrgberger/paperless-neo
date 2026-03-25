@@ -100,7 +100,7 @@ svg.logo {
 
 .navbar.bg-primary {
   --bs-primary: hsl(var(--pngx-primary),var(--pngx-primary-lightness));
-  --bs-primary-rgb: 46, 134, 193;
+  --bs-primary-rgb: 59, 130, 246;
 }
 
 .border {
@@ -813,36 +813,29 @@ canvas.hiddenCanvasElement {
 // Neo Design System — Overrides
 // =============================================================================
 
-// Dark mode body background with subtle radial gradients
+// Poseidon dark mode body background — solid dark navy
 [data-bs-theme="dark"] body,
 [data-bs-theme="auto"] body {
   @media (prefers-color-scheme: dark) {
-    background:
-      radial-gradient(ellipse at 20% 0%, rgba(77, 168, 218, 0.06) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 100%, rgba(46, 134, 193, 0.04) 0%, transparent 50%),
-      var(--neo-bg-app, #0b1220);
+    background: var(--neo-bg-app, #040d19);
   }
 }
 
 [data-bs-theme="dark"] body {
-  background:
-    radial-gradient(ellipse at 20% 0%, rgba(77, 168, 218, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 100%, rgba(46, 134, 193, 0.04) 0%, transparent 50%),
-    var(--neo-bg-app, #0b1220);
+  background: var(--neo-bg-app, #040d19);
 }
 
-// Neo btn-primary with blue gradient and brand shadow
+// Poseidon btn-primary with blue-indigo gradient
 @mixin neo-btn-primary {
-  background: linear-gradient(135deg, #4DA8DA 0%, #2E86C1 100%);
+  background: linear-gradient(135deg, #3B82F6, #6366F1);
   border-color: transparent;
-  box-shadow: var(--neo-shadow-brand);
-  border-radius: var(--neo-radius-sm);
+  border-radius: 10px;
   transition: all 160ms ease;
 
   &:hover, &:focus {
-    background: linear-gradient(135deg, #5BB8EA 0%, #3A96D1 100%) !important;
+    background: linear-gradient(135deg, #60a5fa, #818cf8) !important;
     border-color: transparent !important;
-    box-shadow: 0 6px 24px rgba(77, 168, 218, 0.28);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
     transform: translateY(-1px);
   }
 
@@ -855,55 +848,54 @@ canvas.hiddenCanvasElement {
 [data-bs-theme="dark"] .btn-primary { @include neo-btn-primary; }
 [data-bs-theme="auto"] { @media (prefers-color-scheme: dark) { .btn-primary { @include neo-btn-primary; } } }
 
-// Card hover effects
-@mixin neo-card-hover {
+// Poseidon card styles — solid surfaces, no glassmorphism
+@mixin neo-card-poseidon {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition: transform 160ms ease, box-shadow 160ms ease;
-  border-radius: var(--neo-radius-md);
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--neo-shadow-md);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 }
 
-[data-bs-theme="dark"] .card { @include neo-card-hover; }
-[data-bs-theme="auto"] { @media (prefers-color-scheme: dark) { .card { @include neo-card-hover; } } }
+[data-bs-theme="dark"] .card { @include neo-card-poseidon; }
+[data-bs-theme="auto"] { @media (prefers-color-scheme: dark) { .card { @include neo-card-poseidon; } } }
 
-// Glassmorphism mixin applied to panels/widgets
-@mixin neo-glassmorphism {
-  background: var(--neo-bg-card);
-  backdrop-filter: blur(var(--neo-glass-blur));
-  -webkit-backdrop-filter: blur(var(--neo-glass-blur));
-  border: 1px solid var(--neo-border-subtle);
-  border-radius: var(--neo-radius-md);
-  box-shadow: var(--neo-shadow-sm);
+// Poseidon solid surface mixin — no backdrop-filter
+@mixin neo-poseidon-surface {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-// Apply glassmorphism to dropdown menus in dark mode
+// Apply Poseidon surface to dropdown menus in dark mode
 [data-bs-theme="dark"] .dropdown-menu {
-  @include neo-glassmorphism;
+  @include neo-poseidon-surface;
 }
 
-// Apply glassmorphism to modals in dark mode
+// Apply Poseidon surface to modals in dark mode
 [data-bs-theme="dark"] .modal-content {
-  @include neo-glassmorphism;
-  box-shadow: var(--neo-shadow-md);
+  @include neo-poseidon-surface;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-// Sidebar glassmorphism
+// Sidebar Poseidon style — solid dark background
 [data-bs-theme="dark"] .sidebar,
 [data-bs-theme="auto"] .sidebar {
-  background: var(--neo-bg-sidebar);
-  backdrop-filter: blur(var(--neo-glass-blur));
-  -webkit-backdrop-filter: blur(var(--neo-glass-blur));
-  border-right: 1px solid var(--neo-border-subtle);
+  background: #0a1628;
+  border-right: 1px solid #1e293b;
 }
 
-// Improved scrollbar styling
+// Poseidon scrollbar styling — thin, subtle
 @mixin neo-scrollbar {
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+    scrollbar-color: #1e293b transparent;
   }
 
   *::-webkit-scrollbar {
@@ -916,11 +908,11 @@ canvas.hiddenCanvasElement {
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: #1e293b;
     border-radius: 3px;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.22);
+      background-color: #334155;
     }
   }
 }
@@ -945,6 +937,6 @@ canvas.hiddenCanvasElement {
   .nav-link:hover,
   .list-group-item:hover,
   .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: rgba(59, 130, 246, 0.06);
   }
 }

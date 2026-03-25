@@ -158,7 +158,7 @@ export class ConfigComponent
   }
 
   getDocsUrl(key: string) {
-    return `https://docs.paperless-ngx.com/configuration/#${key}`
+    return `https://github.com/marcelrgberger/paperless-neo/wiki`
   }
 
   public saveConfig() {

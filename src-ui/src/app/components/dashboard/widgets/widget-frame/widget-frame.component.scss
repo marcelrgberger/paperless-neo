@@ -27,14 +27,14 @@ i-bs {
     }
 
     a {
-      color: #4DA8DA;
+      color: #3B82F6;
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
       transition: color 0.2s ease;
 
       &:hover {
-        color: #7ec8e3;
+        color: #60a5fa;
       }
     }
   }
@@ -45,26 +45,24 @@ i-bs {
 }
 
 :host-context([data-bs-theme="dark"]) .card {
-  background: var(--neo-bg-card, rgba(16, 25, 43, 0.72)) !important;
-  border: 1px solid var(--neo-border-default, rgba(255, 255, 255, 0.08)) !important;
-  box-shadow: var(--neo-shadow-sm, 0 4px 18px rgba(0, 0, 0, 0.18));
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  padding: 20px;
+  background: #111827 !important;
+  border: 1px solid #1e293b !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 24px;
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.16) !important;
+    border-color: #334155 !important;
   }
 
   .card-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid #1e293b;
 
     .card-title {
-      color: var(--neo-text-strong, #f4f8fc);
+      color: #f8fafc;
     }
   }
 
   .card-body {
-    color: var(--neo-text-strong, #f4f8fc);
+    color: #f8fafc;
   }
 }

@@ -29,42 +29,42 @@
 
 :host-context([data-bs-theme="dark"]) {
   .filetypes .progress {
-    background: rgba(255, 255, 255, 0.06);
+    background: #1e293b;
 
     .progress-bar {
-      background: linear-gradient(135deg, #2E86C1, #4DA8DA) !important;
+      background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
     }
   }
 
   .list-group .list-group-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    color: var(--neo-text-muted, #94a3b8);
+    border-bottom: 1px solid #1e293b;
+    color: #94a3b8;
 
     &:last-child {
       border-bottom: none;
     }
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.04);
+      background-color: rgba(59, 130, 246, 0.06);
     }
 
     &.list-group-item-action {
       color: #94a3b8;
 
       &:hover {
-        color: var(--neo-text-strong, #f4f8fc);
-        background-color: rgba(255, 255, 255, 0.04);
+        color: #f8fafc;
+        background-color: rgba(59, 130, 246, 0.06);
       }
     }
 
     .badge {
       font-size: 18px;
       font-weight: 700;
-      color: var(--neo-text-strong, #f4f8fc);
+      color: #f8fafc;
       background: transparent !important;
 
       &.bg-primary {
-        color: #4DA8DA !important;
+        color: #3B82F6 !important;
         background: transparent !important;
       }
 

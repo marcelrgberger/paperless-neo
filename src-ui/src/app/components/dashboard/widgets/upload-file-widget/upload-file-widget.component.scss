@@ -54,41 +54,39 @@
 
 :host-context([data-bs-theme="dark"]) {
   .btn-outline-dark {
-    --bs-btn-border-color: rgba(77, 168, 218, 0.3);
+    --bs-btn-border-color: rgba(59, 130, 246, 0.3);
 
     &:hover,
     &:focus {
-      border-color: #4DA8DA !important;
+      border-color: #3B82F6 !important;
       border-style: solid !important;
-      background: rgba(77, 168, 218, 0.06) !important;
-      box-shadow: 0 0 20px rgba(77, 168, 218, 0.1);
+      background: rgba(59, 130, 246, 0.06) !important;
+      box-shadow: none;
     }
 
     i-bs,
     .text-primary {
-      color: #4DA8DA !important;
+      color: #3B82F6 !important;
     }
 
     span.text-primary {
-      color: var(--neo-text-default, #d6deea) !important;
+      color: #e2e8f0 !important;
       font-weight: 500;
     }
 
     .text-muted {
-      color: var(--neo-text-muted, #94a3b8) !important;
+      color: #94a3b8 !important;
     }
   }
 
   ::ng-deep .ngx-file-drop__drop-zone--over {
-    background-color: rgba(77, 168, 218, 0.08) !important;
-    border-color: #4DA8DA !important;
+    background-color: rgba(59, 130, 246, 0.08) !important;
+    border-color: #3B82F6 !important;
   }
 
   .consumer-status-card {
-    background-color: rgba(16, 25, 43, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background-color: #111827 !important;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
   }
 }

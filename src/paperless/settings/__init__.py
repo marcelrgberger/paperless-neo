@@ -211,8 +211,8 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_DIST": "SIDECAR",
     "COMPONENT_SPLIT_REQUEST": True,
     "EXTERNAL_DOCS": {
-        "description": "Paperless-ngx API Documentation",
-        "url": "https://docs.paperless-ngx.com/api/",
+        "description": "Paperless Neo API Documentation",
+        "url": "https://github.com/marcelrgberger/paperless-neo/wiki",
     },
     "ENUM_NAME_OVERRIDES": {
         "MatchingAlgorithm": "documents.models.MatchingModel.MATCHING_ALGORITHMS",

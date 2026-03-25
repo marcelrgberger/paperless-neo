@@ -34,24 +34,22 @@
 }
 
 :host-context([data-bs-theme="dark"]) .document-card-large {
-  background: var(--neo-bg-card, rgba(19, 30, 50, 0.78)) !important;
-  border: 1px solid var(--neo-border-default, rgba(255, 255, 255, 0.08)) !important;
-  box-shadow: var(--neo-shadow-sm, 0 4px 18px rgba(0, 0, 0, 0.18));
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #111827 !important;
+  border: 1px solid #1e293b !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28), 0 10px 30px rgba(46, 134, 193, 0.15);
-    border-color: rgba(77, 168, 218, 0.24) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border-color: #334155 !important;
   }
 
   .card-body .card-title {
-    color: var(--neo-text-strong, #f4f8fc);
+    color: #f8fafc;
 
-    .fw-bold, .btn-link { color: var(--neo-text-strong, #f4f8fc); }
+    .fw-bold, .btn-link { color: #f8fafc; }
   }
 
-  .card-body .card-text { color: var(--neo-text-muted, #94a3b8); }
+  .card-body .card-text { color: #94a3b8; }
 }
 
 .doc-img-container {
@@ -89,7 +87,7 @@
   pointer-events: none;
 
   :host-context([data-bs-theme="dark"]) & {
-    background: rgba(16, 25, 43, 0.72);
+    background: #111827;
   }
 
   .form-check {
@@ -131,10 +129,10 @@
 
 :host-context([data-bs-theme="dark"]) .card-info {
   button:hover, button:focus {
-    background-color: rgba(255, 255, 255, 0.04) !important;
-    color: #4DA8DA;
+    background-color: rgba(59, 130, 246, 0.08) !important;
+    color: #3B82F6;
   }
-  .list-group-item small { color: var(--neo-text-muted, #94a3b8); }
+  .list-group-item small { color: #94a3b8; }
 }
 
 .card-footer .btn-group {
@@ -143,20 +141,20 @@
 }
 
 :host-context([data-bs-theme="dark"]) .card-footer .btn-group .btn {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(59, 130, 246, 0.08);
+  border-color: #1e293b;
   color: #94a3b8;
 
   &:hover {
-    background: rgba(77, 168, 218, 0.12);
-    color: #4DA8DA;
-    border-color: rgba(77, 168, 218, 0.24);
+    background: rgba(59, 130, 246, 0.15);
+    color: #3B82F6;
+    border-color: rgba(59, 130, 246, 0.3);
   }
 }
 
 span ::ng-deep .match {
-  color: #f4f8fc;
-  background-color: rgba(77, 168, 218, 0.3);
+  color: #f8fafc;
+  background-color: rgba(59, 130, 246, 0.3);
   border-radius: 2px;
   padding: 0 2px;
 }

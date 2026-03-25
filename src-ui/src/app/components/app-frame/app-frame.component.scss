@@ -8,10 +8,8 @@
   left: 0;
   z-index: 995; /* Behind the navbar */
   padding: 50px 0 0; /* Height of navbar */
-  background: var(--neo-bg-sidebar, rgba(9, 15, 28, 0.88));
-  border-right: 1px solid var(--neo-border-subtle, rgba(255, 255, 255, 0.08));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #0a1628;
+  border-right: 1px solid #1e293b;
   overflow-y: auto;
   --pngx-sidebar-width: 100%;
   max-width: var(--pngx-sidebar-width);
@@ -162,13 +160,13 @@ main {
   white-space: nowrap;
   height: 42px;
   padding: 0 14px;
-  border-radius: 12px;
+  border-radius: 10px;
   color: var(--color-text-muted, #94a3b8);
   display: flex;
   align-items: center;
   gap: 12px;
   transition: background-color 160ms ease, color 160ms ease;
-  border: 1px solid transparent;
+  border: none;
 
   i-bs {
     position: relative;
@@ -181,15 +179,15 @@ main {
   }
 
   &:hover {
-    background: rgba(0, 0, 0, 0.04);
+    background: rgba(59, 130, 246, 0.08);
     color: var(--color-text-strong);
   }
 
   &.active {
-    background: linear-gradient(135deg, rgba(77, 168, 218, 0.15), rgba(46, 134, 193, 0.1));
-    border: 1px solid rgba(77, 168, 218, 0.18);
-    color: var(--color-text-strong);
-    font-weight: bold;
+    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    border: none;
+    color: #fff;
+    font-weight: 600;
   }
 
   &:focus {
@@ -198,27 +196,28 @@ main {
 
   &:focus-visible {
     outline: none;
-    background: rgba(0, 0, 0, 0.04);
+    background: rgba(59, 130, 246, 0.08);
   }
 }
 
-// Dark mode sidebar overrides
+// Poseidon dark mode sidebar overrides
 :host-context([data-bs-theme="dark"]) .sidebar .nav-link {
   &:hover, &:focus-visible {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(59, 130, 246, 0.08);
   }
   &.active {
+    background: linear-gradient(135deg, #3B82F6, #6366F1);
     color: #fff;
   }
 }
 
-// Badge styles
+// Poseidon badge styles
 .sidebar .badge,
 .sidebar .nav-link .badge {
-  background: rgba(77, 168, 218, 0.12) !important;
-  border: 1px solid rgba(77, 168, 218, 0.14);
+  background: rgba(59, 130, 246, 0.15) !important;
+  border: none;
   border-radius: 999px;
-  color: #b8e1f7 !important;
+  color: #60a5fa !important;
   font-size: 12px;
   font-weight: 700;
   padding: 2px 8px;
@@ -234,11 +233,11 @@ main {
 }
 
 .sidebar-heading {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-text-faint, #6b7a90) !important;
+  color: #64748b !important;
   margin: 24px 0 8px 14px;
   padding-left: 0;
   padding-right: 0;
@@ -297,10 +296,8 @@ main {
  * Navbar
  */
 .navbar {
-  background: var(--neo-bg-elevated, #10192b) !important;
-  border-bottom: 1px solid var(--neo-border-subtle, rgba(255, 255, 255, 0.08));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #040d19 !important;
+  border-bottom: 1px solid #1e293b;
   box-shadow: none !important;
 }
 
@@ -355,28 +352,28 @@ main {
   }
 }
 
-// Search bar styling
+// Poseidon search bar styling
 .search-container {
   ::ng-deep {
     input,
     .form-control,
     [type="search"],
     [type="text"] {
-      background: rgba(255, 255, 255, 0.04) !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      border-radius: 12px !important;
-      color: var(--color-text-muted, #94a3b8);
+      background: #111827 !important;
+      border: 1px solid #1e293b !important;
+      border-radius: 10px !important;
+      color: #94a3b8;
       transition: border-color 200ms ease, box-shadow 200ms ease;
 
       &::placeholder {
-        color: var(--color-text-faint, #6b7a90);
+        color: #64748b;
       }
 
       &:focus {
-        border-color: rgba(77, 168, 218, 0.5) !important;
-        box-shadow: 0 0 0 3px rgba(77, 168, 218, 0.15) !important;
-        background: rgba(255, 255, 255, 0.06) !important;
-        color: var(--color-text-strong, #f4f8fc);
+        border-color: #3B82F6 !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+        background: #111827 !important;
+        color: #f8fafc;
         outline: none;
       }
     }

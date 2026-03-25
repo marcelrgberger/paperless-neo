@@ -1,8 +1,8 @@
 @use "sass:color";
 @mixin paperless-neo {
-  // base color e.g. #2E86C1 = hsl(201, 62%, 47%) — Neo blue
-  --pngx-primary: 201, 55%;
-  --pngx-primary-lightness: 47%;
+  // base color — Poseidon blue-indigo #3B82F6 = hsl(217, 91%, 60%)
+  --pngx-primary: 217, 91%;
+  --pngx-primary-lightness: 60%;
 }
 
 :root {
@@ -44,11 +44,11 @@
   --neo-border-strong: rgba(0, 0, 0, 0.16);
   --neo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
   --neo-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --neo-shadow-brand: 0 4px 16px rgba(46, 134, 193, 0.15);
+  --neo-shadow-brand: 0 4px 16px rgba(59, 130, 246, 0.15);
   --neo-radius-sm: 10px;
-  --neo-radius-md: 14px;
-  --neo-radius-lg: 18px;
-  --neo-glass-blur: 16px;
+  --neo-radius-md: 16px;
+  --neo-radius-lg: 20px;
+  --neo-glass-blur: 0px;
   --neo-text-strong: #14233a;
   --neo-text-default: #31445f;
   --neo-text-muted: #64748b;
@@ -101,48 +101,52 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 @mixin dark-mode {
   color-scheme: dark;
   --pngx-body-color-accent: #{$text-color-dark-bg-accent};
-  --pngx-bg-alt: #10192b;
-  --pngx-bg-alt2: #0f1726;
-  --pngx-bg-darker: #080e1a;
+  --pngx-bg-alt: #0a1628;
+  --pngx-bg-alt2: #0f172a;
+  --pngx-bg-darker: #040d19;
   --pngx-bg-disabled: var(--pngx-bg-alt);
   --pngx-focus-alpha: 0.6;
   --pngx-primary-faded: var(--pngx-primary-darken-15);
   --pngx-primary-text-contrast: var(--bs-body-color);
-  --bs-body-color: #{$text-color-dark-bg};
+  --bs-body-color: #e2e8f0;
   --bs-secondary-color: #94a3b8;
   --bs-danger: #b71631;
   --bs-danger-rgb: 183, 22, 49;
-  --bs-body-bg: #0b1220;
-  --bs-body-bg-rgb: 11, 18, 32;
-  --bs-light: #111a2e;
-  --bs-light-rgb: 17, 26, 46;
+  --bs-body-bg: #040d19;
+  --bs-body-bg-rgb: 4, 13, 25;
+  --bs-light: #111827;
+  --bs-light-rgb: 17, 24, 39;
   --bs-info: var(--pngx-bg-alt);
-  --bs-info-rgb: 16, 25, 43;
-  --bs-border-color: rgba(255, 255, 255, 0.10);
+  --bs-info-rgb: 10, 22, 40;
+  --bs-border-color: #1e293b;
   --bs-tertiary-bg: var(--pngx-bg-darker);
   --bs-dark-border-subtle: var(--pngx-bg-darker);
-  --bs-border-color-translucent: rgba(255, 255, 255, 0.06);
+  --bs-border-color-translucent: #1e293b;
 
-  // Neo design system — dark mode
-  --neo-bg-app: #0b1220;
-  --neo-bg-elevated: #10192b;
-  --neo-bg-card: rgba(16, 25, 43, 0.7);
-  --neo-bg-sidebar: rgba(11, 18, 32, 0.85);
-  --neo-border-subtle: rgba(255, 255, 255, 0.06);
-  --neo-border-default: rgba(255, 255, 255, 0.10);
-  --neo-border-strong: rgba(255, 255, 255, 0.16);
-  --neo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --neo-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --neo-shadow-brand: 0 4px 24px rgba(77, 168, 218, 0.18);
-  --neo-text-strong: #f4f8fc;
-  --neo-text-default: #d6deea;
+  // Neo design system — dark mode (Poseidon-inspired)
+  --neo-bg-app: #040d19;
+  --neo-bg-elevated: #0a1628;
+  --neo-bg-card: #111827;
+  --neo-bg-sidebar: #0a1628;
+  --neo-border-subtle: #1e293b;
+  --neo-border-default: #1e293b;
+  --neo-border-strong: #334155;
+  --neo-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --neo-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --neo-shadow-brand: 0 4px 16px rgba(59, 130, 246, 0.15);
+  --neo-radius-sm: 10px;
+  --neo-radius-md: 16px;
+  --neo-radius-lg: 20px;
+  --neo-glass-blur: 0px;
+  --neo-text-strong: #f8fafc;
+  --neo-text-default: #e2e8f0;
   --neo-text-muted: #94a3b8;
 
-  // Dark mode text tokens
-  --color-text-strong: #f4f8fc;
-  --color-text-default: #d6deea;
+  // Dark mode text tokens (Poseidon)
+  --color-text-strong: #f8fafc;
+  --color-text-default: #e2e8f0;
   --color-text-muted: #94a3b8;
-  --color-text-faint: #6b7a90;
+  --color-text-faint: #64748b;
 
   .text-dark, .text-light {
     color: var(--bs-body-color) !important;
@@ -214,8 +218,6 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 
   .card {
     background-color: var(--neo-bg-card);
-    backdrop-filter: blur(var(--neo-glass-blur));
-    -webkit-backdrop-filter: blur(var(--neo-glass-blur));
     --bs-card-cap-bg: rgb(var(--bs-body-bg-rgb));
     border-color: var(--neo-border-subtle);
     border-radius: var(--neo-radius-md);
@@ -226,7 +228,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .row-cols-paperless-cards .card, pngx-document-card-large .card {
-    --bs-border-color-translucent: rgba(255, 255, 255, 0.06);
+    --bs-border-color-translucent: #1e293b;
   }
 
   .modal-content, .modal-header, .modal-body, .modal-footer {
@@ -309,7 +311,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .card .table {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: #1e293b;
   }
 
   .alert-secondary {

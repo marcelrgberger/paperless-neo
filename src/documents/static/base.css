@@ -1,10 +1,10 @@
 body {
   --bs-body-bg: #f5f5f5;
-  --bs-link-color-rgb: 46, 134, 193; /* #2E86C1 */
-  --bs-link-hover-color-rgb: 33, 97, 140;
-  --pngx-primary: #2E86C1;
-  --pngx-primary-hover: #21618C;
-  --pngx-primary-active: #1A4F72;
+  --bs-link-color-rgb: 59, 130, 246; /* #3B82F6 */
+  --bs-link-hover-color-rgb: 37, 99, 235;
+  --pngx-primary: #3B82F6;
+  --pngx-primary-hover: #2563EB;
+  --pngx-primary-active: #1D4ED8;
 }
 
 .logo {
@@ -28,9 +28,10 @@ body {
   --bs-btn-bg: var(--pngx-primary);
   --bs-btn-border-color: var(--pngx-primary);
   --bs-btn-hover-bg: var(--pngx-primary-hover);
-  --bs-btn-hover-border-color: #1A4F72;
+  --bs-btn-hover-border-color: #1D4ED8;
   --bs-btn-active-bg: var(--pngx-primary-active);
-  --bs-btn-active-border-color: #154360;
+  --bs-btn-active-border-color: #1E40AF;
+  border-radius: 10px;
 }
 
 .btn-link {
@@ -73,23 +74,45 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  /* From theme_dark.scss */
+  /* Poseidon dark theme */
   body {
-    --bs-body-bg: #161618;
-    --bs-body-color: #abb2bf;
-    --bs-body-color-rgb: 171, 178, 191;
-    --bs-border-color: #47494f;
+    --bs-body-bg: #040d19;
+    --bs-body-color: #e2e8f0;
+    --bs-body-color-rgb: 226, 232, 240;
+    --bs-border-color: #1e293b;
   }
 
   .form-control, .form-floating {
-    --bs-body-bg: #1c1c1f;
+    --bs-body-bg: #111827;
+  }
+
+  .form-control {
+    background: #111827;
+    border: 1px solid #1e293b;
+    color: #e2e8f0;
+    border-radius: 10px;
+  }
+
+  .form-control:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  .btn.btn-primary {
+    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    border: none;
+    border-radius: 10px;
+  }
+
+  .btn.btn-primary:hover {
+    background: linear-gradient(135deg, #60a5fa, #818cf8);
   }
 
   svg.logo .text {
-    fill: #abb2bf !important;
+    fill: #e2e8f0 !important;
   }
 
   .byline {
-    color: #abb2bf;
+    color: #94a3b8;
   }
 }
