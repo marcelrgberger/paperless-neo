@@ -1,3 +1,6 @@
+# Release: Triggered by version tags (v*). Waits for Docker build, then builds
+# frontend + backend release archive, publishes GitHub release with changelog,
+# and creates a changelog PR against main.
 name: Release
 on:
   push:
@@ -89,7 +92,7 @@ jobs:
             manage.py collectstatic --no-input --clear
       - name: Assemble release package
         run: |
-          mkdir -p dist/paperless-ngx/scripts
+          mkdir -p dist/paperless-neo/scripts
 
           for file_name in .dockerignore \
                           .env \
@@ -101,27 +104,27 @@ jobs:
                           README.md \
                           paperless.conf.example
           do
-            cp --verbose ${file_name} dist/paperless-ngx/
+            cp --verbose ${file_name} dist/paperless-neo/
           done
-          mv dist/paperless-ngx/paperless.conf.example dist/paperless-ngx/paperless.conf
+          mv dist/paperless-neo/paperless.conf.example dist/paperless-neo/paperless.conf
 
-          cp --recursive docker/ dist/paperless-ngx/docker
-          cp scripts/*.service scripts/*.sh scripts/*.socket dist/paperless-ngx/scripts/
-          cp --recursive src/ dist/paperless-ngx/src
-          cp --recursive site/ dist/paperless-ngx/docs
-          mv static dist/paperless-ngx/
+          cp --recursive docker/ dist/paperless-neo/docker
+          cp scripts/*.service scripts/*.sh scripts/*.socket dist/paperless-neo/scripts/
+          cp --recursive src/ dist/paperless-neo/src
+          cp --recursive site/ dist/paperless-neo/docs
+          mv static dist/paperless-neo/
 
-          find dist/paperless-ngx -name "__pycache__" -type d -exec rm -rf {} +
+          find dist/paperless-neo -name "__pycache__" -type d -exec rm -rf {} +
       - name: Create release archive
         run: |
           cd dist
-          sudo chown -R 1000:1000 paperless-ngx/
-          tar -cJf paperless-ngx.tar.xz paperless-ngx/
+          sudo chown -R 1000:1000 paperless-neo/
+          tar -cJf paperless-neo.tar.xz paperless-neo/
       - name: Upload release artifact
         uses: actions/upload-artifact@v7.0.0
         with:
           name: release
-          path: dist/paperless-ngx.tar.xz
+          path: dist/paperless-neo.tar.xz
           retention-days: 7
   publish-release:
     name: Publish Release
@@ -150,7 +153,7 @@ jobs:
         id: create-release
         uses: release-drafter/release-drafter@v6.2.0
         with:
-          name: Paperless-ngx ${{ steps.get-version.outputs.version }}
+          name: Paperless Neo ${{ steps.get-version.outputs.version }}
           tag: ${{ steps.get-version.outputs.version }}
           version: ${{ steps.get-version.outputs.version }}
           prerelease: ${{ steps.get-version.outputs.prerelease }}
@@ -163,8 +166,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ./paperless-ngx.tar.xz
-          asset_name: paperless-ngx-${{ steps.get-version.outputs.version }}.tar.xz
+          asset_path: ./paperless-neo.tar.xz
+          asset_name: paperless-neo-${{ steps.get-version.outputs.version }}.tar.xz
           asset_content_type: application/x-xz
   # ---------------------------------------------------------------------------
   # Append changelog to docs (only on non-prerelease)

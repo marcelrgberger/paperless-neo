@@ -1,3 +1,5 @@
+# Docs CI: Builds documentation with Zensical. Deploys to GitHub Pages on push to main.
+# Skips when only non-docs files changed.
 name: Documentation
 on:
   push:

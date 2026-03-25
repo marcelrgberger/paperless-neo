@@ -1,3 +1,5 @@
+# Project Automations: Auto-labels PRs using release-drafter categories on open/reopen.
+# Requires pull_request_target for secret access.
 name: Project Automations
 on:
   pull_request_target: #_target allows access to secrets

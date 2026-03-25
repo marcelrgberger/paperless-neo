@@ -35,7 +35,7 @@ services:
     volumes:
       - redisdata:/data
   webserver:
-    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    image: ghcr.io/marcelrgberger/paperless-neo:latest
     restart: unless-stopped
     depends_on:
       - broker

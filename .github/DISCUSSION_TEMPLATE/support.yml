@@ -22,8 +22,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: Paperless-ngx version
-      placeholder: e.g. 1.14.0
+      label: Paperless Neo version
+      placeholder: e.g. 2.20.13
     validations:
       required: true
   - type: input
@@ -31,14 +31,13 @@ body:
     attributes:
       label: Host OS
       description: Include architecture if relevant.
-      placeholder: e.g. Ubuntu 22.04 / Raspberry Pi arm64
+      placeholder: e.g. Ubuntu 24.04 / Raspberry Pi arm64
   - type: dropdown
     id: install-method
     attributes:
       label: Installation method
       options:
-        - Docker - official image
-        - Docker - linuxserver.io image
+        - Docker
         - Bare metal
         - Other (please describe above)
   - type: textarea
@@ -51,5 +50,5 @@ body:
     id: logs
     attributes:
       label: Relevant logs or output
-      description: If you have logs, errors that might help, paste it here. For example other containers or services (database, redis, etc).
+      description: If you have logs or errors that might help, paste them here.
       render: bash

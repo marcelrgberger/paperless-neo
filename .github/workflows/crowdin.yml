@@ -1,3 +1,5 @@
+# Crowdin: Syncs translations every 12 hours. Downloads translated strings from Crowdin
+# and creates a PR with updated locale files.
 name: Crowdin Action
 on:
   workflow_dispatch:
@@ -9,13 +11,11 @@ on:
 jobs:
   synchronize-with-crowdin:
     name: Crowdin Sync
-    if: github.repository_owner == 'paperless-ngx'
+    if: github.repository_owner == 'marcelrgberger'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
-        with:
-          token: ${{ secrets.PNGX_BOT_PAT }}
       - name: crowdin action
         uses: crowdin/github-action@v2.15.0
         with:

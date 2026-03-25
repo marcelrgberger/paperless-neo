@@ -1,3 +1,6 @@
+# Backend CI: Runs pytest across Python 3.11-3.14 with PostgreSQL, Gotenberg, Tika,
+# nginx, Greenmail. Skips via dorny/paths-filter when no backend files changed.
+# Uploads coverage to Codecov.
 name: Backend Tests
 on:
   push:

@@ -1,9 +1,5 @@
-# This workflow runs on certain conditions to check for and potentially
-# delete container images from the GHCR which no longer have an associated
-# code branch.
-# Requires a PAT with the correct scope set in the secrets.
-#
-# This workflow will not trigger runs on forked repos.
+# Cleanup: Removes orphaned GHCR image tags (from deleted feature/fix branches) and
+# untagged images. Runs weekly on Sundays at midnight UTC.
 name: Cleanup Image Tags
 on:
   workflow_dispatch:
@@ -15,14 +11,13 @@ concurrency:
 jobs:
   cleanup-images:
     name: Cleanup Image Tags for ${{ matrix.primary-name }}
-    if: github.repository_owner == 'paperless-ngx'
+    if: github.repository_owner == 'marcelrgberger'
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
-        primary-name: ["paperless-ngx", "paperless-ngx/builder/cache/app"]
+        primary-name: ["paperless-neo", "paperless-neo/cache"]
     env:
-      # Requires a personal access token with the OAuth scope delete:packages
       TOKEN: ${{ secrets.GHA_CONTAINER_DELETE_TOKEN }}
     steps:
       - name: Clean temporary images
@@ -31,24 +26,23 @@ jobs:
         with:
           token: "${{ env.TOKEN }}"
           owner: "${{ github.repository_owner }}"
-          is_org: "true"
+          is_org: "false"
           package_name: "${{ matrix.primary-name }}"
           scheme: "branch"
-          repo_name: "paperless-ngx"
+          repo_name: "paperless-neo"
           match_regex: "(feature|fix)"
           do_delete: "true"
   cleanup-untagged-images:
-    name: Cleanup Untagged Images Tags for ${{ matrix.primary-name }}
-    if: github.repository_owner == 'paperless-ngx'
+    name: Cleanup Untagged Images for ${{ matrix.primary-name }}
+    if: github.repository_owner == 'marcelrgberger'
     runs-on: ubuntu-24.04
     needs:
       - cleanup-images
     strategy:
       fail-fast: false
       matrix:
-        primary-name: ["paperless-ngx", "paperless-ngx/builder/cache/app"]
+        primary-name: ["paperless-neo", "paperless-neo/cache"]
     env:
-      # Requires a personal access token with the OAuth scope delete:packages
       TOKEN: ${{ secrets.GHA_CONTAINER_DELETE_TOKEN }}
     steps:
       - name: Clean untagged images
@@ -57,6 +51,6 @@ jobs:
         with:
           token: "${{ env.TOKEN }}"
           owner: "${{ github.repository_owner }}"
-          is_org: "true"
+          is_org: "false"
           package_name: "${{ matrix.primary-name }}"
           do_delete: "true"

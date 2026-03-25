@@ -1,3 +1,5 @@
+# Lint CI: Runs all pre-commit hooks via prek (ruff, prettier, hadolint, shellcheck,
+# yamlfmt, codespell, pyproject-fmt). Ensures code style consistency.
 name: Lint
 on:
   push:

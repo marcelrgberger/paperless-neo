@@ -1,3 +1,5 @@
+# CodeQL: Static analysis security scanning on push/PR. Detects vulnerabilities
+# in Python and JavaScript code.
 # For most projects, this workflow file will not need changing; you simply need
 # to commit it to your repository.
 #

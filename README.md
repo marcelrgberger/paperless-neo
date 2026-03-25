@@ -1,103 +1,133 @@
-[![ci](https://github.com/paperless-ngx/paperless-ngx/workflows/ci/badge.svg)](https://github.com/paperless-ngx/paperless-ngx/actions)
-[![Crowdin](https://badges.crowdin.net/paperless-ngx/localized.svg)](https://crowdin.com/project/paperless-ngx)
-[![Documentation Status](https://img.shields.io/github/deployments/paperless-ngx/paperless-ngx/github-pages?label=docs)](https://docs.paperless-ngx.com)
-[![codecov](https://codecov.io/gh/paperless-ngx/paperless-ngx/branch/main/graph/badge.svg?token=VK6OUPJ3TY)](https://codecov.io/gh/paperless-ngx/paperless-ngx)
-[![Chat on Matrix](https://matrix.to/img/matrix-badge.svg)](https://matrix.to/#/%23paperlessngx%3Amatrix.org)
-[![demo](https://cronitor.io/badges/ve7ItY/production/W5E_B9jkelG9ZbDiNHUPQEVH3MY.svg)](https://demo.paperless-ngx.com)
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/paperless-ngx/paperless-ngx/blob/main/resources/logo/web/png/White%20logo%20-%20no%20background.png" width="50%">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/paperless-ngx/paperless-ngx/raw/main/resources/logo/web/png/Black%20logo%20-%20no%20background.png" width="50%">
-    <img src="https://github.com/paperless-ngx/paperless-ngx/raw/main/resources/logo/web/png/Black%20logo%20-%20no%20background.png" width="50%">
-  </picture>
-</p>
-
 <!-- omit in toc -->
 
-# Paperless-ngx
+# Paperless Neo
 
-Paperless-ngx is a document management system that transforms your physical documents into a searchable online archive so you can keep, well, _less paper_.
+> A modern, collaborative, AI-native document management system.
 
-Paperless-ngx is the official successor to the original [Paperless](https://github.com/the-paperless-project/paperless) & [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. [Consider joining us!](#community-support)
+Paperless Neo transforms your physical documents into a searchable online archive — with built-in AI classification, multi-user collaboration, and enterprise-grade access control.
 
-Thanks to the generous folks at [DigitalOcean](https://m.do.co/c/8d70b916d462), a demo is available at [demo.paperless-ngx.com](https://demo.paperless-ngx.com) using login `demo` / `demo`. _Note: demo content is reset frequently and confidential information should not be uploaded._
+Fork of [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) (GPL-3.0).
 
+- [Why Paperless Neo?](#why-paperless-neo)
 - [Features](#features)
-- [Getting started](#getting-started)
+- [Getting Started](#getting-started)
 - [Contributing](#contributing)
-  - [Community Support](#community-support)
-  - [Translation](#translation)
-  - [Feature Requests](#feature-requests)
-  - [Bugs](#bugs)
-- [Related Projects](#related-projects)
+- [Documentation](#documentation)
+- [Acknowledgements](#acknowledgements)
 - [Important Note](#important-note)
 
-<p align="right">This project is supported by:<br/>
-  <a href="https://m.do.co/c/8d70b916d462" style="padding-top: 4px; display: block;">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_white.svg" width="140px">
-      <source media="(prefers-color-scheme: light)" srcset="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="140px">
-      <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_black_.svg" width="140px">
-    </picture>
-  </a>
-</p>
+## Why Paperless Neo?
 
-# Features
+Paperless-ngx is excellent for single-user document management. But it falls short in multi-user, team, and family environments:
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/docs/assets/screenshots/documents-smallcards-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/docs/assets/screenshots/documents-smallcards.png">
-  <img src="https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/docs/assets/screenshots/documents-smallcards.png">
-</picture>
+| Problem | Paperless-ngx | Paperless Neo |
+|---|---|---|
+| Shared views/dashboards | Per-user only | Shared, default, and private views |
+| Document visibility | Owner-based, binary | Granular sharing with permissions |
+| Branding | Nginx CSS hacks | Built-in admin UI for full white-label |
+| User provisioning | Broken OIDC registration flow | Auto-provision and auto-link on SSO |
+| AI classification | Separate container (paperless-ai) | Built-in, zero-config AI pipeline |
+| Permissions | Staff or regular user | Role-based access control (RBAC) |
 
-A full list of [features](https://docs.paperless-ngx.com/#features) and [screenshots](https://docs.paperless-ngx.com/#screenshots) are available in the [documentation](https://docs.paperless-ngx.com/).
+See [NEO.md](NEO.md) for the full vision and [IDEAS.md](IDEAS.md) for the feature roadmap.
 
-# Getting started
+## Features
 
-The easiest way to deploy paperless is `docker compose`. The files in the [`/docker/compose` directory](https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose) are configured to pull the image from the GitHub container registry.
+### Core (inherited from Paperless-ngx)
 
-If you'd like to jump right in, you can configure a `docker compose` environment with our install script:
+- **OCR & Archival** — Tesseract-based OCR, PDF/A archive generation
+- **Full-Text Search** — Find any document by content (Whoosh)
+- **Auto-Classification** — ML-based tagging, correspondent and document type assignment
+- **Email Ingestion** — Fetch documents from IMAP mailboxes
+- **REST API** — Full API with OpenAPI documentation
+- **Multi-Format Support** — PDF, images, Office documents (via Tika/Gotenberg), and more
+- **Barcode Detection** — Split multi-page scans by barcode separator
+- **Multi-Language** — 30+ languages, coordinated via Crowdin
+- **Authentication** — MFA, OIDC, OAuth2 via django-allauth
+
+### Planned Neo Enhancements
+
+- **Native AI Pipeline** — Built-in classification with OpenAI, Anthropic, Ollama support
+- **Semantic Search** — Natural language queries and vector similarity via FAISS
+- **Shared Views & Dashboard** — Collaborative dashboard layouts
+- **Document Sharing** — Granular permissions (view/edit/manage)
+- **White-Label Branding** — Logo, colors, custom CSS via admin UI
+- **RBAC** — Role-based access control with group permissions
+- **Auto User Provisioning** — Seamless SSO/OIDC onboarding
+
+## Getting Started
+
+### Docker Compose
 
 ```bash
-bash -c "$(curl -L https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/install-paperless-ngx.sh)"
+git clone https://github.com/marcelrgberger/paperless-neo.git
+cd paperless-neo/docker/compose
+
+# PostgreSQL + Tika (recommended)
+docker compose -f docker-compose.postgres-tika.yml up -d
+
+# Create admin user
+docker compose exec paperless python manage.py createsuperuser
 ```
 
-More details and step-by-step guides for alternative installation methods can be found in [the documentation](https://docs.paperless-ngx.com/setup/#installation).
+Then open http://localhost:8000.
 
-Migrating from Paperless-ng is easy, just drop in the new docker image! See the [documentation on migrating](https://docs.paperless-ngx.com/setup/#migrating-to-paperless-ngx) for more details.
+### Development
 
-<!-- omit in toc -->
+```bash
+uv sync --group dev
+uv run prek install
+mkdir -p consume media
+cd src && uv run manage.py migrate && uv run manage.py createsuperuser
+scripts/start_services.sh
 
-### Documentation
+# Backend
+cd src && uv run manage.py runserver
 
-The documentation for Paperless-ngx is available at [https://docs.paperless-ngx.com](https://docs.paperless-ngx.com/).
+# Frontend
+cd src-ui && pnpm install && pnpm ng serve
+```
 
-# Contributing
+See the [Wiki](https://github.com/marcelrgberger/paperless-neo/wiki) for detailed setup and architecture docs.
 
-If you feel like contributing to the project, please do! Bug fixes, enhancements, visual fixes etc. are always welcome. If you want to implement something big: Please start a discussion about that! The [documentation](https://docs.paperless-ngx.com/development/) has some basic information on how to get started.
+## Contributing
 
-## Community Support
+We welcome contributions — code, ideas, design, docs, testing.
 
-People interested in continuing the work on paperless-ngx are encouraged to reach out here on github and in the [Matrix Room](https://matrix.to/#/#paperless:matrix.org). If you would like to contribute to the project on an ongoing basis there are multiple [teams](https://github.com/orgs/paperless-ngx/people) (frontend, ci/cd, etc) that could use your help so please reach out!
+1. Fork the repo
+2. Branch from `dev` (`feature/your-feature`)
+3. Write tests for your changes
+4. Format with ruff
+5. Open a PR with a clear description
 
-## Translation
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-Paperless-ngx is available in many languages that are coordinated on Crowdin. If you want to help out by translating paperless-ngx into your language, please head over to https://crowdin.com/project/paperless-ngx, and thank you! More details can be found in [CONTRIBUTING.md](https://github.com/paperless-ngx/paperless-ngx/blob/main/CONTRIBUTING.md#translating-paperless-ngx).
+### Areas Where Help is Needed
 
-## Feature Requests
+- **Backend (Python/Django)** — Shared views, RBAC, AI pipeline
+- **Frontend (Angular/TypeScript)** — Branding UI, dashboard, mobile
+- **AI/ML** — Classification, semantic search, document understanding
+- **Design** — UI/UX mockups and a new logo/icon for Paperless Neo
 
-Feature requests can be submitted via [GitHub Discussions](https://github.com/paperless-ngx/paperless-ngx/discussions/categories/feature-requests), you can search for existing ideas, add your own and vote for the ones you care about.
+## Documentation
 
-## Bugs
+- **[Wiki](https://github.com/marcelrgberger/paperless-neo/wiki)** — Architecture, API, development setup, testing
+- **[Upstream Docs](https://docs.paperless-ngx.com)** — Configuration reference (still applicable)
 
-For bugs please [open an issue](https://github.com/paperless-ngx/paperless-ngx/issues) or [start a discussion](https://github.com/paperless-ngx/paperless-ngx/discussions) if you have questions.
+## Acknowledgements
 
-# Related Projects
+Paperless Neo is built on the shoulders of:
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Related-Projects) for a user-maintained list of related projects and software that is compatible with Paperless-ngx.
+- [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) — The upstream project
+- [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) — The predecessor
+- [Paperless](https://github.com/the-paperless-project/paperless) — The original
+- [Paperless-AI](https://github.com/clusterzx/paperless-ai) — AI classification inspiration
 
-# Important Note
+## Important Note
 
-> Document scanners are typically used to scan sensitive documents like your social insurance number, tax records, invoices, etc. **Paperless-ngx should never be run on an untrusted host** because information is stored in clear text without encryption. No guarantees are made regarding security (but we do try!) and you use the app at your own risk.
-> **The safest way to run Paperless-ngx is on a local server in your own home with backups in place**.
+> Document scanners are typically used to scan sensitive documents like your social insurance number, tax records, invoices, etc. **Paperless Neo should never be run on an untrusted host** because information is stored in clear text without encryption. No guarantees are made regarding security (but we do try!) and you use the app at your own risk.
+> **The safest way to run Paperless Neo is on a local server in your own home with backups in place**.
+
+## License
+
+GPL-3.0 — Same as the upstream project. See [LICENSE](LICENSE).

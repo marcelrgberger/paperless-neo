@@ -6,30 +6,26 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### ⚠️ Please remember: issues are for *bugs* only! ⚠️
-        That is, something you believe affects every single user of Paperless-ngx (and the demo, for example), not just you. If you are not sure, start with one of the other options below.
+        ### Please remember: issues are for *bugs* only!
+        That is, something you believe affects every single user of Paperless Neo, not just you. If you are not sure, start with a discussion instead.
 
-        Also, note that **Paperless-ngx does not perform OCR or archive file creation itself**, those are handled by other tools. Problems with OCR or archive versions of specific files should likely be raised 'upstream', see https://github.com/ocrmypdf/OCRmyPDF/issues or https://github.com/tesseract-ocr/tesseract/issues
+        Note that **Paperless Neo does not perform OCR itself** — that is handled by Tesseract/OCRmyPDF. Problems with OCR should be raised upstream: https://github.com/ocrmypdf/OCRmyPDF/issues
   - type: markdown
     attributes:
       value: |
-        #### Have a question? 👉 [Start a new discussion](https://github.com/paperless-ngx/paperless-ngx/discussions/new) or [ask in chat](https://matrix.to/#/#paperlessngx:matrix.org).
+        #### Have a question? Start a [new discussion](https://github.com/marcelrgberger/paperless-neo/discussions/new).
 
-        #### Before opening an issue, please double check:
+        #### Before opening an issue, please check:
 
-        - [The troubleshooting documentation](https://docs.paperless-ngx.com/troubleshooting/).
-        - [The installation instructions](https://docs.paperless-ngx.com/setup/#installation).
-        - [Existing issues and discussions](https://github.com/paperless-ngx/paperless-ngx/search?q=&type=issues).
-        - Disable any custom container initialization scripts, if using
-
-        If you encounter issues while installing or configuring Paperless-ngx, please post in the ["Support" section of the discussions](https://github.com/paperless-ngx/paperless-ngx/discussions/new?category=support).
+        - [Existing issues and discussions](https://github.com/marcelrgberger/paperless-neo/issues)
+        - [Upstream troubleshooting docs](https://docs.paperless-ngx.com/troubleshooting/)
   - type: textarea
     id: description
     attributes:
       label: Description
       description: A clear and concise description of what the bug is. If applicable, add screenshots to help explain your problem.
       placeholder: |
-        Currently Paperless does not work when...
+        Currently Paperless Neo does not work when...
 
         [Screenshot if applicable]
     validations:
@@ -63,21 +59,21 @@ body:
     id: logs_services
     attributes:
       label: Services logs
-      description: Logs from other services (or containers) related to your issue, if needed. For example, the database or redis logs.
+      description: Logs from other services (database, redis, etc.) related to your issue, if needed.
       render: bash
   - type: input
     id: version
     attributes:
-      label: Paperless-ngx version
-      placeholder: e.g. 1.6.0
+      label: Paperless Neo version
+      placeholder: e.g. 2.20.13
     validations:
       required: true
   - type: input
     id: host-os
     attributes:
       label: Host OS
-      description: Host OS of the machine running paperless-ngx. Please add the architecture (uname -m) if applicable.
-      placeholder: e.g. Archlinux / Ubuntu 20.04 / Raspberry Pi `arm64`
+      description: Host OS of the machine running Paperless Neo. Include architecture (uname -m) if applicable.
+      placeholder: e.g. Ubuntu 24.04 / macOS 15 / Raspberry Pi arm64
     validations:
       required: true
   - type: dropdown
@@ -85,11 +81,9 @@ body:
     attributes:
       label: Installation method
       options:
-        - Docker - official image
-        - Docker - linuxserver.io image
+        - Docker
         - Bare metal
         - Other (please describe above)
-      description: Note there are significant differences from the official image and linuxserver.io, please check if your issue is specific to the third-party image.
     validations:
       required: true
   - type: textarea
@@ -103,20 +97,18 @@ body:
     attributes:
       label: Browser
       description: Which browser you are using, if relevant.
-      placeholder: e.g. Chrome, Safari
+      placeholder: e.g. Chrome, Safari, Firefox
   - type: textarea
     id: config-changes
     attributes:
       label: Configuration changes
-      description: Any configuration changes you made in `docker-compose.yml`, `docker-compose.env` or `paperless.conf`.
+      description: Any configuration changes you made in docker-compose.yml, .env or paperless.conf.
   - type: checkboxes
     id: required-checks
     attributes:
       label: Please confirm the following
       options:
-        - label: I believe this issue is a bug that affects all users of Paperless-ngx, not something specific to my installation.
-          required: true
-        - label: This issue is not about the OCR or archive creation of a specific file(s). Otherwise, please see above regarding OCR tools.
+        - label: I believe this issue is a bug that affects all users of Paperless Neo, not something specific to my installation.
           required: true
         - label: I have already searched for relevant existing issues and discussions before opening this report.
           required: true

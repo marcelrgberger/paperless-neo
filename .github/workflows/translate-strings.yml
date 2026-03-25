@@ -1,3 +1,5 @@
+# Translation: Extracts translatable strings from backend (Django makemessages) and
+# frontend (Angular extract-i18n) on push to dev. Auto-commits updated .po/.xlf files.
 name: Generate Translation Strings
 on:
   push:

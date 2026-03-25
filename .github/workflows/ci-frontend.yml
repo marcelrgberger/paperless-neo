@@ -1,3 +1,5 @@
+# Frontend CI: Lints (ESLint), builds (Angular production), runs Jest unit tests and
+# Playwright E2E tests. Skips when only non-frontend files changed.
 name: Frontend Tests
 on:
   push:

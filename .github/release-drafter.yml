@@ -49,6 +49,6 @@ category-template: '### $TITLE'
 change-template: '- $TITLE @$AUTHOR ([#$NUMBER]($URL))'
 change-title-escapes: '\<*_&#@'
 template: |
-  ## paperless-ngx $RESOLVED_VERSION
+  ## Paperless Neo $RESOLVED_VERSION
 
   $CHANGES
