@@ -977,3 +977,441 @@ canvas.hiddenCanvasElement {
 .p-dialog-mask {
   background: rgba(0, 0, 0, 0.6);
 }
+
+// ============================================================
+// PrimeNG Poseidon Dark Component Overrides
+// Applied globally so any PrimeNG component used anywhere
+// automatically matches the Poseidon dark theme.
+// ============================================================
+
+// --- Buttons ---
+.p-button {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 200ms ease;
+
+  &.p-button-primary {
+    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    border: none;
+
+    &:hover {
+      background: linear-gradient(135deg, #60a5fa, #818cf8);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    }
+  }
+
+  &.p-button-secondary {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+
+    &:hover {
+      background: #334155;
+    }
+  }
+
+  &.p-button-text {
+    color: #94a3b8;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.08);
+      color: #3B82F6;
+    }
+  }
+
+  &.p-button-outlined {
+    border: 1px solid #3B82F6;
+    color: #3B82F6;
+    background: transparent;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.08);
+    }
+  }
+}
+
+// --- Inputs ---
+[data-bs-theme="dark"] {
+  .p-inputtext,
+  .p-textarea,
+  .p-password input,
+  .p-select,
+  .p-multiselect,
+  .p-autocomplete-input {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    color: #e2e8f0;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+
+    &:focus, &:hover {
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+    }
+
+    &::placeholder {
+      color: #64748b;
+    }
+  }
+}
+
+// --- Tables ---
+[data-bs-theme="dark"] {
+  .p-datatable {
+    .p-datatable-thead > tr > th {
+      background: #0a1628;
+      border-bottom: 1px solid #1e293b;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .p-datatable-tbody > tr {
+      background: #111827;
+      border-bottom: 1px solid #1e293b;
+      color: #e2e8f0;
+      transition: background-color 150ms ease;
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.06);
+      }
+
+      > td {
+        border-bottom: 1px solid #1e293b;
+      }
+    }
+
+    .p-datatable-tbody > tr.p-highlight {
+      background: rgba(59, 130, 246, 0.12);
+      color: #93b3f3;
+    }
+  }
+
+  .p-paginator {
+    background: transparent;
+    border: none;
+
+    .p-paginator-page {
+      border-radius: 8px;
+      color: #94a3b8;
+
+      &.p-highlight {
+        background: linear-gradient(135deg, #3B82F6, #6366F1);
+        color: #fff;
+      }
+
+      &:hover:not(.p-highlight) {
+        background: rgba(59, 130, 246, 0.08);
+      }
+    }
+  }
+}
+
+// --- Cards ---
+[data-bs-theme="dark"] .p-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+  .p-card-header {
+    background: transparent;
+    border-bottom: 1px solid #1e293b;
+    color: #f8fafc;
+  }
+
+  .p-card-body {
+    color: #e2e8f0;
+  }
+}
+
+// --- Tabs ---
+[data-bs-theme="dark"] {
+  .p-tabview {
+    .p-tabview-nav {
+      background: transparent;
+      border-bottom: 1px solid #1e293b;
+
+      li {
+        .p-tabview-nav-link {
+          color: #94a3b8;
+          background: transparent;
+          border: none;
+          border-bottom: 2px solid transparent;
+          transition: all 200ms ease;
+
+          &:hover {
+            color: #e2e8f0;
+            border-bottom-color: #334155;
+          }
+        }
+
+        &.p-highlight .p-tabview-nav-link {
+          color: #3B82F6;
+          border-bottom-color: #3B82F6;
+          background: transparent;
+        }
+      }
+    }
+
+    .p-tabview-panels {
+      background: transparent;
+      color: #e2e8f0;
+    }
+  }
+}
+
+// --- Select / Dropdown ---
+[data-bs-theme="dark"] {
+  .p-select-overlay,
+  .p-multiselect-overlay,
+  .p-autocomplete-overlay {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+    .p-select-option,
+    .p-multiselect-option,
+    .p-autocomplete-option {
+      color: #e2e8f0;
+      transition: background-color 150ms ease;
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.08);
+      }
+
+      &.p-highlight {
+        background: rgba(59, 130, 246, 0.15);
+        color: #93b3f3;
+      }
+    }
+  }
+}
+
+// --- Accordion ---
+[data-bs-theme="dark"] .p-accordion {
+  .p-accordion-header-link {
+    background: #0a1628;
+    border: 1px solid #1e293b;
+    color: #e2e8f0;
+    border-radius: 12px;
+    transition: background-color 200ms ease;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.06);
+    }
+  }
+
+  .p-accordion-content {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-top: none;
+    color: #e2e8f0;
+  }
+}
+
+// --- Toast ---
+[data-bs-theme="dark"] .p-toast {
+  .p-toast-message {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+    &.p-toast-message-success {
+      border-left: 4px solid #22c55e;
+    }
+    &.p-toast-message-info {
+      border-left: 4px solid #3B82F6;
+    }
+    &.p-toast-message-warn {
+      border-left: 4px solid #f59e0b;
+    }
+    &.p-toast-message-error {
+      border-left: 4px solid #ef4444;
+    }
+
+    .p-toast-message-text {
+      color: #e2e8f0;
+    }
+    .p-toast-summary {
+      color: #f8fafc;
+      font-weight: 600;
+    }
+  }
+}
+
+// --- Checkbox & Toggle ---
+[data-bs-theme="dark"] {
+  .p-checkbox .p-checkbox-box {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+
+    &.p-highlight {
+      background: #3B82F6;
+      border-color: #3B82F6;
+    }
+  }
+
+  .p-toggleswitch {
+    .p-toggleswitch-slider {
+      background: #1e293b;
+
+      &:before {
+        background: #94a3b8;
+      }
+    }
+
+    &.p-toggleswitch-checked .p-toggleswitch-slider {
+      background: #3B82F6;
+
+      &:before {
+        background: #fff;
+      }
+    }
+  }
+}
+
+// --- Progress Bar ---
+[data-bs-theme="dark"] .p-progressbar {
+  background: #1e293b;
+  border-radius: 999px;
+  height: 6px;
+
+  .p-progressbar-value {
+    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    border-radius: 999px;
+  }
+}
+
+// --- Menu / Overlay ---
+[data-bs-theme="dark"] {
+  .p-menu {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+    .p-menuitem-link {
+      color: #e2e8f0;
+      border-radius: 8px;
+      transition: background-color 150ms ease;
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.08);
+      }
+    }
+  }
+
+  .p-overlaypanel {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    color: #e2e8f0;
+  }
+}
+
+// --- Tooltip ---
+.p-tooltip {
+  .p-tooltip-text {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 8px;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// --- File Upload ---
+[data-bs-theme="dark"] .p-fileupload {
+  .p-fileupload-buttonbar {
+    background: transparent;
+    border: none;
+  }
+
+  .p-fileupload-content {
+    background: #111827;
+    border: 2px dashed #1e293b;
+    border-radius: 16px;
+
+    &:hover {
+      border-color: #3B82F6;
+      background: rgba(59, 130, 246, 0.04);
+    }
+  }
+}
+
+// --- Date Picker ---
+[data-bs-theme="dark"] .p-datepicker {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  color: #e2e8f0;
+
+  .p-datepicker-header {
+    background: transparent;
+    border-bottom: 1px solid #1e293b;
+    color: #f8fafc;
+  }
+
+  td > span {
+    border-radius: 8px;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.08);
+    }
+
+    &.p-highlight {
+      background: #3B82F6;
+      color: #fff;
+    }
+  }
+}
+
+// --- Ripple effect ---
+.p-ink {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+// --- Color Picker ---
+[data-bs-theme="dark"] .p-colorpicker-overlay {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+}
+
+// --- Message / Alert ---
+[data-bs-theme="dark"] .p-message {
+  border-radius: 12px;
+
+  &.p-message-info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: #93b3f3;
+  }
+
+  &.p-message-success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: #86efac;
+  }
+
+  &.p-message-warn {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    color: #fcd34d;
+  }
+
+  &.p-message-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+  }
+}
