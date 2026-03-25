@@ -6,6 +6,7 @@ import {
 } from '@angular/core'
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { providePrimeNG } from 'primeng/config'
+import { DialogService } from 'primeng/dynamicdialog'
 import Aura from '@primeng/themes/aura'
 
 import { DragDropModule } from '@angular/cdk/drag-drop'
@@ -402,6 +403,7 @@ bootstrapApplication(AppComponent, {
       NgxBootstrapIconsModule.pick(icons)
     ),
     provideAppInitializer(initializeApp),
+    DialogService,
     DatePipe,
     CookieService,
     FilterPipe,

@@ -943,3 +943,37 @@ canvas.hiddenCanvasElement {
     background-color: rgba(59, 130, 246, 0.06);
   }
 }
+
+// PrimeNG Dialog Poseidon styling
+.neo-dialog {
+  .p-dialog {
+    background: var(--neo-bg-card, #111827);
+    border: 1px solid var(--neo-border-default, #1e293b);
+    border-radius: var(--neo-radius-lg, 20px);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+  }
+
+  .p-dialog-header {
+    background: transparent;
+    border-bottom: 1px solid var(--neo-border-subtle, #1e293b);
+    color: var(--neo-text-strong, #f8fafc);
+    padding: 1.5rem;
+  }
+
+  .p-dialog-content {
+    background: transparent;
+    color: var(--neo-text-default, #e2e8f0);
+    padding: 1.5rem;
+  }
+
+  .p-dialog-footer {
+    background: transparent;
+    border-top: 1px solid var(--neo-border-subtle, #1e293b);
+    padding: 1rem 1.5rem;
+  }
+}
+
+// PrimeNG Dialog mask
+.p-dialog-mask {
+  background: rgba(0, 0, 0, 0.6);
+}
