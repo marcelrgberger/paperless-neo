@@ -28,6 +28,7 @@ from documents.models import DocumentType
 from documents.models import StoragePath
 from documents.models import Tag
 from documents.parsers import ParseError
+from documents.plugins.base import StopConsumeTaskError
 from documents.plugins.helpers import ProgressStatusOptions
 from documents.tasks import sanity_check
 from documents.tests.utils import DirectoriesMixin
@@ -951,11 +952,11 @@ class TestConsumer(
         self.assertIsFile(dst)
 
         expected_message = (
-            f"{dst.name}: Not consuming {dst.name}: "
+            f"Not consuming {dst.name}: "
             f"It is a duplicate of {document.title} (#{document.pk})"
         )
 
-        with self.assertRaisesMessage(ConsumerError, expected_message):
+        with self.assertRaisesMessage(StopConsumeTaskError, expected_message):
             with self.get_consumer(dst) as consumer:
                 consumer.run()
 
@@ -977,12 +978,12 @@ class TestConsumer(
         self.assertIsFile(dst)
 
         expected_message = (
-            f"{dst.name}: Not consuming {dst.name}: "
+            f"Not consuming {dst.name}: "
             f"It is a duplicate of {document.title} (#{document.pk})"
             f" Note: existing document is in the trash."
         )
 
-        with self.assertRaisesMessage(ConsumerError, expected_message):
+        with self.assertRaisesMessage(StopConsumeTaskError, expected_message):
             with self.get_consumer(dst) as consumer:
                 consumer.run()
 
