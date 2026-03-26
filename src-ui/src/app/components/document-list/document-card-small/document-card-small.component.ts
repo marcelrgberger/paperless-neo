@@ -13,6 +13,8 @@ import {
   NgbProgressbarModule,
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
+import { ProgressBar } from 'primeng/progressbar'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { of } from 'rxjs'
 import { delay } from 'rxjs/operators'
@@ -57,6 +59,8 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     RouterModule,
     NgbTooltipModule,
     NgbProgressbarModule,
+    Tooltip,
+    ProgressBar,
     NgxBootstrapIconsModule,
   ],
 })
@@ -65,6 +69,7 @@ export class DocumentCardSmallComponent
   implements AfterViewInit
 {
   private documentService = inject(DocumentService)
+  private customDatePipe = inject(CustomDatePipe)
   settingsService = inject(SettingsService)
 
   DisplayField = DisplayField
@@ -129,6 +134,14 @@ export class DocumentCardSmallComponent
       this.moreTags = null
       return this.document.tags
     }
+  }
+
+  getDateTooltip(): string {
+    if (!this.document) return ''
+    const created = this.customDatePipe.transform(this.document.created)
+    const added = this.customDatePipe.transform(this.document.added)
+    const modified = this.customDatePipe.transform(this.document.modified)
+    return `${$localize`Created`}: ${created}<br>${$localize`Added`}: ${added}<br>${$localize`Modified`}: ${modified}`
   }
 
   mouseLeaveCard() {
