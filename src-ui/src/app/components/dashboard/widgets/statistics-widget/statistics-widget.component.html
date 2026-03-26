@@ -53,9 +53,8 @@
                 <div
                   class="progress-bar bg-primary"
                   role="progressbar"
-                  [ngbPopover]="getFileTypeName(filetype)"
-                  i18n-ngbPopover
-                  triggers="mouseenter:mouseleave"
+                  [pTooltip]="getFileTypeName(filetype)"
+                  tooltipPosition="top"
                   (click)="filterByFileType(filetype)"
                   [attr.aria-label]="getFileTypeName(filetype)"
                   [class.me-1px]="!last"

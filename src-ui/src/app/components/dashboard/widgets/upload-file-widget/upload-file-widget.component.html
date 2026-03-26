@@ -44,12 +44,12 @@
 </pngx-widget-frame>
 
 <ng-template #consumerAlert let-status>
-  <ngb-alert type="secondary" class="mt-2 mb-0" [dismissible]="isFinished(status)" (closed)="dismiss(status)">
+  <p-message severity="secondary" class="mt-2 mb-0" [closable]="isFinished(status)" (onClose)="dismiss(status)">
     <h6 class="alert-heading">{{status.filename}}</h6>
     @if (!isFinished(status) || (isFinished(status) && !status.documentId)) {
       <p class="mb-0 pb-1">{{status.message}}</p>
     }
-    <ngb-progressbar [value]="status.getProgress()" [max]="1" [type]="getStatusColor(status)"></ngb-progressbar>
+    <p-progressbar [value]="status.getProgress() * 100" [showValue]="false"></p-progressbar>
     <div *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.Document }">
       @if (isFinished(status)) {
         <div>
@@ -62,5 +62,5 @@
         </div>
       }
     </div>
-  </ngb-alert>
+  </p-message>
 </ng-template>

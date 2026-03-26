@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Component, inject, OnDestroy, OnInit } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
 import * as mimeTypeNames from 'mime-names'
 import { first, Subject, Subscription, takeUntil } from 'rxjs'
 import { ComponentWithPermissions } from 'src/app/components/with-permissions/with-permissions.component'
@@ -43,6 +44,7 @@ interface DocumentFileType {
     WidgetFrameComponent,
     IfPermissionsDirective,
     NgbPopoverModule,
+    Tooltip,
     DecimalPipe,
     RouterModule,
   ],

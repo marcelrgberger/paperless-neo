@@ -6,6 +6,8 @@ import {
   NgbAlertModule,
   NgbProgressbarModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Message } from 'primeng/message'
+import { ProgressBar } from 'primeng/progressbar'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { TourNgBootstrap } from 'ngx-ui-tour-ng-bootstrap'
 import { ComponentWithPermissions } from 'src/app/components/with-permissions/with-permissions.component'
@@ -32,6 +34,8 @@ import { WidgetFrameComponent } from '../widget-frame/widget-frame.component'
     RouterModule,
     NgbAlertModule,
     NgbProgressbarModule,
+    Message,
+    ProgressBar,
     NgxBootstrapIconsModule,
     TourNgBootstrap,
   ],

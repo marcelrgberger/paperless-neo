@@ -10,6 +10,7 @@ import {
 } from '@angular/core'
 import { Router, RouterModule } from '@angular/router'
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { delay, Subject, takeUntil, tap } from 'rxjs'
 import { CustomFieldDisplayComponent } from 'src/app/components/common/custom-field-display/custom-field-display.component'
@@ -80,6 +81,7 @@ import { WidgetFrameComponent } from '../widget-frame/widget-frame.component'
     NgStyle,
     RouterModule,
     NgxBootstrapIconsModule,
+    Tooltip,
   ],
 })
 export class SavedViewWidgetComponent
