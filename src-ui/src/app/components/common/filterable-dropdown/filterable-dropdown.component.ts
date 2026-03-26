@@ -15,6 +15,7 @@ import {
 } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgbDropdown, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { Subject, filter, takeUntil } from 'rxjs'
 import { NEGATIVE_NULL_FILTER_VALUE } from 'src/app/data/filter-rule-type'
@@ -665,6 +666,7 @@ export class FilterableDropdownSelectionModel {
     ReactiveFormsModule,
     NgxBootstrapIconsModule,
     NgbDropdownModule,
+    Menu,
     NgClass,
     ScrollingModule,
   ],

@@ -11,6 +11,7 @@ import {
 } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { merge, of, Subject } from 'rxjs'
 import {
@@ -40,6 +41,7 @@ import { ConfirmButtonComponent } from '../../common/confirm-button/confirm-butt
   imports: [
     FormsModule,
     NgbDropdownModule,
+    Menu,
     NgxBootstrapIconsModule,
     ConfirmButtonComponent,
     SlicePipe,

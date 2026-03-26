@@ -16,6 +16,7 @@ import {
   NgbModal,
   NgbModalRef,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { Subject, debounceTime, distinctUntilChanged, filter } from 'rxjs'
 import { DataType } from 'src/app/data/datatype'
@@ -66,6 +67,7 @@ import { WorkflowEditDialogComponent } from '../../common/edit-dialog/workflow-e
     ReactiveFormsModule,
     NgxBootstrapIconsModule,
     NgbDropdownModule,
+    Menu,
     NgTemplateOutlet,
   ],
 })

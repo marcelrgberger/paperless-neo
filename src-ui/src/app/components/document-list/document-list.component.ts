@@ -19,6 +19,7 @@ import {
   NgbDropdownModule,
   NgbModal,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { TourNgBootstrap } from 'ngx-ui-tour-ng-bootstrap'
@@ -99,6 +100,7 @@ import { SaveViewConfigDialogComponent } from './save-view-config-dialog/save-vi
     ReactiveFormsModule,
     NgTemplateOutlet,
     NgbDropdownModule,
+    Menu,
     NgClass,
     Paginator,
     RouterModule,

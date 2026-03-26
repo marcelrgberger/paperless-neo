@@ -15,6 +15,7 @@ import {
   NgbNavChangeEvent,
   NgbNavModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { Tab, TabList, Tabs } from 'primeng/tabs'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { Subject, takeUntil } from 'rxjs'
@@ -65,6 +66,7 @@ interface DocumentAttributesSection {
     PageHeaderComponent,
     NgbNavModule,
     NgbDropdownModule,
+    Menu,
     NgComponentOutlet,
     NgxBootstrapIconsModule,
     IfPermissionsDirective,

@@ -4,6 +4,7 @@ import {
   NgbDropdownModule,
   NgbModal,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { delay, takeUntil, tap } from 'rxjs'
 import { ConfirmDialogComponent } from 'src/app/components/common/confirm-dialog/confirm-dialog.component'
@@ -32,6 +33,7 @@ import { ToastService } from 'src/app/services/toast.service'
   imports: [
     IfPermissionsDirective,
     NgbDropdownModule,
+    Menu,
     NgxBootstrapIconsModule,
     RouterModule,
   ],

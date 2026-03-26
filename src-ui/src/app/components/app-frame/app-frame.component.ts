@@ -16,6 +16,7 @@ import {
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { Menu } from 'primeng/menu'
 import { Tooltip } from 'primeng/tooltip'
 import { TourNgBootstrap } from 'ngx-ui-tour-ng-bootstrap'
 import { Observable } from 'rxjs'
@@ -69,6 +70,7 @@ import { ToastsDropdownComponent } from './toasts-dropdown/toasts-dropdown.compo
     NgbCollapseModule,
     NgbNavModule,
     NgxBootstrapIconsModule,
+    Menu,
     DragDropModule,
     TourNgBootstrap,
     Tooltip,

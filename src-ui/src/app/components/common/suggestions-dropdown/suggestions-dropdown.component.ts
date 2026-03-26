@@ -6,13 +6,14 @@ import {
   ViewChild,
 } from '@angular/core'
 import { NgbDropdown, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { DocumentSuggestions } from 'src/app/data/document-suggestions'
 import { pngxPopperOptions } from 'src/app/utils/popper-options'
 
 @Component({
   selector: 'pngx-suggestions-dropdown',
-  imports: [NgbDropdownModule, NgxBootstrapIconsModule],
+  imports: [NgbDropdownModule, Menu, NgxBootstrapIconsModule],
   templateUrl: './suggestions-dropdown.component.html',
   styleUrl: './suggestions-dropdown.component.scss',
 })

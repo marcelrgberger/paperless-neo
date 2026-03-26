@@ -15,6 +15,7 @@ import {
   NgbDropdownModule,
 } from '@ng-bootstrap/ng-bootstrap'
 import { NgSelectModule } from '@ng-select/ng-select'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { Subject, Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
@@ -59,6 +60,7 @@ export enum RelativeDate {
     NgxBootstrapIconsModule,
     NgbDatepickerModule,
     NgbDropdownModule,
+    Menu,
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,

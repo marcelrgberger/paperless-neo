@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common'
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { NgSelectComponent } from '@ng-select/ng-select'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { first } from 'rxjs'
@@ -52,6 +53,7 @@ export enum OwnerFilterType {
     FormsModule,
     ReactiveFormsModule,
     NgbDropdownModule,
+    Menu,
     NgSelectComponent,
     NgClass,
     NgxBootstrapIconsModule,

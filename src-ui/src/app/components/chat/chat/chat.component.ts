@@ -2,6 +2,7 @@ import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NavigationEnd, Router } from '@angular/router'
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { filter, map } from 'rxjs'
 import { ChatMessage, ChatService } from 'src/app/services/chat.service'
@@ -13,6 +14,7 @@ import { ChatMessage, ChatService } from 'src/app/services/chat.service'
     ReactiveFormsModule,
     NgxBootstrapIconsModule,
     NgbDropdownModule,
+    Menu,
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',

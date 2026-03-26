@@ -16,6 +16,7 @@ import {
   NgbDropdownModule,
 } from '@ng-bootstrap/ng-bootstrap'
 import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select'
+import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { first, Subject, Subscription, takeUntil } from 'rxjs'
 import { CustomField, CustomFieldDataType } from 'src/app/data/custom-field'
@@ -206,6 +207,7 @@ export class CustomFieldQueriesModel {
     NgSelectModule,
     NgxBootstrapIconsModule,
     NgbDropdownModule,
+    Menu,
   ],
 })
 export class CustomFieldsQueryDropdownComponent extends LoadingComponentWithPermissions {
