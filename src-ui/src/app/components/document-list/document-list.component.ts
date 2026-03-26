@@ -18,8 +18,8 @@ import {
 import {
   NgbDropdownModule,
   NgbModal,
-  NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Paginator } from 'primeng/paginator'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { TourNgBootstrap } from 'ngx-ui-tour-ng-bootstrap'
 import { filter, first, map, Subject, switchMap, takeUntil } from 'rxjs'
@@ -99,8 +99,8 @@ import { SaveViewConfigDialogComponent } from './save-view-config-dialog/save-vi
     ReactiveFormsModule,
     NgTemplateOutlet,
     NgbDropdownModule,
-    NgbPaginationModule,
     NgClass,
+    Paginator,
     RouterModule,
     TourNgBootstrap,
   ],
@@ -571,6 +571,10 @@ export class DocumentListComponent
 
   get notesEnabled(): boolean {
     return this.settingsService.get(SETTINGS_KEYS.NOTES_ENABLED)
+  }
+
+  onPrimePageChange(event: { first: number; rows: number; page: number }) {
+    this.list.currentPage = event.page + 1
   }
 
   resetFilters() {

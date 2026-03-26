@@ -29,14 +29,15 @@
             }
           </div>
           @if (allSelectOptions.length > SELECT_OPTION_PAGE_SIZE) {
-            <ngb-pagination
+            <p-paginator
               class="d-flex justify-content-end"
-              [pageSize]="SELECT_OPTION_PAGE_SIZE"
-              [collectionSize]="allSelectOptions.length"
-              [(page)]="selectOptionsPage"
-              [maxSize]="5"
-              size="sm"
-            ></ngb-pagination>
+              [totalRecords]="allSelectOptions.length"
+              [rows]="SELECT_OPTION_PAGE_SIZE"
+              [first]="(selectOptionsPage - 1) * SELECT_OPTION_PAGE_SIZE"
+              (onPageChange)="onPrimePageChange($event)"
+              [showFirstLastIcon]="true"
+              [showPageLinks]="true">
+            </p-paginator>
           }
         }
         @case (CustomFieldDataType.Monetary) {

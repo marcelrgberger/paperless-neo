@@ -14,7 +14,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms'
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
+import { Paginator } from 'primeng/paginator'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { takeUntil } from 'rxjs'
 import {
@@ -40,8 +40,8 @@ const SELECT_OPTION_PAGE_SIZE = 8
     TextComponent,
     FormsModule,
     ReactiveFormsModule,
-    NgbPaginationModule,
     NgxBootstrapIconsModule,
+    Paginator,
   ],
 })
 export class CustomFieldEditDialogComponent
@@ -174,6 +174,10 @@ export class CustomFieldEditDialogComponent
     this.selectOptionsPage = Math.ceil(
       this.allSelectOptions.length / SELECT_OPTION_PAGE_SIZE
     )
+  }
+
+  onPrimePageChange(event: { first: number; rows: number; page: number }) {
+    this.selectOptionsPage = event.page + 1
   }
 
   public removeSelectOption(index: number) {

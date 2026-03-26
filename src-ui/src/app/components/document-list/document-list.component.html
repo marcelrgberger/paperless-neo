@@ -149,8 +149,14 @@
       }
       </div>
       @if (list.collectionSize) {
-        <ngb-pagination [pageSize]="list.pageSize" [collectionSize]="list.collectionSize" [(page)]="list.currentPage" [maxSize]="5"
-        [rotate]="true" aria-label="Default pagination" size="sm"></ngb-pagination>
+        <p-paginator
+          [totalRecords]="list.collectionSize"
+          [rows]="list.pageSize"
+          [first]="(list.currentPage - 1) * list.pageSize"
+          (onPageChange)="onPrimePageChange($event)"
+          [showFirstLastIcon]="true"
+          [showPageLinks]="true">
+        </p-paginator>
       }
     </div>
   </ng-template>

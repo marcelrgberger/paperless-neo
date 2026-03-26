@@ -7,9 +7,9 @@ import {
   NgbDropdownModule,
   NgbModal,
   NgbNavModule,
-  NgbPaginationModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Paginator } from 'primeng/paginator'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import {
@@ -62,8 +62,8 @@ const FILTER_TARGETS = [
     NgbCollapseModule,
     NgbDropdownModule,
     NgbNavModule,
-    NgbPaginationModule,
     NgbPopoverModule,
+    Paginator,
     NgxBootstrapIconsModule,
     Tabs,
     TabList,
@@ -267,6 +267,10 @@ export class TasksComponent
 
   public resetFilter() {
     this._filterText = ''
+  }
+
+  onPrimePageChange(event: { first: number; rows: number; page: number }) {
+    this.page = event.page + 1
   }
 
   filterInputKeyup(event: KeyboardEvent) {

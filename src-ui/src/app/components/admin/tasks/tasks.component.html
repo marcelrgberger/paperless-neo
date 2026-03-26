@@ -144,7 +144,14 @@
       </div>
     }
     @if (tasks.length > pageSize) {
-      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="tasks.length" maxSize="8" size="sm"></ngb-pagination>
+      <p-paginator
+        [totalRecords]="tasks.length"
+        [rows]="pageSize"
+        [first]="(page - 1) * pageSize"
+        (onPageChange)="onPrimePageChange($event)"
+        [showFirstLastIcon]="true"
+        [showPageLinks]="true">
+      </p-paginator>
     }
   </div>
 </ng-template>

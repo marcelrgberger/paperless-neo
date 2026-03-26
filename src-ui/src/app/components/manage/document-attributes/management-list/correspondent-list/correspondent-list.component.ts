@@ -2,10 +2,8 @@ import { NgClass, NgTemplateOutlet } from '@angular/common'
 import { Component, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
-import {
-  NgbDropdownModule,
-  NgbPaginationModule,
-} from '@ng-bootstrap/ng-bootstrap'
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { Paginator } from 'primeng/paginator'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { CorrespondentEditDialogComponent } from 'src/app/components/common/edit-dialog/correspondent-edit-dialog/correspondent-edit-dialog.component'
 import { Correspondent } from 'src/app/data/correspondent'
@@ -31,8 +29,8 @@ import { ManagementListComponent } from '../management-list.component'
     NgClass,
     NgTemplateOutlet,
     NgbDropdownModule,
-    NgbPaginationModule,
     NgxBootstrapIconsModule,
+    Paginator,
   ],
 })
 export class CorrespondentListComponent extends ManagementListComponent<Correspondent> {

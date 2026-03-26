@@ -346,6 +346,11 @@ export abstract class ManagementListComponent<T extends MatchingModel>
     return objects.map((o) => o.id)
   }
 
+  onPrimePageChange(event: { first: number; rows: number; page: number }) {
+    this.page = event.page + 1
+    this.reloadData()
+  }
+
   clearSelection() {
     this.togggleAll = false
     this.selectedObjects.clear()

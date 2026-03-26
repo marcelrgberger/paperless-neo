@@ -89,13 +89,14 @@
         (confirm)="deleteSelected()">
       </pngx-confirm-button>
       <div class="ms-auto">
-        <ngb-pagination
-          [collectionSize]="processedMails.length"
-          [(page)]="page"
-          [pageSize]="50"
-          [maxSize]="5"
-          (pageChange)="loadProcessedMails()">
-        </ngb-pagination>
+        <p-paginator
+          [totalRecords]="processedMails.length"
+          [rows]="50"
+          [first]="(page - 1) * 50"
+          (onPageChange)="onPrimePageChange($event)"
+          [showFirstLastIcon]="true"
+          [showPageLinks]="true">
+        </p-paginator>
       </div>
     </div>
   }

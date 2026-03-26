@@ -3,10 +3,10 @@ import { Component, inject, Input, OnInit } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {
   NgbActiveModal,
-  NgbPagination,
   NgbPopoverModule,
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Paginator } from 'primeng/paginator'
 import { Tooltip } from 'primeng/tooltip'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { ConfirmButtonComponent } from 'src/app/components/common/confirm-button/confirm-button.component'
@@ -21,8 +21,8 @@ import { ToastService } from 'src/app/services/toast.service'
   imports: [
     ConfirmButtonComponent,
     CustomDatePipe,
-    NgbPagination,
     NgbPopoverModule,
+    Paginator,
     NgbTooltipModule,
     Tooltip,
     NgxBootstrapIconsModule,
@@ -88,6 +88,11 @@ export class ProcessedMailDialogComponent implements OnInit {
   public clearSelection() {
     this.toggleAllEnabled = false
     this.selectedMailIds.clear()
+  }
+
+  public onPrimePageChange(event: { first: number; rows: number; page: number }) {
+    this.page = event.page + 1
+    this.loadProcessedMails()
   }
 
   public toggleSelected(mail: ProcessedMail) {

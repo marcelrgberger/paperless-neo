@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router'
 import {
   NgbDropdownModule,
   NgbModal,
-  NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { delay, takeUntil, tap } from 'rxjs'
@@ -33,7 +32,6 @@ import { ToastService } from 'src/app/services/toast.service'
   imports: [
     IfPermissionsDirective,
     NgbDropdownModule,
-    NgbPaginationModule,
     NgxBootstrapIconsModule,
     RouterModule,
   ],

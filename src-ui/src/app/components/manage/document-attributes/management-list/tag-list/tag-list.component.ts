@@ -2,10 +2,8 @@ import { NgClass, NgTemplateOutlet } from '@angular/common'
 import { Component, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
-import {
-  NgbDropdownModule,
-  NgbPaginationModule,
-} from '@ng-bootstrap/ng-bootstrap'
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { Paginator } from 'primeng/paginator'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { TagEditDialogComponent } from 'src/app/components/common/edit-dialog/tag-edit-dialog/tag-edit-dialog.component'
 import { FILTER_HAS_TAGS_ALL } from 'src/app/data/filter-rule-type'
@@ -30,8 +28,8 @@ import { ManagementListComponent } from '../management-list.component'
     NgClass,
     NgTemplateOutlet,
     NgbDropdownModule,
-    NgbPaginationModule,
     NgxBootstrapIconsModule,
+    Paginator,
   ],
 })
 export class TagListComponent extends ManagementListComponent<Tag> {

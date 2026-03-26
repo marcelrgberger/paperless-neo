@@ -19,7 +19,14 @@
         </select>
         <span class="input-group-text text-muted d-none d-md-flex" i18n>per page</span>
       </div>
-      <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" (pageChange)="reloadData()" size="sm" aria-label="Pagination"></ngb-pagination>
+      <p-paginator
+        [totalRecords]="collectionSize"
+        [rows]="pageSize"
+        [first]="(page - 1) * pageSize"
+        (onPageChange)="onPrimePageChange($event)"
+        [showFirstLastIcon]="true"
+        [showPageLinks]="true">
+      </p-paginator>
     </div>
   </div>
 
@@ -71,7 +78,14 @@
       </div>
     }
     @if (collectionSize > 20) {
-      <ngb-pagination class="ms-auto" [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" (pageChange)="reloadData()" size="sm" aria-label="Pagination"></ngb-pagination>
+      <p-paginator class="ms-auto"
+        [totalRecords]="collectionSize"
+        [rows]="pageSize"
+        [first]="(page - 1) * pageSize"
+        (onPageChange)="onPrimePageChange($event)"
+        [showFirstLastIcon]="true"
+        [showPageLinks]="true">
+      </p-paginator>
     }
   </div>
 }

@@ -4,8 +4,8 @@ import { Router } from '@angular/router'
 import {
   NgbDropdownModule,
   NgbModal,
-  NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Paginator } from 'primeng/paginator'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { delay, takeUntil, tap } from 'rxjs'
 import { Document } from 'src/app/data/document'
@@ -28,8 +28,8 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     FormsModule,
     ReactiveFormsModule,
     NgbDropdownModule,
-    NgbPaginationModule,
     NgxBootstrapIconsModule,
+    Paginator,
   ],
 })
 export class TrashComponent
@@ -194,6 +194,11 @@ export class TrashComponent
   clearSelection() {
     this.allToggled = false
     this.selectedDocuments.clear()
+  }
+
+  onPrimePageChange(event: { first: number; rows: number; page: number }) {
+    this.page = event.page + 1
+    this.reload()
   }
 
   getDaysRemaining(document: Document): number {
