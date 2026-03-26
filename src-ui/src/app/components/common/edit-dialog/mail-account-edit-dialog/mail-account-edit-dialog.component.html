@@ -26,7 +26,7 @@
   <div class="modal-footer">
     <div class="m-0 me-2">
       @if (testResult) {
-        <ngb-alert #testResultAlert [type]="testResult" class="mb-0 py-2" (closed)="testResult = null">{{testResultMessage}}</ngb-alert>
+        <p-message [severity]="testResult === 'success' ? 'success' : 'error'" class="mb-0 py-2" [closable]="true" (onClose)="testResult = null">{{testResultMessage}}</p-message>
       }
     </div>
     <button type="button" class="btn btn-outline-primary" (click)="test()" [disabled]="networkActive || testActive">

@@ -1,22 +1,17 @@
 @if (field) {
     @if (value?.toString().length > 0) {
-        <ng-template #nameTooltip>
-            <div class="d-flex flex-column text-light">
-                {{field.name}}
-            </div>
-        </ng-template>
         @switch (field.data_type) {
             @case (CustomFieldDataType.Monetary) {
-                <span [ngbTooltip]="nameTooltip">{{value | currency: currency}}</span>
+                <span [pTooltip]="field.name" tooltipPosition="top">{{value | currency: currency}}</span>
             }
             @case (CustomFieldDataType.Date) {
-                <span [ngbTooltip]="nameTooltip">{{value | customDate}}</span>
+                <span [pTooltip]="field.name" tooltipPosition="top">{{value | customDate}}</span>
             }
             @case (CustomFieldDataType.Url) {
-                <a [ngbTooltip]="nameTooltip" [href]="value" class="btn-link text-dark text-decoration-none" target="_blank">{{value}}</a>
+                <a [pTooltip]="field.name" tooltipPosition="top" [href]="value" class="btn-link text-dark text-decoration-none" target="_blank">{{value}}</a>
             }
             @case (CustomFieldDataType.DocumentLink) {
-                <div [ngbTooltip]="nameTooltip" class="d-flex gap-1 flex-wrap">
+                <div [pTooltip]="field.name" tooltipPosition="top" class="d-flex gap-1 flex-wrap">
                     @for (docId of value; track docId) {
                       @if (getDocumentTitle(docId)) {
                           <a routerLink="/documents/{{docId}}" class="badge bg-body text-primary" title="View" i18n-title>
@@ -33,13 +28,13 @@
                 </div>
             }
             @case (CustomFieldDataType.Select) {
-                <span [ngbTooltip]="nameTooltip">{{getSelectValue(field, value)}}</span>
+                <span [pTooltip]="field.name" tooltipPosition="top">{{getSelectValue(field, value)}}</span>
             }
             @case (CustomFieldDataType.LongText) {
-                <p class="mb-0" [ngbTooltip]="nameTooltip">{{value | slice:0:20}}{{value.length > 20 ? '...' : ''}}</p>
+                <p class="mb-0" [pTooltip]="field.name" tooltipPosition="top">{{value | slice:0:20}}{{value.length > 20 ? '...' : ''}}</p>
             }
             @default {
-              <span [ngbTooltip]="nameTooltip">{{value}}</span>
+              <span [pTooltip]="field.name" tooltipPosition="top">{{value}}</span>
             }
         }
     } @else if (showNameIfEmpty) {

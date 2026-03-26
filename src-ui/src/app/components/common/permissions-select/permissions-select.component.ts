@@ -10,6 +10,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { SETTINGS_KEYS } from 'src/app/data/ui-settings'
 import {
@@ -35,6 +36,7 @@ import { ComponentWithPermissions } from '../../with-permissions/with-permission
     KeyValuePipe,
     NgxBootstrapIconsModule,
     NgbPopoverModule,
+    Tooltip,
     FormsModule,
     ReactiveFormsModule,
   ],

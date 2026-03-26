@@ -7,6 +7,7 @@ import {
   NgbPopoverModule,
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { ConfirmButtonComponent } from 'src/app/components/common/confirm-button/confirm-button.component'
 import { MailRule } from 'src/app/data/mail-rule'
@@ -23,6 +24,7 @@ import { ToastService } from 'src/app/services/toast.service'
     NgbPagination,
     NgbPopoverModule,
     NgbTooltipModule,
+    Tooltip,
     NgxBootstrapIconsModule,
     FormsModule,
     ReactiveFormsModule,

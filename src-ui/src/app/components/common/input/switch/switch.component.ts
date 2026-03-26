@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
 import { AbstractInputComponent } from '../abstract-input'
 
 @Component({
@@ -19,11 +20,13 @@ import { AbstractInputComponent } from '../abstract-input'
   selector: 'pngx-input-switch',
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgbTooltipModule],
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgbTooltipModule, Tooltip],
 })
 export class SwitchComponent extends AbstractInputComponent<boolean> {
   @Input()
   showUnsetNote: boolean = false
+
+  tipText: string = $localize`Note: value has not yet been set and will not apply until explicitly changed`
 
   constructor() {
     super()

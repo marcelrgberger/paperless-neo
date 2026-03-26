@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap'
+import { Message } from 'primeng/message'
 import { EditDialogComponent } from 'src/app/components/common/edit-dialog/edit-dialog.component'
 import { IMAPSecurity, MailAccount } from 'src/app/data/mail-account'
 import { MailAccountService } from 'src/app/services/rest/mail-account.service'
@@ -34,6 +35,7 @@ const IMAP_SECURITY_OPTIONS = [
     FormsModule,
     ReactiveFormsModule,
     NgbAlertModule,
+    Message,
   ],
 })
 export class MailAccountEditDialogComponent extends EditDialogComponent<MailAccount> {
@@ -41,7 +43,7 @@ export class MailAccountEditDialogComponent extends EditDialogComponent<MailAcco
   testResult: string
   alertTimeout
 
-  @ViewChild('testResultAlert', { static: false }) testResultAlert: NgbAlert
+  @ViewChild('testResultAlert', { static: false }) testResultAlert: any
 
   constructor() {
     super()
@@ -88,12 +90,12 @@ export class MailAccountEditDialogComponent extends EditDialogComponent<MailAcco
       next: (result: { success: boolean }) => {
         this.testActive = false
         this.testResult = result.success ? 'success' : 'danger'
-        this.alertTimeout = setTimeout(() => this.testResultAlert.close(), 5000)
+        this.alertTimeout = setTimeout(() => this.testResult = null, 5000)
       },
       error: (e) => {
         this.testActive = false
         this.testResult = 'danger'
-        this.alertTimeout = setTimeout(() => this.testResultAlert.close(), 5000)
+        this.alertTimeout = setTimeout(() => this.testResult = null, 5000)
       },
     })
   }

@@ -10,6 +10,7 @@ import {
   NgbActiveModal,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
 import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { takeUntil } from 'rxjs'
@@ -41,6 +42,7 @@ import { TextComponent } from '../input/text/text.component'
     AccordionHeader,
     AccordionContent,
     NgbPopoverModule,
+    Tooltip,
     NgxBootstrapIconsModule,
   ],
 })

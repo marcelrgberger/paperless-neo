@@ -1,6 +1,7 @@
 import { CurrencyPipe, getLocaleCurrencyCode, SlicePipe } from '@angular/common'
 import { Component, inject, Input, LOCALE_ID, OnInit } from '@angular/core'
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
+import { Tooltip } from 'primeng/tooltip'
 import { takeUntil } from 'rxjs'
 import { CustomField, CustomFieldDataType } from 'src/app/data/custom-field'
 import { DisplayField, Document } from 'src/app/data/document'
@@ -14,7 +15,7 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
   selector: 'pngx-custom-field-display',
   templateUrl: './custom-field-display.component.html',
   styleUrl: './custom-field-display.component.scss',
-  imports: [CustomDatePipe, CurrencyPipe, NgbTooltipModule, SlicePipe],
+  imports: [CustomDatePipe, CurrencyPipe, NgbTooltipModule, Tooltip, SlicePipe],
 })
 export class CustomFieldDisplayComponent
   extends LoadingComponentWithPermissions
