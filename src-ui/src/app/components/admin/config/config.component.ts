@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap'
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { DirtyComponent, dirtyCheck } from '@ngneat/dirty-check-forms'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import {
@@ -50,6 +51,11 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     PasswordComponent,
     AsyncPipe,
     NgbNavModule,
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
     FormsModule,
     ReactiveFormsModule,
     NgxBootstrapIconsModule,

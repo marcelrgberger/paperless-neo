@@ -23,23 +23,23 @@
   </div>
 </pngx-page-header>
 
-<ul ngbNav #nav="ngbNav" [(activeId)]="activeLog" (activeIdChange)="reloadLogs()" class="nav-tabs">
-  @for (logFile of logFiles; track logFile) {
-    <li [ngbNavItem]="logFile">
-      <a ngbNavLink>
+<p-tabs [value]="activeLog" (valueChange)="activeLog = $event; reloadLogs()">
+  <p-tablist>
+    @for (logFile of logFiles; track logFile) {
+      <p-tab [value]="logFile">
         {{logFile}}.log
-      </a>
-    </li>
-  }
-  @if (loading || !logFiles.length) {
-    <div class="ps-2 d-flex align-items-center">
-      <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-      @if (!logFiles.length) {
-        <ng-container i18n>Loading...</ng-container>
-      }
-    </div>
-  }
-</ul>
+      </p-tab>
+    }
+    @if (loading || !logFiles.length) {
+      <div class="ps-2 d-flex align-items-center">
+        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+        @if (!logFiles.length) {
+          <ng-container i18n>Loading...</ng-container>
+        }
+      </div>
+    }
+  </p-tablist>
+</p-tabs>
 
 <div #logContainer class="bg-dark text-light font-monospace log-container p-3" (scroll)="onScroll()">
   @if (loading && !logFiles.length) {

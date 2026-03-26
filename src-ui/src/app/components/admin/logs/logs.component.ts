@@ -10,6 +10,7 @@ import {
 } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap'
+import { Tab, TabList, Tabs } from 'primeng/tabs'
 import { Subject, debounceTime, filter, takeUntil, timer } from 'rxjs'
 import { LogService } from 'src/app/services/rest/log.service'
 import { PageHeaderComponent } from '../../common/page-header/page-header.component'
@@ -22,6 +23,9 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
   imports: [
     PageHeaderComponent,
     NgbNavModule,
+    Tabs,
+    TabList,
+    Tab,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

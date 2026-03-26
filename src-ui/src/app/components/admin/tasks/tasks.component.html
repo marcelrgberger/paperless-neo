@@ -149,38 +149,33 @@
   </div>
 </ng-template>
 
-<ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs" (hidden)="duringTabChange()" (navChange)="beforeTabChange()">
-  <li ngbNavItem="failed">
-    <a ngbNavLink i18n>Failed@if (tasksService.failedFileTasks.length > 0) {
+<p-tabs [value]="activeTab" (valueChange)="onTabChange($event)">
+  <p-tablist>
+    <p-tab value="failed" i18n>Failed@if (tasksService.failedFileTasks.length > 0) {
       <span class="badge bg-danger ms-2">{{tasksService.failedFileTasks.length}}</span>
-    }</a>
-    <ng-template ngbNavContent>
-      <ng-container [ngTemplateOutlet]="tasksTemplate" [ngTemplateOutletContext]="{tasks:currentTasks}"></ng-container>
-    </ng-template>
-  </li>
-  <li ngbNavItem="completed">
-    <a ngbNavLink i18n>Complete@if (tasksService.completedFileTasks.length > 0) {
+    }</p-tab>
+    <p-tab value="completed" i18n>Complete@if (tasksService.completedFileTasks.length > 0) {
       <span class="badge bg-secondary ms-2">{{tasksService.completedFileTasks.length}}</span>
-    }</a>
-    <ng-template ngbNavContent>
-      <ng-container [ngTemplateOutlet]="tasksTemplate" [ngTemplateOutletContext]="{tasks:currentTasks}"></ng-container>
-    </ng-template>
-  </li>
-  <li ngbNavItem="started">
-    <a ngbNavLink i18n>Started@if (tasksService.startedFileTasks.length > 0) {
+    }</p-tab>
+    <p-tab value="started" i18n>Started@if (tasksService.startedFileTasks.length > 0) {
       <span class="badge bg-secondary ms-2">{{tasksService.startedFileTasks.length}}</span>
-    }</a>
-    <ng-template ngbNavContent>
-      <ng-container [ngTemplateOutlet]="tasksTemplate" [ngTemplateOutletContext]="{tasks:currentTasks}"></ng-container>
-    </ng-template>
-  </li>
-  <li ngbNavItem="queued">
-    <a ngbNavLink i18n>Queued@if (tasksService.queuedFileTasks.length > 0) {
+    }</p-tab>
+    <p-tab value="queued" i18n>Queued@if (tasksService.queuedFileTasks.length > 0) {
       <span class="badge bg-secondary ms-2">{{tasksService.queuedFileTasks.length}}</span>
-    }</a>
-    <ng-template ngbNavContent>
+    }</p-tab>
+  </p-tablist>
+  <p-tabpanels>
+    <p-tabpanel value="failed">
       <ng-container [ngTemplateOutlet]="tasksTemplate" [ngTemplateOutletContext]="{tasks:currentTasks}"></ng-container>
-    </ng-template>
-  </li>
-</ul>
-<div [ngbNavOutlet]="nav"></div>
+    </p-tabpanel>
+    <p-tabpanel value="completed">
+      <ng-container [ngTemplateOutlet]="tasksTemplate" [ngTemplateOutletContext]="{tasks:currentTasks}"></ng-container>
+    </p-tabpanel>
+    <p-tabpanel value="started">
+      <ng-container [ngTemplateOutlet]="tasksTemplate" [ngTemplateOutletContext]="{tasks:currentTasks}"></ng-container>
+    </p-tabpanel>
+    <p-tabpanel value="queued">
+      <ng-container [ngTemplateOutlet]="tasksTemplate" [ngTemplateOutletContext]="{tasks:currentTasks}"></ng-container>
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>

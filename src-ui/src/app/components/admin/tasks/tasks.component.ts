@@ -10,6 +10,7 @@ import {
   NgbPaginationModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import {
   debounceTime,
@@ -64,6 +65,11 @@ const FILTER_TARGETS = [
     NgbPaginationModule,
     NgbPopoverModule,
     NgxBootstrapIconsModule,
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
   ],
 })
 export class TasksComponent
@@ -229,6 +235,12 @@ export class TasksComponent
   clearSelection() {
     this.togggleAll = false
     this.selectedTasks.clear()
+  }
+
+  onTabChange(tab: TaskTab) {
+    this.beforeTabChange()
+    this.activeTab = tab
+    this.duringTabChange()
   }
 
   duringTabChange() {

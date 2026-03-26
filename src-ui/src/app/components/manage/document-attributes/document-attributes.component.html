@@ -59,15 +59,15 @@
   }
 </pngx-page-header>
 
-<ul ngbNav #nav="ngbNav" (navChange)="onNavChange($event)" [(activeId)]="activeNavID" class="nav-underline">
-  @for (section of visibleSections; track section.id) {
-    <li [ngbNavItem]="section.id">
-      <a ngbNavLink >
+<p-tabs [value]="activeNavID" (valueChange)="onTabChange($event)">
+  <p-tablist>
+    @for (section of visibleSections; track section.id) {
+      <p-tab [value]="section.id">
         <i-bs class="me-2" [name]="section.icon"></i-bs>{{ section.label }}
-      </a>
-    </li>
-  }
-</ul>
+      </p-tab>
+    }
+  </p-tablist>
+</p-tabs>
 
 <div class="my-3 shadow-sm">
   <ng-container

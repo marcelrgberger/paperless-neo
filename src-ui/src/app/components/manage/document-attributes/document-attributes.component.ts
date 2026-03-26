@@ -15,6 +15,7 @@ import {
   NgbNavChangeEvent,
   NgbNavModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tab, TabList, Tabs } from 'primeng/tabs'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { Subject, takeUntil } from 'rxjs'
 import { IfPermissionsDirective } from 'src/app/directives/if-permissions.directive'
@@ -68,6 +69,9 @@ interface DocumentAttributesSection {
     NgxBootstrapIconsModule,
     IfPermissionsDirective,
     ClearableBadgeComponent,
+    Tabs,
+    TabList,
+    Tab,
   ],
 })
 export class DocumentAttributesComponent
@@ -231,6 +235,14 @@ export class DocumentAttributesComponent
 
   onNavChange(navChangeEvent: NgbNavChangeEvent): void {
     const nextSection = this.getSectionForNavID(navChangeEvent.nextId)
+    if (!nextSection) {
+      return
+    }
+    this.router.navigate(['attributes', nextSection])
+  }
+
+  onTabChange(navID: number): void {
+    const nextSection = this.getSectionForNavID(navID)
     if (!nextSection) {
       return
     }
