@@ -155,10 +155,36 @@
         <ng-container *ngTemplateOutlet="saveButtons"></ng-container>
       </div>
 
-      <ul ngbNav #nav="ngbNav" class="nav-underline flex-nowrap flex-md-wrap overflow-auto" (navChange)="onNavChange($event)" [(activeId)]="activeNavID">
-        <li [ngbNavItem]="DocumentDetailNavIDs.Details">
-          <a ngbNavLink i18n>Details</a>
-          <ng-template ngbNavContent>
+      <p-tabs [value]="activeNavID" (valueChange)="onTabChange($event)" class="nav-underline flex-nowrap flex-md-wrap overflow-auto">
+        <p-tablist>
+          <p-tab [value]="DocumentDetailNavIDs.Details" i18n>Details</p-tab>
+          <p-tab [value]="DocumentDetailNavIDs.Content" i18n>Content</p-tab>
+          <p-tab [value]="DocumentDetailNavIDs.Metadata" i18n>Metadata</p-tab>
+          <p-tab [value]="DocumentDetailNavIDs.Preview" class="d-md-none" i18n>Preview</p-tab>
+          @if (notesEnabled) {
+            <p-tab [value]="DocumentDetailNavIDs.Notes">
+              <span class="text-nowrap" i18n>Notes @if (document?.notes.length) {
+                <span class="badge text-bg-secondary ms-1">{{document.notes.length}}</span>
+              }</span>
+            </p-tab>
+          }
+          @if (historyEnabled) {
+            <p-tab [value]="DocumentDetailNavIDs.History" i18n>History</p-tab>
+          }
+          @if (showPermissions) {
+            <p-tab [value]="DocumentDetailNavIDs.Permissions" i18n>Permissions</p-tab>
+          }
+          @if (document?.duplicate_documents?.length) {
+            <p-tab [value]="DocumentDetailNavIDs.Duplicates">
+              <span class="text-nowrap" i18n>
+                Duplicates
+                <span class="badge text-bg-secondary ms-1">{{ document.duplicate_documents.length }}</span>
+              </span>
+            </p-tab>
+          }
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel [value]="DocumentDetailNavIDs.Details">
             <div>
               <pngx-input-text #inputTitle i18n-title title="Title" formControlName="title" [horizontal]="true" [suggestion]="suggestions?.title" (keyup)="titleKeyUp($event)" [error]="error?.title"></pngx-input-text>
               @if (!isFieldHidden(DocumentDetailFieldID.ArchiveSerialNumber)) {
@@ -279,21 +305,15 @@
             <div class="d-flex border-top pt-3">
               <ng-container *ngTemplateOutlet="saveButtons"></ng-container>
             </div>
-          </ng-template>
-        </li>
+          </p-tabpanel>
 
-        <li [ngbNavItem]="DocumentDetailNavIDs.Content">
-          <a ngbNavLink i18n>Content</a>
-          <ng-template ngbNavContent>
+          <p-tabpanel [value]="DocumentDetailNavIDs.Content">
             <div>
               <textarea class="form-control" id="content" rows="20" formControlName='content' [class.rtl]="isRTL"></textarea>
             </div>
-          </ng-template>
-        </li>
+          </p-tabpanel>
 
-        <li [ngbNavItem]="DocumentDetailNavIDs.Metadata">
-          <a ngbNavLink i18n>Metadata</a>
-          <ng-template ngbNavContent>
+          <p-tabpanel [value]="DocumentDetailNavIDs.Metadata">
 
             @if (document) {
               <table class="table table-borderless">
@@ -349,60 +369,40 @@
               <pngx-metadata-collapse i18n-title title="Archived document metadata" [metadata]="metadata.archive_metadata"></pngx-metadata-collapse>
             }
 
-          </ng-template>
-        </li>
+          </p-tabpanel>
 
-        <li [ngbNavItem]="DocumentDetailNavIDs.Preview" class="d-md-none">
-          <a ngbNavLink i18n>Preview</a>
-          @if (!pdfPreview.offsetParent) {
-            <ng-template ngbNavContent>
+          <p-tabpanel [value]="DocumentDetailNavIDs.Preview">
+            @if (!pdfPreview.offsetParent) {
               <div class="position-relative">
                 <ng-container *ngTemplateOutlet="previewContent"></ng-container>
               </div>
-            </ng-template>
-          }
-        </li>
+            }
+          </p-tabpanel>
 
-        @if (notesEnabled) {
-          <li [ngbNavItem]="DocumentDetailNavIDs.Notes">
-            <a class="text-nowrap" ngbNavLink i18n>Notes @if (document?.notes.length) {
-              <span class="badge text-bg-secondary ms-1">{{document.notes.length}}</span>
-            }</a>
-            <ng-template ngbNavContent>
+          @if (notesEnabled) {
+            <p-tabpanel [value]="DocumentDetailNavIDs.Notes">
               <pngx-document-notes [documentId]="documentId" [notes]="document?.notes" [addDisabled]="!userCanEdit" (updated)="notesUpdated($event)"></pngx-document-notes>
-            </ng-template>
-          </li>
-        }
+            </p-tabpanel>
+          }
 
-        @if (historyEnabled) {
-          <li [ngbNavItem]="DocumentDetailNavIDs.History">
-            <a ngbNavLink i18n>History</a>
-            <ng-template ngbNavContent>
+          @if (historyEnabled) {
+            <p-tabpanel [value]="DocumentDetailNavIDs.History">
               <div class="mb-3">
                 <pngx-document-history [documentId]="documentId"></pngx-document-history>
               </div>
-            </ng-template>
-          </li>
-        }
+            </p-tabpanel>
+          }
 
-        @if (showPermissions) {
-          <li [ngbNavItem]="DocumentDetailNavIDs.Permissions">
-            <a ngbNavLink i18n>Permissions</a>
-            <ng-template ngbNavContent>
+          @if (showPermissions) {
+            <p-tabpanel [value]="DocumentDetailNavIDs.Permissions">
               <div class="mb-3">
                 <pngx-permissions-form [users]="users" formControlName="permissions_form"></pngx-permissions-form>
               </div>
-            </ng-template>
-          </li>
-        }
+            </p-tabpanel>
+          }
 
-        @if (document?.duplicate_documents?.length) {
-          <li [ngbNavItem]="DocumentDetailNavIDs.Duplicates">
-            <a class="text-nowrap" ngbNavLink i18n>
-              Duplicates
-              <span class="badge text-bg-secondary ms-1">{{ document.duplicate_documents.length }}</span>
-            </a>
-            <ng-template ngbNavContent>
+          @if (document?.duplicate_documents?.length) {
+            <p-tabpanel [value]="DocumentDetailNavIDs.Duplicates">
               <div class="d-flex flex-column gap-2">
                 <div class="fst-italic" i18n>Duplicate documents detected:</div>
                 <div class="list-group">
@@ -423,12 +423,10 @@
                   }
                 </div>
               </div>
-            </ng-template>
-          </li>
-        }
-      </ul>
-
-      <div [ngbNavOutlet]="nav" class="mt-3"></div>
+            </p-tabpanel>
+          }
+        </p-tabpanels>
+      </p-tabs>
 
     </form>
   </div>

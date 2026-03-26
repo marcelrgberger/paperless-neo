@@ -12,4 +12,8 @@ export interface DocumentMetadata {
   has_archive_version?: boolean
 
   lang?: string
+
+  original_metadata?: { namespace: string; prefix: string; key: string; value: string }[]
+
+  archive_metadata?: { namespace: string; prefix: string; key: string; value: string }[]
 }

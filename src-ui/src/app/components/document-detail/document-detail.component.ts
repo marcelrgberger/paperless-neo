@@ -18,6 +18,8 @@ import {
   NgbNavChangeEvent,
   NgbNavModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
+import { Tooltip } from 'primeng/tooltip'
 import { dirtyCheck, DirtyComponent } from '@ngneat/dirty-check-forms'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { DeviceDetectorService } from 'ngx-device-detector'
@@ -185,6 +187,12 @@ interface IncomingDocumentUpdate {
     NgbNavModule,
     NgbDropdownModule,
     NgxBootstrapIconsModule,
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
+    Tooltip,
     TextAreaComponent,
     RouterModule,
     PngxPdfViewerComponent,
@@ -306,10 +314,10 @@ export class DocumentDetailComponent
     if (
       element &&
       element.nativeElement.offsetParent !== null &&
-      this.nav?.activeId == DocumentDetailNavIDs.Preview
+      this.activeNavID == DocumentDetailNavIDs.Preview
     ) {
       // its visible
-      setTimeout(() => this.nav?.select(DocumentDetailNavIDs.Details))
+      setTimeout(() => (this.activeNavID = DocumentDetailNavIDs.Details))
     }
   }
 
@@ -862,6 +870,20 @@ export class DocumentDetailComponent
         this.documentId,
         foundNavIDkey.toLowerCase(),
       ])
+  }
+
+  onTabChange(newValue: number) {
+    this.activeNavID = newValue
+    const entry = Object.entries(DocumentDetailNavIDs).find(
+      ([, navIDValue]) => navIDValue == newValue
+    )
+    if (entry) {
+      this.router.navigate([
+        'documents',
+        this.documentId,
+        entry[0].toLowerCase(),
+      ])
+    }
   }
 
   updateComponent(doc: Document) {

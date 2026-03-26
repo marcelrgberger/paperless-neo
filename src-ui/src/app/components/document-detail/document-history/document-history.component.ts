@@ -1,7 +1,8 @@
-import { AsyncPipe, KeyValuePipe, TitleCasePipe } from '@angular/common'
+import { AsyncPipe, DatePipe, KeyValuePipe, TitleCasePipe } from '@angular/common'
 import { Component, Input, OnInit, inject } from '@angular/core'
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { Tooltip } from 'primeng/tooltip'
 import { Observable, first, map, of, shareReplay } from 'rxjs'
 import { AuditLogAction, AuditLogEntry } from 'src/app/data/auditlog-entry'
 import { DataType } from 'src/app/data/datatype'
@@ -19,7 +20,9 @@ import { UserService } from 'src/app/services/rest/user.service'
   imports: [
     CustomDatePipe,
     NgbTooltipModule,
+    Tooltip,
     AsyncPipe,
+    DatePipe,
     KeyValuePipe,
     TitleCasePipe,
     NgxBootstrapIconsModule,
