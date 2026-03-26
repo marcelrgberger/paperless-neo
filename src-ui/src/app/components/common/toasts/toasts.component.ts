@@ -1,8 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core'
-import {
-  NgbAccordionModule,
-  NgbProgressbarModule,
-} from '@ng-bootstrap/ng-bootstrap'
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { Subscription } from 'rxjs'
 import { Toast, ToastService } from 'src/app/services/toast.service'
@@ -14,7 +11,6 @@ import { ToastComponent } from '../toast/toast.component'
   styleUrls: ['./toasts.component.scss'],
   imports: [
     ToastComponent,
-    NgbAccordionModule,
     NgbProgressbarModule,
     NgxBootstrapIconsModule,
   ],

@@ -9,11 +9,11 @@ import { Clipboard } from '@angular/cdk/clipboard'
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {
-  NgbAccordionModule,
   NgbActiveModal,
   NgbModalModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
 import { of, throwError } from 'rxjs'
 import { ProfileService } from 'src/app/services/profile.service'
@@ -54,7 +54,10 @@ describe('ProfileEditDialogComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         NgbModalModule,
-        NgbAccordionModule,
+        Accordion,
+        AccordionPanel,
+        AccordionHeader,
+        AccordionContent,
         NgxBootstrapIconsModule.pick(allIcons),
         NgbPopoverModule,
         ProfileEditDialogComponent,

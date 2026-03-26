@@ -13,7 +13,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms'
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap'
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { Subscription, first, takeUntil } from 'rxjs'
 import { Correspondent } from 'src/app/data/correspondent'
@@ -455,7 +455,10 @@ const FILTER_HANDLERS: Record<TriggerFilterType, FilterHandler> = {
     ConfirmButtonComponent,
     FormsModule,
     ReactiveFormsModule,
-    NgbAccordionModule,
+    Accordion,
+    AccordionPanel,
+    AccordionHeader,
+    AccordionContent,
     NgTemplateOutlet,
     DragDropModule,
     NgxBootstrapIconsModule,

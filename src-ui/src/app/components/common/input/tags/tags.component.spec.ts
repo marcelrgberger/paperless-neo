@@ -8,12 +8,12 @@ import {
 } from '@angular/forms'
 import { RouterTestingModule } from '@angular/router/testing'
 import {
-  NgbAccordionModule,
   NgbModal,
   NgbModalModule,
   NgbModalRef,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { NgSelectModule } from '@ng-select/ng-select'
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
 import { of } from 'rxjs'
@@ -69,7 +69,10 @@ describe('TagsComponent', () => {
         NgSelectModule,
         RouterTestingModule,
         NgbModalModule,
-        NgbAccordionModule,
+        Accordion,
+        AccordionPanel,
+        AccordionHeader,
+        AccordionContent,
         NgbPopoverModule,
         NgxBootstrapIconsModule.pick(allIcons),
         TagsComponent,

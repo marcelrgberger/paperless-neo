@@ -6,7 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms'
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap'
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { NgSelectModule } from '@ng-select/ng-select'
 import { SelectComponent } from '../../select/select.component'
 import { PermissionsGroupComponent } from '../permissions-group/permissions-group.component'
@@ -22,7 +22,10 @@ describe('PermissionsFormComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        NgbAccordionModule,
+        Accordion,
+        AccordionPanel,
+        AccordionHeader,
+        AccordionContent,
         NgSelectModule,
         PermissionsFormComponent,
         SelectComponent,

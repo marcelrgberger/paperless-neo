@@ -19,94 +19,74 @@
         <pngx-input-switch i18n-title title="Enabled" formControlName="enabled" [error]="error?.enabled"></pngx-input-switch>
       </div>
     </div>
-    <div ngbAccordion>
-      <div ngbAccordionItem>
-        <h2 ngbAccordionHeader>
-          <button ngbAccordionButton i18n>Triggers</button>
-        </h2>
-        <div ngbAccordionCollapse>
-          <div ngbAccordionBody>
-            <ng-template>
-              <div class="d-flex">
-                <p class="p-2" i18n>Trigger Workflow On:</p>
-                <button type="button" class="btn btn-sm btn-outline-primary ms-auto mb-3" (click)="addTrigger()">
-                  <i-bs name="plus-circle" class="me-1"></i-bs><ng-container i18n>Add Trigger</ng-container>
-                </button>
-              </div>
-              <div ngbAccordion [closeOthers]="true">
-                @for (trigger of object?.triggers; track trigger; let i = $index){
-                  <div ngbAccordionItem>
-                    <div ngbAccordionHeader>
-                      <button ngbAccordionButton>{{i + 1}}. {{getTriggerTypeOptionName(triggerFields.controls[i].value.type)}}
-                        @if(trigger.id) {
-                          <span class="badge bg-primary text-primary-text-contrast ms-2">ID: {{trigger.id}}</span>
-                        }
-                        <pngx-confirm-button
-                          label="Delete"
-                          i18n-label
-                          (confirm)="removeTrigger(i)"
-                          buttonClasses="btn-link text-danger ms-2"
-                          iconName="trash">
-                        </pngx-confirm-button>
-                      </button>
-                    </div>
-                    <div ngbAccordionCollapse>
-                      <div ngbAccordionBody>
-                        <ng-template [ngTemplateOutlet]="triggerForm" [ngTemplateOutletContext]="{ formGroup: triggerFields.controls[i], trigger: trigger }"></ng-template>
-                      </div>
-                    </div>
-                  </div>
-                }
-              </div>
-            </ng-template>
+    <p-accordion [multiple]="true">
+      <p-accordionpanel value="triggers">
+        <p-accordionheader i18n>Triggers</p-accordionheader>
+        <p-accordioncontent>
+          <div class="d-flex">
+            <p class="p-2" i18n>Trigger Workflow On:</p>
+            <button type="button" class="btn btn-sm btn-outline-primary ms-auto mb-3" (click)="addTrigger()">
+              <i-bs name="plus-circle" class="me-1"></i-bs><ng-container i18n>Add Trigger</ng-container>
+            </button>
           </div>
-        </div>
-      </div>
-      <div ngbAccordionItem>
-        <h2 ngbAccordionHeader>
-          <button class="btn-lg" ngbAccordionButton i18n>Actions</button>
-        </h2>
-        <div ngbAccordionCollapse>
-          <div ngbAccordionBody>
-            <ng-template>
-              <div class="d-flex">
-                <p class="p-2" i18n>Apply Actions:</p>
-                <button type="button" class="btn btn-sm btn-outline-primary ms-auto mb-3" (click)="addAction()">
-                  <i-bs name="plus-circle" class="me-1"></i-bs><ng-container i18n>Add Action</ng-container>
-                </button>
-              </div>
-              <div ngbAccordion [closeOthers]="true" cdkDropList (cdkDropListDropped)="onActionDrop($event)">
-                @for (action of object?.actions; track action; let i = $index){
-                  <div ngbAccordionItem [formGroup]="actionFields.controls[i]">
-                    <div ngbAccordionHeader cdkDrag>
-                      <button ngbAccordionButton>
-                        <i-bs name="grip-vertical" class="ms-n3 pe-1"></i-bs>
-                        {{i + 1}}. {{getActionTypeOptionName(actionFields.controls[i].value.type)}}
-                        @if(action.id) {
-                          <span class="badge bg-primary text-primary-text-contrast ms-2">ID: {{action.id}}</span>
-                        }
-                        <pngx-confirm-button
-                          label="Delete"
-                          i18n-label
-                          (confirm)="removeAction(i)"
-                          buttonClasses="btn-link text-danger ms-2"
-                          iconName="trash">
-                        </pngx-confirm-button>
-                      </button>
-                    </div>
-                    <div ngbAccordionCollapse>
-                      <div ngbAccordionBody>
-                        <ng-template [ngTemplateOutlet]="actionForm" [ngTemplateOutletContext]="{ formGroup: actionFields.controls[i], action: action }"></ng-template>
-                      </div>
-                    </div>
-                  </div>
-                }
-              </div>
-            </ng-template>
+          <p-accordion>
+            @for (trigger of object?.triggers; track trigger; let i = $index){
+              <p-accordionpanel [value]="'trigger-' + i">
+                <p-accordionheader>{{i + 1}}. {{getTriggerTypeOptionName(triggerFields.controls[i].value.type)}}
+                  @if(trigger.id) {
+                    <span class="badge bg-primary text-primary-text-contrast ms-2">ID: {{trigger.id}}</span>
+                  }
+                  <pngx-confirm-button
+                    label="Delete"
+                    i18n-label
+                    (confirm)="removeTrigger(i)"
+                    buttonClasses="btn-link text-danger ms-2"
+                    iconName="trash">
+                  </pngx-confirm-button>
+                </p-accordionheader>
+                <p-accordioncontent>
+                  <ng-template [ngTemplateOutlet]="triggerForm" [ngTemplateOutletContext]="{ formGroup: triggerFields.controls[i], trigger: trigger }"></ng-template>
+                </p-accordioncontent>
+              </p-accordionpanel>
+            }
+          </p-accordion>
+        </p-accordioncontent>
+      </p-accordionpanel>
+      <p-accordionpanel value="actions">
+        <p-accordionheader class="btn-lg" i18n>Actions</p-accordionheader>
+        <p-accordioncontent>
+          <div class="d-flex">
+            <p class="p-2" i18n>Apply Actions:</p>
+            <button type="button" class="btn btn-sm btn-outline-primary ms-auto mb-3" (click)="addAction()">
+              <i-bs name="plus-circle" class="me-1"></i-bs><ng-container i18n>Add Action</ng-container>
+            </button>
           </div>
-        </div>
-      </div>
-    </div>
+          <p-accordion cdkDropList (cdkDropListDropped)="onActionDrop($event)">
+            @for (action of object?.actions; track action; let i = $index){
+              <p-accordionpanel [value]="'action-' + i" [formGroup]="actionFields.controls[i]">
+                <p-accordionheader cdkDrag>
+                  <i-bs name="grip-vertical" class="ms-n3 pe-1"></i-bs>
+                  {{i + 1}}. {{getActionTypeOptionName(actionFields.controls[i].value.type)}}
+                  @if(action.id) {
+                    <span class="badge bg-primary text-primary-text-contrast ms-2">ID: {{action.id}}</span>
+                  }
+                  <pngx-confirm-button
+                    label="Delete"
+                    i18n-label
+                    (confirm)="removeAction(i)"
+                    buttonClasses="btn-link text-danger ms-2"
+                    iconName="trash">
+                  </pngx-confirm-button>
+                </p-accordionheader>
+                <p-accordioncontent>
+                  <ng-template [ngTemplateOutlet]="actionForm" [ngTemplateOutletContext]="{ formGroup: actionFields.controls[i], action: action }"></ng-template>
+                </p-accordioncontent>
+              </p-accordionpanel>
+            }
+          </p-accordion>
+        </p-accordioncontent>
+      </p-accordionpanel>
+    </p-accordion>
   </div>
   <div class="modal-footer">
     @if (error?.non_field_errors) {

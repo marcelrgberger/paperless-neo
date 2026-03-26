@@ -8,25 +8,21 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <pngx-input-text i18n-title title="Email" formControlName="email" (keyup)="onEmailKeyUp($event)" [error]="error?.email"></pngx-input-text>
-        <div ngbAccordion>
-          <div ngbAccordionItem="first" [collapsed]="!showEmailConfirm" class="border-0 bg-transparent">
-            <div ngbAccordionCollapse>
-              <div ngbAccordionBody class="p-0 pb-3">
-                <pngx-input-text i18n-title title="Confirm Email" formControlName="email_confirm" (keyup)="onEmailConfirmKeyUp($event)" autocomplete="email" [error]="error?.email_confirm"></pngx-input-text>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p-accordion [value]="showEmailConfirm ? 'email-confirm' : ''">
+          <p-accordionpanel value="email-confirm" class="border-0 bg-transparent">
+            <p-accordioncontent class="p-0 pb-3">
+              <pngx-input-text i18n-title title="Confirm Email" formControlName="email_confirm" (keyup)="onEmailConfirmKeyUp($event)" autocomplete="email" [error]="error?.email_confirm"></pngx-input-text>
+            </p-accordioncontent>
+          </p-accordionpanel>
+        </p-accordion>
         <pngx-input-password i18n-title title="Password" formControlName="password" (keyup)="onPasswordKeyUp($event)" [showReveal]="true" autocomplete="current-password" [error]="error?.password"></pngx-input-password>
-        <div ngbAccordion>
-          <div ngbAccordionItem="first" [collapsed]="!showPasswordConfirm" class="border-0 bg-transparent">
-            <div ngbAccordionCollapse>
-              <div ngbAccordionBody class="p-0 pb-3">
-                <pngx-input-password i18n-title title="Confirm Password" formControlName="password_confirm" (keyup)="onPasswordConfirmKeyUp($event)" autocomplete="new-password" [error]="error?.password_confirm"></pngx-input-password>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p-accordion [value]="showPasswordConfirm ? 'password-confirm' : ''">
+          <p-accordionpanel value="password-confirm" class="border-0 bg-transparent">
+            <p-accordioncontent class="p-0 pb-3">
+              <pngx-input-password i18n-title title="Confirm Password" formControlName="password_confirm" (keyup)="onPasswordConfirmKeyUp($event)" autocomplete="new-password" [error]="error?.password_confirm"></pngx-input-password>
+            </p-accordioncontent>
+          </p-accordionpanel>
+        </p-accordion>
         <pngx-input-text i18n-title title="First name" formControlName="first_name" [error]="error?.first_name"></pngx-input-text>
         <pngx-input-text i18n-title title="Last name" formControlName="last_name" [error]="error?.first_name"></pngx-input-text>
         <div class="mb-3">
@@ -97,44 +93,38 @@
           </div>
         }
         @if (!isTotpEnabled) {
-          <div ngbAccordion>
-            <div ngbAccordionItem>
-              <h2 ngbAccordionHeader>
-                <button ngbAccordionButton (click)="gettotpSettings()" i18n>Two-factor Authentication</button>
-              </h2>
-              <div ngbAccordionCollapse>
-                <div ngbAccordionBody>
-                  <ng-template>
-                    @if (totpSettingsLoading) {
-                      <div class="spinner-border spinner-border-sm fw-normal ms-2 me-auto" role="status"></div>
-                      <div class="visually-hidden" i18n>Loading...</div>
-                    } @else if (totpSettings) {
-                      <figure class="figure">
-                        @if (qrSvgDataUrl) {
-                          <img class="bg-white d-inline-block" [src]="qrSvgDataUrl" alt="Authenticator QR code">
-                        }
-                        <figcaption class="figure-caption text-end mt-2" i18n>Scan the QR code with your authenticator app and then enter the code below</figcaption>
-                      </figure>
-                      <p>
-                        <ng-container i18n>Authenticator secret</ng-container>: <code>{{totpSettings.secret}}</code>.
-                        <ng-container i18n>You can store this secret and use it to reinstall your authenticator app at a later time.</ng-container>
-                      </p>
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" formControlName="totp_code" placeholder="Code" i18n-placeholder>
-                        <button type="button" class="btn btn-primary ml-auto" (click)="activateTotp()" [disabled]="totpLoading">
-                          <ng-container i18n>Enable</ng-container>
-                          @if (totpLoading) {
-                            <div class="spinner-border spinner-border-sm fw-normal ms-2" role="status"></div>
-                            <div class="visually-hidden" i18n>Loading...</div>
-                          }
-                        </button>
-                      </div>
+          <p-accordion>
+            <p-accordionpanel>
+              <p-accordionheader (click)="gettotpSettings()" i18n>Two-factor Authentication</p-accordionheader>
+              <p-accordioncontent>
+                @if (totpSettingsLoading) {
+                  <div class="spinner-border spinner-border-sm fw-normal ms-2 me-auto" role="status"></div>
+                  <div class="visually-hidden" i18n>Loading...</div>
+                } @else if (totpSettings) {
+                  <figure class="figure">
+                    @if (qrSvgDataUrl) {
+                      <img class="bg-white d-inline-block" [src]="qrSvgDataUrl" alt="Authenticator QR code">
                     }
-                  </ng-template>
-                </div>
-              </div>
-            </div>
-          </div>
+                    <figcaption class="figure-caption text-end mt-2" i18n>Scan the QR code with your authenticator app and then enter the code below</figcaption>
+                  </figure>
+                  <p>
+                    <ng-container i18n>Authenticator secret</ng-container>: <code>{{totpSettings.secret}}</code>.
+                    <ng-container i18n>You can store this secret and use it to reinstall your authenticator app at a later time.</ng-container>
+                  </p>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" formControlName="totp_code" placeholder="Code" i18n-placeholder>
+                    <button type="button" class="btn btn-primary ml-auto" (click)="activateTotp()" [disabled]="totpLoading">
+                      <ng-container i18n>Enable</ng-container>
+                      @if (totpLoading) {
+                        <div class="spinner-border spinner-border-sm fw-normal ms-2" role="status"></div>
+                        <div class="visually-hidden" i18n>Loading...</div>
+                      }
+                    </button>
+                  </div>
+                }
+              </p-accordioncontent>
+            </p-accordionpanel>
+          </p-accordion>
         } @else {
           <label class="d-block mb-2" i18n>Two-factor Authentication</label>
           @if (recoveryCodes) {

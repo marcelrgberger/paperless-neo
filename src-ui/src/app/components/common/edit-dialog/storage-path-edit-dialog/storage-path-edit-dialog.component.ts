@@ -6,7 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms'
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap'
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { NgSelectComponent } from '@ng-select/ng-select'
 import {
   Observable,
@@ -52,7 +52,10 @@ import { TextAreaComponent } from '../../input/textarea/textarea.component'
     NgTemplateOutlet,
     FormsModule,
     ReactiveFormsModule,
-    NgbAccordionModule,
+    Accordion,
+    AccordionPanel,
+    AccordionHeader,
+    AccordionContent,
     NgSelectComponent,
   ],
 })

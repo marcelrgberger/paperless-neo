@@ -7,7 +7,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms'
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap'
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { User } from 'src/app/data/user'
 import { AbstractInputComponent } from '../../abstract-input'
 import { SelectComponent } from '../../select/select.component'
@@ -46,7 +46,10 @@ export interface PermissionsFormObject {
     FormsModule,
     ReactiveFormsModule,
     NgTemplateOutlet,
-    NgbAccordionModule,
+    Accordion,
+    AccordionPanel,
+    AccordionHeader,
+    AccordionContent,
   ],
 })
 export class PermissionsFormComponent

@@ -7,10 +7,10 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import {
-  NgbAccordionModule,
   NgbActiveModal,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { takeUntil } from 'rxjs'
 import {
@@ -36,7 +36,10 @@ import { TextComponent } from '../input/text/text.component'
     PasswordComponent,
     FormsModule,
     ReactiveFormsModule,
-    NgbAccordionModule,
+    Accordion,
+    AccordionPanel,
+    AccordionHeader,
+    AccordionContent,
     NgbPopoverModule,
     NgxBootstrapIconsModule,
   ],
