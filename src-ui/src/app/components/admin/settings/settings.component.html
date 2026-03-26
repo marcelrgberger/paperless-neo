@@ -35,10 +35,15 @@
 
 <form [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
 
-  <ul ngbNav #nav="ngbNav" (navChange)="onNavChange($event)" [(activeId)]="activeNavID" class="nav-tabs">
-    <li [ngbNavItem]="SettingsNavIDs.General">
-      <a ngbNavLink i18n>General</a>
-      <ng-template ngbNavContent>
+  <p-tabs [value]="activeNavID" (valueChange)="onTabChange($event)">
+    <p-tablist>
+      <p-tab [value]="SettingsNavIDs.General" i18n>General</p-tab>
+      <p-tab [value]="SettingsNavIDs.Documents" i18n>Documents</p-tab>
+      <p-tab [value]="SettingsNavIDs.Permissions" i18n>Permissions</p-tab>
+      <p-tab [value]="SettingsNavIDs.Notifications" i18n>Notifications</p-tab>
+    </p-tablist>
+    <p-tabpanels>
+      <p-tabpanel [value]="SettingsNavIDs.General">
         <div class="row">
           <div class="col-xl-6 pe-xl-5">
             <h5 i18n>Appearance</h5>
@@ -56,7 +61,7 @@
                   }
                 </select>
 
-                @if (displayLanguageIsDirty) {
+                @if (isDirty) {
                   <small class="form-text text-primary" i18n>You need to reload the page after applying a new language.</small>
                 }
 
@@ -129,7 +134,7 @@
                 <span i18n>Theme Color</span>
               </div>
               <div class="col col-md-4">
-                <pngx-input-color i18n-title formControlName="themeColor" [error]="error?.color"></pngx-input-color>
+                <pngx-input-color i18n-title formControlName="themeColor" [error]="null"></pngx-input-color>
               </div>
               <div class="col-2">
                 <button class="btn btn-link btn-sm pt-2 ps-0" [disabled]="!this.settingsForm.get('themeColor').value" (click)="clearThemeColor()">
@@ -186,12 +191,8 @@
           </div>
         </div>
 
-      </ng-template>
-    </li>
-
-    <li [ngbNavItem]="SettingsNavIDs.Documents">
-      <a ngbNavLink i18n>Documents</a>
-      <ng-template ngbNavContent>
+      </p-tabpanel>
+      <p-tabpanel [value]="SettingsNavIDs.Documents">
         <div class="row">
           <div class="col-xl-6 pe-xl-5">
             <h5 i18n>Documents</h5>
@@ -290,12 +291,8 @@
             </div>
           </div>
         </div>
-      </ng-template>
-    </li>
-
-    <li [ngbNavItem]="SettingsNavIDs.Permissions">
-      <a ngbNavLink i18n>Permissions</a>
-      <ng-template ngbNavContent>
+      </p-tabpanel>
+      <p-tabpanel [value]="SettingsNavIDs.Permissions">
 
         <h5 i18n>Default Permissions</h5>
 
@@ -372,12 +369,8 @@
             </div>
           </div>
         </div>
-      </ng-template>
-    </li>
-
-    <li [ngbNavItem]="SettingsNavIDs.Notifications">
-      <a ngbNavLink i18n>Notifications</a>
-      <ng-template ngbNavContent>
+      </p-tabpanel>
+      <p-tabpanel [value]="SettingsNavIDs.Notifications">
 
         <h5 i18n>Document processing</h5>
 
@@ -390,11 +383,9 @@
           </div>
         </div>
 
-      </ng-template>
-    </li>
-  </ul>
-
-  <div [ngbNavOutlet]="nav" class="border-start border-end border-bottom p-3 mb-3 shadow-sm"></div>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
 
   <button type="button" (click)="reset()" class="btn btn-outline-secondary mb-2" [disabled]="(isDirty$ | async) === false" i18n>Cancel</button>
   <button type="submit" class="btn btn-primary ms-2 mb-2" [disabled]="(isDirty$ | async) === false" i18n>Save</button>

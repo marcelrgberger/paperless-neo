@@ -12,8 +12,8 @@ import {
   NgbModal,
   NgbModalModule,
   NgbModule,
-  NgbNavLink,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tab } from 'primeng/tabs'
 import { NgSelectModule } from '@ng-select/ng-select'
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
 import { provideUiTour } from 'ngx-ui-tour-ng-bootstrap'
@@ -201,7 +201,7 @@ describe('SettingsComponent', () => {
   it('should support tabbed settings & change URL, prevent navigation if dirty confirmation rejected', () => {
     completeSetup()
     const navigateSpy = jest.spyOn(router, 'navigate')
-    const tabButtons = fixture.debugElement.queryAll(By.directive(NgbNavLink))
+    const tabButtons = fixture.debugElement.queryAll(By.directive(Tab))
     tabButtons[1].nativeElement.dispatchEvent(new MouseEvent('click'))
     expect(navigateSpy).toHaveBeenCalledWith(['settings', 'documents'])
     tabButtons[2].nativeElement.dispatchEvent(new MouseEvent('click'))

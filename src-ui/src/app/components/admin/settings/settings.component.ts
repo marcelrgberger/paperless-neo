@@ -17,10 +17,9 @@ import { ActivatedRoute, Router } from '@angular/router'
 import {
   NgbModal,
   NgbModalRef,
-  NgbNavChangeEvent,
-  NgbNavModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { DirtyComponent, dirtyCheck } from '@ngneat/dirty-check-forms'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { TourService } from 'ngx-ui-tour-ng-bootstrap'
@@ -117,7 +116,11 @@ const documentDetailFieldOptions = [
     AsyncPipe,
     FormsModule,
     ReactiveFormsModule,
-    NgbNavModule,
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
     NgbPopoverModule,
     NgxBootstrapIconsModule,
   ],
@@ -373,21 +376,25 @@ export class SettingsComponent
     }
   }
 
-  onNavChange(navChangeEvent: NgbNavChangeEvent) {
+  onTabChange(newValue: string | number) {
     const [foundNavIDkey] = Object.entries(SettingsNavIDs).find(
-      ([, navIDValue]) => navIDValue == navChangeEvent.nextId
+      ([, navIDValue]) => navIDValue == newValue
     )
-    if (foundNavIDkey)
+    if (foundNavIDkey) {
+      const previousNavID = this.activeNavID
       // if its dirty we need to wait for confirmation
       this.router
         .navigate(['settings', foundNavIDkey.toLowerCase()])
         .then((navigated) => {
           if (!navigated && this.isDirty) {
-            this.activeNavID = navChangeEvent.activeId
+            this.activeNavID = previousNavID
           } else if (navigated && this.isDirty) {
             this.initialize()
+          } else {
+            this.activeNavID = newValue as number
           }
         })
+    }
   }
 
   initialize(resetSettings: boolean = true) {
