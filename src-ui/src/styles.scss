@@ -1775,10 +1775,18 @@ a {
 
     .p-tab-active,
     .p-tab[data-p-active="true"],
+    .p-tab[aria-selected="true"],
     .p-highlight .p-tabview-nav-link {
       color: #3B82F6 !important;
       border-bottom: 2px solid #3B82F6 !important;
       background: transparent !important;
+    }
+
+    // PrimeNG ink bar override
+    .p-tablist-active-bar,
+    .p-tab-active-bar {
+      background: #3B82F6 !important;
+      height: 2px !important;
     }
   }
 
