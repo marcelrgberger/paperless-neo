@@ -4,7 +4,7 @@
     <i-bs width="1.3em" height="1.3em" name="chatSquareDots"></i-bs>
   </button>
   <div ngbDropdownMenu class="dropdown-menu-end shadow p-3" aria-labelledby="chatDropdown">
-    <div class="chat-container bg-light p-2">
+    <div class="chat-container p-2">
       <div class="chat-messages font-monospace small">
         @for (message of messages; track message) {
           <div class="message d-flex flex-row small" [class.justify-content-end]="message.role === 'user'">

@@ -20,7 +20,7 @@
           <div class="card-body text-dark">
             <p class="card-text">{{note.note}}</p>
           </div>
-          <div class="d-flex card-footer small bg-light text-primary justify-content-between align-items-center">
+          <div class="d-flex card-footer small text-primary justify-content-between align-items-center">
             <span>{{displayName(note)}} - {{ note.created | customDate}}</span>
             <button type="button" class="btn btn-link btn-sm p-0 fade" title="Delete note" i18n-title (click)="deleteNote(note.id)" *pngxIfPermissions="{ action: PermissionAction.Delete, type: PermissionType.Note }">
               <i-bs name="trash"></i-bs>
