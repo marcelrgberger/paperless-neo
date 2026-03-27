@@ -4,11 +4,11 @@
   info="Options to customize appearance, notifications and more. Settings apply to the <strong>current user only</strong>."
   i18n-info
   >
-  <button pButton pRipple class="p-button-outlined p-button-sm" (click)="tourService.start()">
+  <button pButton pRipple class="p-button-text p-button-sm" (click)="tourService.start()">
     <i-bs class="me-2" name="airplane"></i-bs><ng-container i18n>Start tour</ng-container>
   </button>
   @if (permissionsService.isAdmin()) {
-    <button pButton pRipple class="p-button-outlined p-button-sm position-relative ms-md-5 me-1" (click)="showSystemStatus()"
+    <button pButton pRipple class="p-button-text p-button-sm position-relative ms-md-5 me-1" (click)="showSystemStatus()"
       [disabled]="!systemStatus">
       @if (!systemStatus) {
         <div class="spinner-border spinner-border-sm me-2 h-75" role="status"></div>
@@ -26,7 +26,7 @@
       }
       <ng-container i18n>System Status</ng-container>
     </button>
-    <a class="p-button p-button-sm" href="admin/" target="_blank">
+    <a class="p-button p-button-text p-button-sm" href="admin/" target="_blank">
       <ng-container i18n>Open Django Admin</ng-container>
       <i-bs class="ms-2" name="arrow-up-right"></i-bs>
     </a>
