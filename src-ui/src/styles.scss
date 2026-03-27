@@ -84,14 +84,14 @@ body {
 
 [data-bs-theme="dark"] body,
 body[data-bs-theme="dark"] {
-  background: #040d19;
+  background: #070e1a;
   background-image: none;
 }
 
 [data-bs-theme="auto"] {
   @media (prefers-color-scheme: dark) {
     body {
-      background: #040d19;
+      background: #070e1a;
       background-image: none;
     }
   }
