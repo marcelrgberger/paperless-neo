@@ -2034,3 +2034,92 @@ a {
     }
   }
 }
+
+// ============================================================
+// Poseidon Surface Treatment: Elevate flat content areas
+// ============================================================
+[data-bs-theme="dark"],
+[data-bs-theme="auto"] {
+  // Wrap main content in subtle elevated surface
+  main > .container-fluid,
+  main > div > .row {
+    color: #f8fafc;
+  }
+
+  // Table containers get glass treatment
+  .table-responsive,
+  table.table {
+    background: rgba(15, 23, 42, .5);
+    border-radius: 8px;
+    border: 1px solid rgba(148, 163, 184, .06);
+  }
+
+  // Pre/code blocks
+  pre, code {
+    background: rgba(2, 6, 23, .5);
+    color: #e2e8f0;
+    border-radius: 6px;
+  }
+
+  // Log viewer
+  .whitespace-preserve {
+    background: rgba(2, 6, 23, .6) !important;
+    border: 1px solid rgba(148, 163, 184, .08) !important;
+    border-radius: 8px;
+    color: #e2e8f0 !important;
+  }
+
+  // File input fix
+  input[type="file"] {
+    color: #94a3b8;
+  }
+
+  input[type="file"]::file-selector-button {
+    background: rgba(15, 23, 42, .72);
+    border: 1px solid rgba(148, 163, 184, .12);
+    border-radius: 6px;
+    color: #e2e8f0;
+    padding: 4px 12px;
+  }
+
+  // Tooltip styling
+  .tooltip-inner {
+    background: rgba(15, 23, 42, .95) !important;
+    border: 1px solid rgba(148, 163, 184, .10);
+    border-radius: 6px;
+    color: #e2e8f0 !important;
+  }
+
+  .tooltip .tooltip-arrow::before {
+    border-top-color: rgba(15, 23, 42, .95) !important;
+  }
+
+  // Popover
+  .popover {
+    background: rgba(15, 23, 42, .92) !important;
+    border: 1px solid rgba(148, 163, 184, .10) !important;
+    border-radius: 8px !important;
+    color: #e2e8f0 !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .3) !important;
+
+    .popover-header {
+      background: transparent !important;
+      border-bottom: 1px solid rgba(148, 163, 184, .08) !important;
+      color: #f8fafc !important;
+    }
+
+    .popover-body {
+      color: #e2e8f0 !important;
+    }
+  }
+
+  // Empty state text
+  .text-muted {
+    color: #64748b !important;
+  }
+
+  // Shadow normalize
+  .shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .2) !important;
+  }
+}
