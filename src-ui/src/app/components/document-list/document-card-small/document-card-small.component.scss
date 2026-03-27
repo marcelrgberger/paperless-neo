@@ -1,15 +1,20 @@
 .card-text {
   font-size: 90%;
-  color: #94a3b8;
+  color: var(--neo-text-muted);
 }
 
 .document-card {
+  background: var(--neo-bg-card) !important;
+  border: 1px solid var(--neo-border-default) !important;
   border-radius: 16px !important;
+  box-shadow: var(--neo-shadow-sm);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   overflow: hidden;
 
   &:hover {
     transform: translateY(-3px);
+    box-shadow: var(--neo-shadow-md);
+    border-color: var(--neo-border-strong) !important;
 
     .doc-img {
       transform: scale(1.03);
@@ -18,17 +23,6 @@
     .card-footer .btn-group {
       opacity: 1;
     }
-  }
-}
-
-:host-context([data-bs-theme="dark"]) .document-card {
-  background: #111827 !important;
-  border: 1px solid #1e293b !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-
-  &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    border-color: #334155 !important;
   }
 }
 
@@ -54,12 +48,8 @@
   padding: 0.5rem;
   border-top-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--neo-bg-elevated);
   pointer-events: none;
-
-  :host-context([data-bs-theme="dark"]) & {
-    background: #111827;
-  }
 
   .form-check {
     padding: 0;
@@ -89,6 +79,7 @@
     .fw-bold,
     .btn-link {
       font-weight: 600;
+      color: var(--neo-text-strong);
     }
   }
 }
@@ -99,15 +90,22 @@
   button {
     line-height: 1;
     background: transparent !important;
+
+    &:hover, &:focus {
+      background-color: rgba(59, 130, 246, 0.08) !important;
+      color: #3B82F6;
+    }
   }
 
   small {
     font-size: 12px;
+    color: var(--neo-text-muted);
   }
 }
 
 .card-footer {
   background: transparent !important;
+  border-top: 1px solid var(--neo-border-default);
 
   .btn-group {
     opacity: 0;
@@ -115,30 +113,9 @@
 
     .btn {
       padding-top: .10rem;
-    }
-  }
-}
-
-:host-context([data-bs-theme="dark"]) {
-  .card-body .card-text {
-    .fw-bold, .btn-link { color: #f8fafc; }
-  }
-
-  .card-info {
-    button:hover, button:focus {
-      background-color: rgba(59, 130, 246, 0.08) !important;
-      color: #3B82F6;
-    }
-    small { color: #94a3b8; }
-  }
-
-  .card-footer {
-    border-top: 1px solid #1e293b;
-
-    .btn-group .btn {
       background: rgba(59, 130, 246, 0.08);
-      border-color: #1e293b;
-      color: #94a3b8;
+      border-color: var(--neo-border-default);
+      color: var(--neo-text-muted);
 
       &:hover {
         background: rgba(59, 130, 246, 0.15);

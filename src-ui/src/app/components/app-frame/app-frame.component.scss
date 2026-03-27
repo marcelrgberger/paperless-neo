@@ -8,8 +8,8 @@
   left: 0;
   z-index: 995; /* Behind the navbar */
   padding: 50px 0 0; /* Height of navbar */
-  background: #0a1628;
-  border-right: 1px solid #1e293b;
+  background: var(--neo-bg-sidebar);
+  border-right: 1px solid var(--neo-border-default);
   overflow-y: auto;
   --pngx-sidebar-width: 100%;
   max-width: var(--pngx-sidebar-width);
@@ -161,7 +161,7 @@ main {
   height: 42px;
   padding: 0 14px;
   border-radius: 10px;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--neo-text-muted);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -180,7 +180,7 @@ main {
 
   &:hover {
     background: rgba(59, 130, 246, 0.08);
-    color: var(--color-text-strong);
+    color: var(--neo-text-strong);
   }
 
   &.active {
@@ -191,23 +191,12 @@ main {
   }
 
   &:focus {
-    color: var(--color-text-strong);
+    color: var(--neo-text-strong);
   }
 
   &:focus-visible {
     outline: none;
     background: rgba(59, 130, 246, 0.08);
-  }
-}
-
-// Poseidon dark mode sidebar overrides
-:host-context([data-bs-theme="dark"]) .sidebar .nav-link {
-  &:hover, &:focus-visible {
-    background: rgba(59, 130, 246, 0.08);
-  }
-  &.active {
-    background: linear-gradient(135deg, #3B82F6, #6366F1);
-    color: #fff;
   }
 }
 
@@ -237,7 +226,7 @@ main {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #64748b !important;
+  color: var(--neo-text-muted) !important;
   margin: 24px 0 8px 14px;
   padding-left: 0;
   padding-right: 0;
@@ -296,8 +285,8 @@ main {
  * Navbar
  */
 .navbar {
-  background: #040d19 !important;
-  border-bottom: 1px solid #1e293b;
+  background: var(--neo-bg-app) !important;
+  border-bottom: 1px solid var(--neo-border-default);
   box-shadow: none !important;
 }
 
@@ -359,21 +348,21 @@ main {
     .form-control,
     [type="search"],
     [type="text"] {
-      background: #111827 !important;
-      border: 1px solid #1e293b !important;
+      background: var(--neo-bg-card) !important;
+      border: 1px solid var(--neo-border-default) !important;
       border-radius: 10px !important;
-      color: #94a3b8;
+      color: var(--neo-text-muted);
       transition: border-color 200ms ease, box-shadow 200ms ease;
 
       &::placeholder {
-        color: #64748b;
+        color: var(--neo-text-muted);
       }
 
       &:focus {
         border-color: #3B82F6 !important;
         box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
-        background: #111827 !important;
-        color: #f8fafc;
+        background: var(--neo-bg-card) !important;
+        color: var(--neo-text-strong);
         outline: none;
       }
     }

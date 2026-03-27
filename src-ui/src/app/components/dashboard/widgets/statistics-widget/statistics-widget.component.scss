@@ -3,6 +3,11 @@
     height: 0.6rem;
     border-radius: 6px;
     overflow: hidden;
+    background: var(--neo-border-default);
+
+    .progress-bar {
+      background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+    }
   }
 
   .badge {
@@ -18,27 +23,10 @@
   .list-group-item {
     background: transparent;
     border: none;
+    border-bottom: 1px solid var(--neo-border-default);
     padding: 10px 4px;
+    color: var(--neo-text-muted);
     transition: background-color 0.2s ease;
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-}
-
-:host-context([data-bs-theme="dark"]) {
-  .filetypes .progress {
-    background: #1e293b;
-
-    .progress-bar {
-      background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
-    }
-  }
-
-  .list-group .list-group-item {
-    border-bottom: 1px solid #1e293b;
-    color: #94a3b8;
 
     &:last-child {
       border-bottom: none;
@@ -49,10 +37,10 @@
     }
 
     &.list-group-item-action {
-      color: #94a3b8;
+      color: var(--neo-text-muted);
 
       &:hover {
-        color: #f8fafc;
+        color: var(--neo-text-strong);
         background-color: rgba(59, 130, 246, 0.06);
       }
     }
@@ -60,7 +48,7 @@
     .badge {
       font-size: 18px;
       font-weight: 700;
-      color: #f8fafc;
+      color: var(--neo-text-strong);
       background: transparent !important;
 
       &.bg-primary {
@@ -69,12 +57,12 @@
       }
 
       &.bg-secondary {
-        color: #94a3b8 !important;
+        color: var(--neo-text-muted) !important;
         background: transparent !important;
       }
 
       &.bg-muted {
-        color: #64748b !important;
+        color: var(--neo-text-muted) !important;
         background: transparent !important;
       }
     }

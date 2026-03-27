@@ -816,23 +816,17 @@ canvas.hiddenCanvasElement {
 // Neo Design System — Overrides
 // =============================================================================
 
-// Poseidon dark mode body background — solid dark navy
-[data-bs-theme="dark"] body,
-[data-bs-theme="auto"] body {
-  @media (prefers-color-scheme: dark) {
-    background: var(--neo-bg-app, #040d19);
-  }
+// Body background uses CSS variable (works in both light and dark)
+body {
+  background-color: var(--neo-bg-app);
 }
 
-[data-bs-theme="dark"] body {
-  background: var(--neo-bg-app, #040d19);
-}
-
-// Poseidon btn-primary with blue-indigo gradient
-@mixin neo-btn-primary {
-  background: linear-gradient(135deg, #3B82F6, #6366F1);
-  border-color: transparent;
+// Poseidon btn-primary with blue-indigo gradient (global — works in both modes)
+.btn-primary {
+  background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+  border: none !important;
   border-radius: 10px;
+  color: #fff !important;
   transition: all 160ms ease;
 
   &:hover, &:focus {
@@ -840,6 +834,7 @@ canvas.hiddenCanvasElement {
     border-color: transparent !important;
     box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
     transform: translateY(-1px);
+    color: #fff !important;
   }
 
   &:active {
@@ -848,57 +843,39 @@ canvas.hiddenCanvasElement {
   }
 }
 
-[data-bs-theme="dark"] .btn-primary { @include neo-btn-primary; }
-[data-bs-theme="auto"] { @media (prefers-color-scheme: dark) { .btn-primary { @include neo-btn-primary; } } }
+// Card styles using CSS variables (works in both modes)
+.card {
+  border-radius: var(--neo-radius-md);
+  border-color: var(--neo-border-default);
+}
 
-// Poseidon card styles — solid surfaces, no glassmorphism
-@mixin neo-card-poseidon {
-  background: #111827;
-  border: 1px solid #1e293b;
+// Dropdown menus use CSS variables
+.dropdown-menu {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
   border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  transition: transform 160ms ease, box-shadow 160ms ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  }
+  box-shadow: var(--neo-shadow-md);
 }
 
-[data-bs-theme="dark"] .card { @include neo-card-poseidon; }
-[data-bs-theme="auto"] { @media (prefers-color-scheme: dark) { .card { @include neo-card-poseidon; } } }
-
-// Poseidon solid surface mixin — no backdrop-filter
-@mixin neo-poseidon-surface {
-  background: #111827;
-  border: 1px solid #1e293b;
+// Modals use CSS variables
+.modal-content {
+  background: var(--neo-bg-elevated);
+  border: 1px solid var(--neo-border-default);
   border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--neo-shadow-md);
 }
 
-// Apply Poseidon surface to dropdown menus in dark mode
-[data-bs-theme="dark"] .dropdown-menu {
-  @include neo-poseidon-surface;
+// Sidebar uses CSS variables (handled in component, but also global fallback)
+.sidebar {
+  background: var(--neo-bg-sidebar);
+  border-right: 1px solid var(--neo-border-default);
 }
 
-// Apply Poseidon surface to modals in dark mode
-[data-bs-theme="dark"] .modal-content {
-  @include neo-poseidon-surface;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-// Sidebar Poseidon style — solid dark background
-[data-bs-theme="dark"] .sidebar,
-[data-bs-theme="auto"] .sidebar {
-  background: #0a1628;
-  border-right: 1px solid #1e293b;
-}
-
-// Poseidon scrollbar styling — thin, subtle
+// Poseidon scrollbar styling — thin, subtle (dark mode only, light uses browser defaults)
 @mixin neo-scrollbar {
   * {
     scrollbar-width: thin;
-    scrollbar-color: #1e293b transparent;
+    scrollbar-color: var(--neo-border-default) transparent;
   }
 
   *::-webkit-scrollbar {
@@ -911,11 +888,11 @@ canvas.hiddenCanvasElement {
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #1e293b;
+    background-color: var(--neo-border-default);
     border-radius: 3px;
 
     &:hover {
-      background-color: #334155;
+      background-color: var(--neo-border-strong);
     }
   }
 }
@@ -924,24 +901,21 @@ canvas.hiddenCanvasElement {
 [data-bs-theme="auto"] { @media (prefers-color-scheme: dark) { @include neo-scrollbar; } }
 
 // Smooth transitions on interactive elements
-[data-bs-theme="dark"],
-[data-bs-theme="auto"] {
-  .btn,
-  .nav-link,
-  .list-group-item,
-  .dropdown-item,
-  .form-control,
-  .form-select,
-  .form-check-input,
-  a {
-    transition: all 160ms ease;
-  }
+.btn,
+.nav-link,
+.list-group-item,
+.dropdown-item,
+.form-control,
+.form-select,
+.form-check-input,
+a {
+  transition: all 160ms ease;
+}
 
-  .nav-link:hover,
-  .list-group-item:hover,
-  .dropdown-item:hover {
-    background-color: rgba(59, 130, 246, 0.06);
-  }
+.nav-link:hover,
+.list-group-item:hover,
+.dropdown-item:hover {
+  background-color: rgba(59, 130, 246, 0.06);
 }
 
 // PrimeNG Dialog Poseidon styling
@@ -1002,17 +976,17 @@ canvas.hiddenCanvasElement {
   }
 
   &.p-button-secondary {
-    background: #1e293b;
-    border: 1px solid #334155;
-    color: #e2e8f0;
+    background: var(--neo-border-default);
+    border: 1px solid var(--neo-border-strong);
+    color: var(--neo-text-default);
 
     &:hover {
-      background: #334155;
+      background: var(--neo-border-strong);
     }
   }
 
   &.p-button-text {
-    color: #94a3b8;
+    color: var(--neo-text-muted);
 
     &:hover {
       background: rgba(59, 130, 246, 0.08);
@@ -1032,172 +1006,164 @@ canvas.hiddenCanvasElement {
 }
 
 // --- Inputs ---
-[data-bs-theme="dark"] {
-  .p-inputtext,
-  .p-textarea,
-  .p-password input,
-  .p-select,
-  .p-multiselect,
-  .p-autocomplete-input {
-    background: #111827;
-    border: 1px solid #1e293b;
-    border-radius: 10px;
-    color: #e2e8f0;
-    transition: border-color 200ms ease, box-shadow 200ms ease;
+.p-inputtext,
+.p-textarea,
+.p-password input,
+.p-select,
+.p-multiselect,
+.p-autocomplete-input {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
+  border-radius: 10px;
+  color: var(--neo-text-default);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
 
-    &:focus, &:hover {
-      border-color: #3B82F6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-    }
+  &:focus, &:hover {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  }
 
-    &::placeholder {
-      color: #64748b;
-    }
+  &::placeholder {
+    color: var(--neo-text-muted);
   }
 }
 
 // --- Tables ---
-[data-bs-theme="dark"] {
-  .p-datatable {
-    .p-datatable-thead > tr > th {
-      background: #0a1628;
-      border-bottom: 1px solid #1e293b;
-      color: #94a3b8;
-      font-weight: 600;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    background: var(--neo-bg-sidebar);
+    border-bottom: 1px solid var(--neo-border-default);
+    color: var(--neo-text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .p-datatable-tbody > tr {
+    background: var(--neo-bg-card);
+    border-bottom: 1px solid var(--neo-border-default);
+    color: var(--neo-text-default);
+    transition: background-color 150ms ease;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.06);
     }
 
-    .p-datatable-tbody > tr {
-      background: #111827;
-      border-bottom: 1px solid #1e293b;
-      color: #e2e8f0;
-      transition: background-color 150ms ease;
-
-      &:hover {
-        background: rgba(59, 130, 246, 0.06);
-      }
-
-      > td {
-        border-bottom: 1px solid #1e293b;
-      }
-    }
-
-    .p-datatable-tbody > tr.p-highlight {
-      background: rgba(59, 130, 246, 0.12);
-      color: #93b3f3;
+    > td {
+      border-bottom: 1px solid var(--neo-border-default);
     }
   }
 
-  .p-paginator {
-    background: transparent;
-    border: none;
+  .p-datatable-tbody > tr.p-highlight {
+    background: rgba(59, 130, 246, 0.12);
+    color: #93b3f3;
+  }
+}
 
-    .p-paginator-page {
-      border-radius: 8px;
-      color: #94a3b8;
+.p-paginator {
+  background: transparent;
+  border: none;
 
-      &.p-highlight {
-        background: linear-gradient(135deg, #3B82F6, #6366F1);
-        color: #fff;
-      }
+  .p-paginator-page {
+    border-radius: 8px;
+    color: var(--neo-text-muted);
 
-      &:hover:not(.p-highlight) {
-        background: rgba(59, 130, 246, 0.08);
-      }
+    &.p-highlight {
+      background: linear-gradient(135deg, #3B82F6, #6366F1);
+      color: #fff;
+    }
+
+    &:hover:not(.p-highlight) {
+      background: rgba(59, 130, 246, 0.08);
     }
   }
 }
 
 // --- Cards ---
-[data-bs-theme="dark"] .p-card {
-  background: #111827;
-  border: 1px solid #1e293b;
+.p-card {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
   border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--neo-shadow-sm);
 
   .p-card-header {
     background: transparent;
-    border-bottom: 1px solid #1e293b;
-    color: #f8fafc;
+    border-bottom: 1px solid var(--neo-border-default);
+    color: var(--neo-text-strong);
   }
 
   .p-card-body {
-    color: #e2e8f0;
+    color: var(--neo-text-default);
   }
 }
 
 // --- Tabs ---
-[data-bs-theme="dark"] {
-  .p-tabview {
-    .p-tabview-nav {
-      background: transparent;
-      border-bottom: 1px solid #1e293b;
+.p-tabview {
+  .p-tabview-nav {
+    background: transparent;
+    border-bottom: 1px solid var(--neo-border-default);
 
-      li {
-        .p-tabview-nav-link {
-          color: #94a3b8;
-          background: transparent;
-          border: none;
-          border-bottom: 2px solid transparent;
-          transition: all 200ms ease;
+    li {
+      .p-tabview-nav-link {
+        color: var(--neo-text-muted);
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        transition: all 200ms ease;
 
-          &:hover {
-            color: #e2e8f0;
-            border-bottom-color: #334155;
-          }
-        }
-
-        &.p-highlight .p-tabview-nav-link {
-          color: #3B82F6;
-          border-bottom-color: #3B82F6;
-          background: transparent;
+        &:hover {
+          color: var(--neo-text-default);
+          border-bottom-color: var(--neo-border-strong);
         }
       }
-    }
 
-    .p-tabview-panels {
-      background: transparent;
-      color: #e2e8f0;
+      &.p-highlight .p-tabview-nav-link {
+        color: #3B82F6;
+        border-bottom-color: #3B82F6;
+        background: transparent;
+      }
     }
+  }
+
+  .p-tabview-panels {
+    background: transparent;
+    color: var(--neo-text-default);
   }
 }
 
 // --- Select / Dropdown ---
-[data-bs-theme="dark"] {
-  .p-select-overlay,
-  .p-multiselect-overlay,
-  .p-autocomplete-overlay {
-    background: #111827;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+.p-select-overlay,
+.p-multiselect-overlay,
+.p-autocomplete-overlay {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
+  border-radius: 12px;
+  box-shadow: var(--neo-shadow-md);
 
-    .p-select-option,
-    .p-multiselect-option,
-    .p-autocomplete-option {
-      color: #e2e8f0;
-      transition: background-color 150ms ease;
+  .p-select-option,
+  .p-multiselect-option,
+  .p-autocomplete-option {
+    color: var(--neo-text-default);
+    transition: background-color 150ms ease;
 
-      &:hover {
-        background: rgba(59, 130, 246, 0.08);
-      }
+    &:hover {
+      background: rgba(59, 130, 246, 0.08);
+    }
 
-      &.p-highlight {
-        background: rgba(59, 130, 246, 0.15);
-        color: #93b3f3;
-      }
+    &.p-highlight {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93b3f3;
     }
   }
 }
 
 // --- Accordion ---
-[data-bs-theme="dark"] .p-accordion {
+.p-accordion {
   .p-accordion-header-link {
-    background: #0a1628;
-    border: 1px solid #1e293b;
-    color: #e2e8f0;
+    background: var(--neo-bg-sidebar);
+    border: 1px solid var(--neo-border-default);
+    color: var(--neo-text-default);
     border-radius: 12px;
     transition: background-color 200ms ease;
 
@@ -1207,20 +1173,20 @@ canvas.hiddenCanvasElement {
   }
 
   .p-accordion-content {
-    background: #111827;
-    border: 1px solid #1e293b;
+    background: var(--neo-bg-card);
+    border: 1px solid var(--neo-border-default);
     border-top: none;
-    color: #e2e8f0;
+    color: var(--neo-text-default);
   }
 }
 
 // --- Toast ---
-[data-bs-theme="dark"] .p-toast {
+.p-toast {
   .p-toast-message {
-    background: #111827;
-    border: 1px solid #1e293b;
+    background: var(--neo-bg-card);
+    border: 1px solid var(--neo-border-default);
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--neo-shadow-md);
 
     &.p-toast-message-success {
       border-left: 4px solid #22c55e;
@@ -1236,50 +1202,48 @@ canvas.hiddenCanvasElement {
     }
 
     .p-toast-message-text {
-      color: #e2e8f0;
+      color: var(--neo-text-default);
     }
     .p-toast-summary {
-      color: #f8fafc;
+      color: var(--neo-text-strong);
       font-weight: 600;
     }
   }
 }
 
 // --- Checkbox & Toggle ---
-[data-bs-theme="dark"] {
-  .p-checkbox .p-checkbox-box {
-    background: #111827;
-    border: 1px solid #1e293b;
-    border-radius: 6px;
+.p-checkbox .p-checkbox-box {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
+  border-radius: 6px;
 
-    &.p-highlight {
-      background: #3B82F6;
-      border-color: #3B82F6;
+  &.p-highlight {
+    background: #3B82F6;
+    border-color: #3B82F6;
+  }
+}
+
+.p-toggleswitch {
+  .p-toggleswitch-slider {
+    background: var(--neo-border-default);
+
+    &:before {
+      background: var(--neo-text-muted);
     }
   }
 
-  .p-toggleswitch {
-    .p-toggleswitch-slider {
-      background: #1e293b;
+  &.p-toggleswitch-checked .p-toggleswitch-slider {
+    background: #3B82F6;
 
-      &:before {
-        background: #94a3b8;
-      }
-    }
-
-    &.p-toggleswitch-checked .p-toggleswitch-slider {
-      background: #3B82F6;
-
-      &:before {
-        background: #fff;
-      }
+    &:before {
+      background: #fff;
     }
   }
 }
 
 // --- Progress Bar ---
-[data-bs-theme="dark"] .p-progressbar {
-  background: #1e293b;
+.p-progressbar {
+  background: var(--neo-border-default);
   border-radius: 999px;
   height: 6px;
 
@@ -1290,54 +1254,52 @@ canvas.hiddenCanvasElement {
 }
 
 // --- Menu / Overlay ---
-[data-bs-theme="dark"] {
-  .p-menu {
-    background: #111827;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+.p-menu {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
+  border-radius: 12px;
+  box-shadow: var(--neo-shadow-md);
 
-    .p-menuitem-link {
-      color: #e2e8f0;
-      border-radius: 8px;
-      transition: background-color 150ms ease;
+  .p-menuitem-link {
+    color: var(--neo-text-default);
+    border-radius: 8px;
+    transition: background-color 150ms ease;
 
-      &:hover {
-        background: rgba(59, 130, 246, 0.08);
-      }
+    &:hover {
+      background: rgba(59, 130, 246, 0.08);
     }
   }
+}
 
-  .p-overlaypanel {
-    background: #111827;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    color: #e2e8f0;
-  }
+.p-overlaypanel {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
+  border-radius: 12px;
+  box-shadow: var(--neo-shadow-md);
+  color: var(--neo-text-default);
 }
 
 // --- Tooltip ---
 .p-tooltip {
   .p-tooltip-text {
-    background: #1e293b;
-    color: #e2e8f0;
+    background: var(--neo-border-default);
+    color: var(--neo-text-default);
     border-radius: 8px;
     font-size: 13px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--neo-shadow-md);
   }
 }
 
 // --- File Upload ---
-[data-bs-theme="dark"] .p-fileupload {
+.p-fileupload {
   .p-fileupload-buttonbar {
     background: transparent;
     border: none;
   }
 
   .p-fileupload-content {
-    background: #111827;
-    border: 2px dashed #1e293b;
+    background: var(--neo-bg-card);
+    border: 2px dashed var(--neo-border-default);
     border-radius: 16px;
 
     &:hover {
@@ -1348,17 +1310,17 @@ canvas.hiddenCanvasElement {
 }
 
 // --- Date Picker ---
-[data-bs-theme="dark"] .p-datepicker {
-  background: #111827;
-  border: 1px solid #1e293b;
+.p-datepicker {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
   border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-  color: #e2e8f0;
+  box-shadow: var(--neo-shadow-md);
+  color: var(--neo-text-default);
 
   .p-datepicker-header {
     background: transparent;
-    border-bottom: 1px solid #1e293b;
-    color: #f8fafc;
+    border-bottom: 1px solid var(--neo-border-default);
+    color: var(--neo-text-strong);
   }
 
   td > span {
@@ -1381,14 +1343,14 @@ canvas.hiddenCanvasElement {
 }
 
 // --- Color Picker ---
-[data-bs-theme="dark"] .p-colorpicker-overlay {
-  background: #111827;
-  border: 1px solid #1e293b;
+.p-colorpicker-overlay {
+  background: var(--neo-bg-card);
+  border: 1px solid var(--neo-border-default);
   border-radius: 12px;
 }
 
 // --- Message / Alert ---
-[data-bs-theme="dark"] .p-message {
+.p-message {
   border-radius: 12px;
 
   &.p-message-info {

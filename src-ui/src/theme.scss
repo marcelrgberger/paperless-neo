@@ -52,9 +52,6 @@
   --neo-radius-md: 16px;
   --neo-radius-lg: 20px;
   --neo-glass-blur: 0px;
-  --neo-text-strong: #14233a;
-  --neo-text-default: #31445f;
-  --neo-text-muted: #64748b;
 
   @media screen and (min-width: 1024px) {
     --pngx-toast-max-width: 450px;
@@ -314,7 +311,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .card .table {
-    border-color: #1e293b;
+    border-color: var(--neo-border-default);
   }
 
   .alert-secondary {

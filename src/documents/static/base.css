@@ -1,5 +1,5 @@
 body {
-  --bs-body-bg: #f5f5f5;
+  --bs-body-bg: #f8fafc;
   --bs-link-color-rgb: 59, 130, 246; /* #3B82F6 */
   --bs-link-hover-color-rgb: 37, 99, 235;
   --pngx-primary: #3B82F6;
@@ -25,13 +25,14 @@ body {
 }
 
 .btn.btn-primary {
-  --bs-btn-bg: var(--pngx-primary);
-  --bs-btn-border-color: var(--pngx-primary);
-  --bs-btn-hover-bg: var(--pngx-primary-hover);
-  --bs-btn-hover-border-color: #1D4ED8;
-  --bs-btn-active-bg: var(--pngx-primary-active);
-  --bs-btn-active-border-color: #1E40AF;
+  background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+  border: none !important;
   border-radius: 10px;
+  color: #fff !important;
+}
+
+.btn.btn-primary:hover {
+  background: linear-gradient(135deg, #60a5fa, #818cf8) !important;
 }
 
 .btn-link {
@@ -96,16 +97,6 @@ body {
   .form-control:focus {
     border-color: #3B82F6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-  }
-
-  .btn.btn-primary {
-    background: linear-gradient(135deg, #3B82F6, #6366F1);
-    border: none;
-    border-radius: 10px;
-  }
-
-  .btn.btn-primary:hover {
-    background: linear-gradient(135deg, #60a5fa, #818cf8);
   }
 
   svg.logo .text {

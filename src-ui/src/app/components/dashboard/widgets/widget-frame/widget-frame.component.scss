@@ -7,19 +7,29 @@ i-bs {
 }
 
 .card {
+  background: var(--neo-bg-card) !important;
+  border: 1px solid var(--neo-border-default) !important;
   border-radius: 18px !important;
+  box-shadow: var(--neo-shadow-sm);
+  padding: 24px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
   overflow: hidden;
+
+  &:hover {
+    border-color: var(--neo-border-strong) !important;
+  }
 
   .card-header {
     background: transparent;
     padding: 0 0 14px 0;
+    border-bottom: 1px solid var(--neo-border-default);
 
     .card-title {
       font-size: 16px;
       font-weight: 600;
       letter-spacing: -0.01em;
       margin: 0;
+      color: var(--neo-text-strong);
     }
 
     .badge {
@@ -41,28 +51,6 @@ i-bs {
 
   .card-body {
     padding: 14px 0 0 0;
-  }
-}
-
-:host-context([data-bs-theme="dark"]) .card {
-  background: #111827 !important;
-  border: 1px solid #1e293b !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  padding: 24px;
-
-  &:hover {
-    border-color: #334155 !important;
-  }
-
-  .card-header {
-    border-bottom: 1px solid #1e293b;
-
-    .card-title {
-      color: #f8fafc;
-    }
-  }
-
-  .card-body {
-    color: #f8fafc;
+    color: var(--neo-text-default);
   }
 }
