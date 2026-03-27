@@ -1733,3 +1733,304 @@ a {
 .text-muted {
   color: var(--neo-text-muted) !important;
 }
+
+// ============================================================
+// POSEIDON DARK MODE — Global Surface Fixes
+// Eliminates white panels, tabs, and form backgrounds
+// ============================================================
+
+[data-bs-theme="dark"],
+[data-bs-theme="auto"] {
+  // --- PrimeNG Tabs: Dark glass backgrounds ---
+  .p-tabs,
+  .p-tabview {
+    .p-tablist,
+    .p-tabview-nav-container,
+    .p-tabview-nav {
+      background: transparent !important;
+      border-bottom: 1px solid rgba(148, 163, 184, .10) !important;
+    }
+
+    .p-tabpanels,
+    .p-tabview-panels {
+      background: rgba(15, 23, 42, .72) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(148, 163, 184, .08) !important;
+      border-top: none !important;
+      border-radius: 0 0 10px 10px !important;
+      color: #f8fafc !important;
+    }
+
+    .p-tab,
+    .p-tabview-nav-link {
+      color: #94a3b8 !important;
+      background: transparent !important;
+      border: none !important;
+
+      &:hover {
+        color: #f8fafc !important;
+      }
+    }
+
+    .p-tab-active,
+    .p-tab[data-p-active="true"],
+    .p-highlight .p-tabview-nav-link {
+      color: #3B82F6 !important;
+      border-bottom: 2px solid #3B82F6 !important;
+      background: transparent !important;
+    }
+  }
+
+  // --- Cards: Glass treatment ---
+  .card {
+    background: rgba(15, 23, 42, .72) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border: 1px solid rgba(148, 163, 184, .10) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .16) !important;
+    color: #f8fafc !important;
+
+    .card-header {
+      background: transparent !important;
+      border-bottom: 1px solid rgba(148, 163, 184, .08) !important;
+      color: #f8fafc !important;
+    }
+
+    .card-body {
+      color: #f8fafc !important;
+    }
+  }
+
+  // --- Forms: Dark inputs ---
+  .form-control,
+  .form-select {
+    background-color: rgba(2, 6, 23, .55) !important;
+    border: 1px solid rgba(148, 163, 184, .12) !important;
+    color: #f8fafc !important;
+
+    &:focus {
+      border-color: rgba(59, 130, 246, .5) !important;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, .1) !important;
+    }
+
+    option {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+  }
+
+  // --- Checkboxes/Radios: Dark ---
+  .form-check-input {
+    background-color: rgba(2, 6, 23, .55) !important;
+    border-color: rgba(148, 163, 184, .20) !important;
+
+    &:checked {
+      background-color: #3B82F6 !important;
+      border-color: #3B82F6 !important;
+    }
+  }
+
+  // --- Labels/Text ---
+  label,
+  .form-label,
+  .col-form-label,
+  .form-text {
+    color: #94a3b8 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #f8fafc !important;
+  }
+
+  // --- Buttons: Solid blue, no gradients ---
+  .btn-primary,
+  .p-button:not(.p-button-outlined):not(.p-button-text):not(.p-button-secondary):not(.p-button-danger) {
+    background: #3B82F6 !important;
+    border-color: #3B82F6 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+
+    &:hover {
+      background: #2563eb !important;
+      border-color: #2563eb !important;
+      transform: translateY(-1px);
+    }
+  }
+
+  // --- Outlined buttons: Toned down ---
+  .btn-outline-primary,
+  .p-button-outlined {
+    border-color: rgba(59, 130, 246, .35) !important;
+    color: #3B82F6 !important;
+    box-shadow: none !important;
+
+    &:hover {
+      background: rgba(59, 130, 246, .08) !important;
+      border-color: rgba(59, 130, 246, .5) !important;
+    }
+  }
+
+  // --- Tables: Dark glass ---
+  .table {
+    color: #f8fafc !important;
+
+    thead th {
+      background: rgba(15, 23, 42, .5) !important;
+      color: #94a3b8 !important;
+      border-bottom: 1px solid rgba(148, 163, 184, .10) !important;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(148, 163, 184, .06) !important;
+
+      &:hover {
+        background: rgba(59, 130, 246, .04) !important;
+      }
+    }
+
+    td {
+      border-color: rgba(148, 163, 184, .06) !important;
+    }
+  }
+
+  // --- Dropdown menus: Dark glass ---
+  .dropdown-menu {
+    background: rgba(15, 23, 42, .92) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border: 1px solid rgba(148, 163, 184, .10) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .3) !important;
+
+    .dropdown-item {
+      color: #e2e8f0 !important;
+
+      &:hover, &:focus {
+        background: rgba(59, 130, 246, .08) !important;
+        color: #f8fafc !important;
+      }
+    }
+  }
+
+  // --- Modal: Dark glass ---
+  .modal-content {
+    background: rgba(15, 23, 42, .92) !important;
+    backdrop-filter: blur(14px) !important;
+    border: 1px solid rgba(148, 163, 184, .10) !important;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, .3) !important;
+    color: #f8fafc !important;
+
+    .modal-header {
+      border-bottom: 1px solid rgba(148, 163, 184, .08) !important;
+    }
+
+    .modal-footer {
+      border-top: 1px solid rgba(148, 163, 184, .08) !important;
+    }
+  }
+
+  // --- ng-select: Dark ---
+  .ng-select .ng-select-container {
+    background: rgba(2, 6, 23, .55) !important;
+    border-color: rgba(148, 163, 184, .12) !important;
+    color: #f8fafc !important;
+  }
+
+  .ng-select .ng-dropdown-panel {
+    background: rgba(15, 23, 42, .92) !important;
+    border-color: rgba(148, 163, 184, .10) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .3) !important;
+
+    .ng-option {
+      color: #e2e8f0 !important;
+
+      &.ng-option-marked {
+        background: rgba(59, 130, 246, .08) !important;
+      }
+
+      &.ng-option-selected {
+        background: rgba(59, 130, 246, .15) !important;
+        color: #3B82F6 !important;
+      }
+    }
+  }
+
+  .ng-select .ng-value {
+    color: #f8fafc !important;
+  }
+
+  // --- List groups: Dark ---
+  .list-group-item {
+    background: transparent !important;
+    border-color: rgba(148, 163, 184, .08) !important;
+    color: #e2e8f0 !important;
+  }
+
+  // --- Sidebar active: Subtle ---
+  .sidebar .nav-link.active {
+    background: rgba(255, 255, 255, .06) !important;
+    color: #f8fafc !important;
+    font-weight: 600;
+    box-shadow: none !important;
+  }
+
+  // --- Badges ---
+  .badge {
+    &.bg-primary {
+      background: #3B82F6 !important;
+    }
+    &.bg-info {
+      background: rgba(59, 130, 246, .12) !important;
+      color: #60a5fa !important;
+    }
+  }
+
+  // --- Alerts ---
+  .alert {
+    background: rgba(15, 23, 42, .72) !important;
+    border-color: rgba(148, 163, 184, .10) !important;
+    color: #e2e8f0 !important;
+  }
+
+  // --- Scrollbar ---
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, .15) transparent;
+  }
+
+  *::-webkit-scrollbar { width: 6px; height: 6px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, .15);
+    border-radius: 3px;
+    &:hover { background: rgba(148, 163, 184, .25); }
+  }
+
+  // --- Upload area: Muted ---
+  .btn-outline-dark {
+    border-color: rgba(148, 163, 184, .15) !important;
+    color: #94a3b8 !important;
+
+    &:hover {
+      border-color: rgba(59, 130, 246, .3) !important;
+      background: rgba(59, 130, 246, .04) !important;
+    }
+  }
+
+  // --- Progress bars ---
+  .progress {
+    background: rgba(148, 163, 184, .10) !important;
+  }
+}
+
+// Also handle system dark mode (auto)
+@media (prefers-color-scheme: dark) {
+  [data-bs-theme="auto"] {
+    .p-tabs .p-tabpanels,
+    .p-tabview .p-tabview-panels,
+    .p-tabs .p-tablist,
+    .p-tabview .p-tabview-nav {
+      background: rgba(15, 23, 42, .72) !important;
+    }
+  }
+}
