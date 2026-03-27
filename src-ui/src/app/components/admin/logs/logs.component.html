@@ -41,7 +41,7 @@
   </p-tablist>
 </p-tabs>
 
-<div #logContainer class="bg-dark text-light font-monospace log-container p-3" (scroll)="onScroll()">
+<div #logContainer class="card font-monospace log-container p-3" style="font-size: 12px; line-height: 1.6; max-height: 70vh; overflow-y: auto;" (scroll)="onScroll()">
   @if (loading && !logFiles.length) {
     <div>
       <div class="spinner-border spinner-border-sm me-2" role="status"></div>
