@@ -2021,6 +2021,36 @@ a {
   .progress {
     background: rgba(148, 163, 184, .10) !important;
   }
+
+  // --- Toggle switch ---
+  .form-switch .form-check-input {
+    background-color: rgba(148, 163, 184, .20) !important;
+    border-color: transparent !important;
+
+    &:checked {
+      background-color: #3B82F6 !important;
+    }
+  }
+
+  // --- Input groups in dark mode ---
+  .input-group-text {
+    background: rgba(15, 23, 42, .5) !important;
+    border-color: rgba(148, 163, 184, .12) !important;
+    color: #94a3b8 !important;
+  }
+
+  // --- Page content wrapper --- elevated
+  .pb-4 > .p-tabs,
+  form > .p-tabs {
+    background: rgba(15, 23, 42, .4);
+    border-radius: 10px;
+    padding: 2px;
+  }
+
+  // --- Empty state text ---
+  .fst-italic {
+    color: #64748b !important;
+  }
 }
 
 // Also handle system dark mode (auto)
