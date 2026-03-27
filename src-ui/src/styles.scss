@@ -1277,7 +1277,7 @@ a {
   height: 6px;
 
   .p-progressbar-value {
-    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    background: #3B82F6;
     border-radius: 999px;
   }
 }
@@ -1512,7 +1512,7 @@ a {
   padding: 0.3em 0.65em;
 
   &.bg-primary {
-    background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+    background: #3B82F6 !important;
   }
 
   &.bg-info {
@@ -1546,7 +1546,7 @@ a {
     }
 
     &.active, &:active {
-      background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+      background: #3B82F6 !important;
       color: #fff !important;
     }
   }
