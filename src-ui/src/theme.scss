@@ -34,17 +34,20 @@
   --bs-info: var(--pngx-bg-alt2);
   --bs-info-rgb: 233, 236, 239;
 
-  // Neo design system — light mode
-  --neo-bg-app: #f4f8fc;
+  // Neo design system — Poseidon light mode
+  --neo-bg-app: #f8fafc;
   --neo-bg-elevated: #ffffff;
   --neo-bg-card: #ffffff;
-  --neo-bg-sidebar: #f0f4f8;
-  --neo-border-subtle: rgba(0, 0, 0, 0.06);
-  --neo-border-default: rgba(0, 0, 0, 0.10);
-  --neo-border-strong: rgba(0, 0, 0, 0.16);
+  --neo-bg-sidebar: #f1f5f9;
+  --neo-border-subtle: #e2e8f0;
+  --neo-border-default: #e2e8f0;
+  --neo-border-strong: #cbd5e1;
   --neo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
   --neo-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --neo-shadow-brand: 0 4px 16px rgba(59, 130, 246, 0.15);
+  --neo-shadow-brand: 0 4px 16px rgba(59, 130, 246, 0.1);
+  --neo-text-strong: #0f172a;
+  --neo-text-default: #334155;
+  --neo-text-muted: #64748b;
   --neo-radius-sm: 10px;
   --neo-radius-md: 16px;
   --neo-radius-lg: 20px;
