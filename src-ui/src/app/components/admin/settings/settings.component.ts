@@ -148,7 +148,7 @@ export class SettingsComponent
   private systemStatusService = inject(SystemStatusService)
   private savedViewsService = inject(SavedViewService)
 
-  activeNavID: number
+  activeNavID: number = SettingsNavIDs.General
 
   settingsForm = new FormGroup({
     bulkEditConfirmationDialogs: new FormControl(null),
