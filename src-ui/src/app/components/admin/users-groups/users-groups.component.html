@@ -8,6 +8,8 @@
 </pngx-page-header>
 
 @if (canViewUsers && users) {
+  <div class="card mb-4">
+  <div class="card-body">
   <h4 class="d-flex">
     <ng-container i18n>Users</ng-container>
     <button type="button" class="btn btn-sm btn-outline-primary ms-4" (click)="editUser()" *pngxIfPermissions="{ action: PermissionAction.Add, type: PermissionType.User }">
@@ -43,10 +45,14 @@
       </li>
     }
   </ul>
+  </div>
+  </div>
 }
 
 @if (canViewGroups && groups) {
-  <h4 class="mt-4 d-flex">
+  <div class="card mb-4">
+  <div class="card-body">
+  <h4 class="d-flex">
     <ng-container i18n>Groups</ng-container>
     <button type="button" class="btn btn-sm btn-outline-primary ms-4" (click)="editGroup()" *pngxIfPermissions="{ action: PermissionAction.Add, type: PermissionType.Group }">
       <i-bs name="plus-circle" class="me-1"></i-bs><ng-container i18n>Add Group</ng-container>
@@ -84,6 +90,8 @@
       <li class="list-group-item" i18n>No groups defined</li>
     }
   </ul>
+  </div>
+  </div>
 }
 
 @if ((canViewUsers && !users) || (canViewGroups && !groups)) {
