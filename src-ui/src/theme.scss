@@ -35,23 +35,25 @@
   --bs-info-rgb: 233, 236, 239;
 
   // Neo design system — Poseidon light mode
-  --neo-bg-app: #f8fafc;
+  --neo-bg-app: linear-gradient(180deg, #e0e7f5 0%, rgba(170, 194, 239, .06) 111.26%);
+  --neo-bg-app-color: #edf1f8;
   --neo-bg-elevated: #ffffff;
-  --neo-bg-card: #ffffff;
-  --neo-bg-sidebar: #f1f5f9;
+  --neo-bg-card: rgba(255, 255, 255, .64);
+  --neo-bg-sidebar: #ffffff;
   --neo-border-subtle: #e2e8f0;
-  --neo-border-default: #e2e8f0;
+  --neo-border-default: #d1d9e6;
   --neo-border-strong: #cbd5e1;
-  --neo-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --neo-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --neo-shadow-sm: 0px 10px 10px -8px rgba(18,18,23,.02), 0px 2px 2px -1.5px rgba(18,18,23,.02);
+  --neo-shadow-md: 0px 10px 10px -8px rgba(18,18,23,.04), 0px 4px 4px -2px rgba(18,18,23,.04);
   --neo-shadow-brand: 0 4px 16px rgba(59, 130, 246, 0.1);
   --neo-text-strong: #0f172a;
   --neo-text-default: #334155;
   --neo-text-muted: #64748b;
-  --neo-radius-sm: 10px;
-  --neo-radius-md: 16px;
-  --neo-radius-lg: 20px;
-  --neo-glass-blur: 0px;
+  --neo-radius-sm: 4px;
+  --neo-radius-md: 8px;
+  --neo-radius-lg: 12px;
+  --neo-radius-xl: 16px;
+  --neo-glass-blur: 16px;
 
   @media screen and (min-width: 1024px) {
     --pngx-toast-max-width: 450px;
@@ -125,19 +127,21 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 
   // Neo design system — dark mode (Poseidon-inspired)
   --neo-bg-app: #040d19;
+  --neo-bg-app-color: #040d19;
   --neo-bg-elevated: #0a1628;
-  --neo-bg-card: #111827;
+  --neo-bg-card: rgba(17, 24, 39, .8);
   --neo-bg-sidebar: #0a1628;
   --neo-border-subtle: #1e293b;
   --neo-border-default: #1e293b;
   --neo-border-strong: #334155;
-  --neo-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --neo-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --neo-shadow-sm: 0px 10px 10px -8px rgba(0,0,0,.15), 0px 2px 2px -1.5px rgba(0,0,0,.1);
+  --neo-shadow-md: 0px 10px 10px -8px rgba(0,0,0,.2), 0px 4px 4px -2px rgba(0,0,0,.15);
   --neo-shadow-brand: 0 4px 16px rgba(59, 130, 246, 0.15);
-  --neo-radius-sm: 10px;
-  --neo-radius-md: 16px;
-  --neo-radius-lg: 20px;
-  --neo-glass-blur: 0px;
+  --neo-radius-sm: 4px;
+  --neo-radius-md: 8px;
+  --neo-radius-lg: 12px;
+  --neo-radius-xl: 16px;
+  --neo-glass-blur: 16px;
   --neo-text-strong: #f8fafc;
   --neo-text-default: #e2e8f0;
   --neo-text-muted: #94a3b8;
@@ -219,8 +223,8 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   .card {
     background-color: var(--neo-bg-card);
     --bs-card-cap-bg: rgb(var(--bs-body-bg-rgb));
-    border-color: var(--neo-border-subtle);
-    border-radius: var(--neo-radius-md);
+    border-color: transparent;
+    border-radius: var(--neo-radius-lg);
 
     .card-header {
       background-color: rgba(0, 0, 0, 0.15);

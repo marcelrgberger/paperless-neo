@@ -66,11 +66,35 @@ $grid-breakpoints: (
   }
 }
 
-// Paperless-ngx styles
+// Paperless-ngx styles — Figtree font globally
+*, *::before, *::after {
+  font-family: 'Figtree', sans-serif;
+}
+
 body {
   --pngx-body-font-size: 0.875rem;
+  font-family: 'Figtree', sans-serif !important;
   font-size: var(--pngx-body-font-size);
-  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--neo-bg-app-color);
+  background-image: linear-gradient(180deg, #e0e7f5 0%, rgba(170, 194, 239, .06) 111.26%);
+  min-height: 100vh;
+}
+
+[data-bs-theme="dark"] body,
+body[data-bs-theme="dark"] {
+  background: #040d19;
+  background-image: none;
+}
+
+[data-bs-theme="auto"] {
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #040d19;
+      background-image: none;
+    }
+  }
 }
 
 body,
@@ -83,7 +107,7 @@ body,
 .btn,
 .form-control,
 .nav-link {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.15s cubic-bezier(.4, 0, .2, 1), border-color 0.15s cubic-bezier(.4, 0, .2, 1);
 }
 
 @media(min-width: 768px) {
@@ -816,52 +840,54 @@ canvas.hiddenCanvasElement {
 // Neo Design System — Overrides
 // =============================================================================
 
-// Body background uses CSS variable (works in both light and dark)
-body {
-  background-color: var(--neo-bg-app);
-}
+// Body background handled in main body rule above
 
-// Poseidon btn-primary with blue-indigo gradient (global — works in both modes)
+// Poseidon btn-primary — solid color, smaller radius
 .btn-primary {
-  background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+  background: #3B82F6 !important;
   border: none !important;
-  border-radius: 10px;
+  border-radius: 8px;
   color: #fff !important;
-  transition: all 160ms ease;
+  transition: all 0.15s cubic-bezier(.4, 0, .2, 1);
 
   &:hover, &:focus {
-    background: linear-gradient(135deg, #60a5fa, #818cf8) !important;
+    background: #2563eb !important;
     border-color: transparent !important;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
-    transform: translateY(-1px);
+    box-shadow: var(--neo-shadow-sm);
     color: #fff !important;
   }
 
   &:active {
-    transform: translateY(0);
+    background: #1d4ed8 !important;
     box-shadow: var(--neo-shadow-sm);
   }
 }
 
-// Card styles using CSS variables (works in both modes)
+// Card styles — Poseidon: semi-transparent with backdrop-blur
 .card {
-  border-radius: var(--neo-radius-md);
-  border-color: var(--neo-border-default);
+  background: var(--neo-bg-card) !important;
+  border: none !important;
+  border-radius: var(--neo-radius-lg) !important;
+  box-shadow: var(--neo-shadow-sm);
+  backdrop-filter: blur(var(--neo-glass-blur));
+  -webkit-backdrop-filter: blur(var(--neo-glass-blur));
 }
 
-// Dropdown menus use CSS variables
+// Dropdown menus — Poseidon smaller radius
 .dropdown-menu {
   background: var(--neo-bg-card);
-  border: 1px solid var(--neo-border-default);
-  border-radius: 16px;
+  border: 1px solid var(--neo-border-subtle);
+  border-radius: 8px;
   box-shadow: var(--neo-shadow-md);
+  backdrop-filter: blur(var(--neo-glass-blur));
+  -webkit-backdrop-filter: blur(var(--neo-glass-blur));
 }
 
-// Modals use CSS variables
+// Modals — Poseidon smaller radius
 .modal-content {
   background: var(--neo-bg-elevated);
-  border: 1px solid var(--neo-border-default);
-  border-radius: 16px;
+  border: 1px solid var(--neo-border-subtle);
+  border-radius: 12px;
   box-shadow: var(--neo-shadow-md);
 }
 
@@ -909,7 +935,7 @@ body {
 .form-select,
 .form-check-input,
 a {
-  transition: all 160ms ease;
+  transition: all 0.15s cubic-bezier(.4, 0, .2, 1);
 }
 
 .nav-link:hover,
@@ -923,7 +949,7 @@ a {
   .p-dialog {
     background: var(--neo-bg-card, #111827);
     border: 1px solid var(--neo-border-default, #1e293b);
-    border-radius: var(--neo-radius-lg, 20px);
+    border-radius: var(--neo-radius-lg, 12px);
     box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
   }
 
@@ -960,18 +986,17 @@ a {
 
 // --- Buttons ---
 .p-button {
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: 600;
-  transition: all 200ms ease;
+  transition: all 0.15s cubic-bezier(.4, 0, .2, 1);
 
   &.p-button-primary {
-    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    background: #3B82F6;
     border: none;
 
     &:hover {
-      background: linear-gradient(135deg, #60a5fa, #818cf8);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+      background: #2563eb;
+      box-shadow: var(--neo-shadow-sm);
     }
   }
 
@@ -1014,9 +1039,9 @@ a {
 .p-autocomplete-input {
   background: var(--neo-bg-card);
   border: 1px solid var(--neo-border-default);
-  border-radius: 10px;
+  border-radius: 6px;
   color: var(--neo-text-default);
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+  transition: border-color 0.15s cubic-bezier(.4, 0, .2, 1), box-shadow 0.15s cubic-bezier(.4, 0, .2, 1);
 
   &:focus, &:hover {
     border-color: #3B82F6;
@@ -1070,7 +1095,7 @@ a {
     color: var(--neo-text-muted);
 
     &.p-highlight {
-      background: linear-gradient(135deg, #3B82F6, #6366F1);
+      background: #3B82F6;
       color: #fff;
     }
 
@@ -1083,9 +1108,11 @@ a {
 // --- Cards ---
 .p-card {
   background: var(--neo-bg-card);
-  border: 1px solid var(--neo-border-default);
-  border-radius: 16px;
+  border: none;
+  border-radius: 12px;
   box-shadow: var(--neo-shadow-sm);
+  backdrop-filter: blur(var(--neo-glass-blur));
+  -webkit-backdrop-filter: blur(var(--neo-glass-blur));
 
   .p-card-header {
     background: transparent;
@@ -1110,7 +1137,7 @@ a {
         background: transparent;
         border: none;
         border-bottom: 2px solid transparent;
-        transition: all 200ms ease;
+        transition: all 0.15s cubic-bezier(.4, 0, .2, 1);
 
         &:hover {
           color: var(--neo-text-default);
@@ -1137,9 +1164,11 @@ a {
 .p-multiselect-overlay,
 .p-autocomplete-overlay {
   background: var(--neo-bg-card);
-  border: 1px solid var(--neo-border-default);
-  border-radius: 12px;
+  border: 1px solid var(--neo-border-subtle);
+  border-radius: 8px;
   box-shadow: var(--neo-shadow-md);
+  backdrop-filter: blur(var(--neo-glass-blur));
+  -webkit-backdrop-filter: blur(var(--neo-glass-blur));
 
   .p-select-option,
   .p-multiselect-option,
@@ -1164,8 +1193,8 @@ a {
     background: var(--neo-bg-sidebar);
     border: 1px solid var(--neo-border-default);
     color: var(--neo-text-default);
-    border-radius: 12px;
-    transition: background-color 200ms ease;
+    border-radius: 8px;
+    transition: background-color 0.15s cubic-bezier(.4, 0, .2, 1);
 
     &:hover {
       background: rgba(59, 130, 246, 0.06);
@@ -1184,8 +1213,8 @@ a {
 .p-toast {
   .p-toast-message {
     background: var(--neo-bg-card);
-    border: 1px solid var(--neo-border-default);
-    border-radius: 12px;
+    border: 1px solid var(--neo-border-subtle);
+    border-radius: 8px;
     box-shadow: var(--neo-shadow-md);
 
     &.p-toast-message-success {
