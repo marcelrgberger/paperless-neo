@@ -1966,9 +1966,11 @@ a {
     color: #e2e8f0 !important;
   }
 
-  // --- Sidebar active: Subtle ---
+  // --- Sidebar active: Poseidon style with left blue indicator ---
   .sidebar .nav-link.active {
     background: rgba(255, 255, 255, .06) !important;
+    border-left: 3px solid #3B82F6 !important;
+    padding-left: 11px !important;
     color: #f8fafc !important;
     font-weight: 600;
     box-shadow: none !important;
