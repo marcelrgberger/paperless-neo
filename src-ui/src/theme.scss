@@ -54,6 +54,9 @@
   --neo-radius-lg: 12px;
   --neo-radius-xl: 16px;
   --neo-glass-blur: 16px;
+  --neo-sidebar-active-bg: #ffffff;
+  --neo-sidebar-active-text: var(--neo-text-strong);
+  --neo-sidebar-hover-bg: rgba(0, 0, 0, .04);
 
   @media screen and (min-width: 1024px) {
     --pngx-toast-max-width: 450px;
@@ -145,6 +148,9 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   --neo-text-strong: #f8fafc;
   --neo-text-default: #e2e8f0;
   --neo-text-muted: #94a3b8;
+  --neo-sidebar-active-bg: rgba(255, 255, 255, .12);
+  --neo-sidebar-active-text: #ffffff;
+  --neo-sidebar-hover-bg: rgba(255, 255, 255, .06);
 
   // Dark mode text tokens (Poseidon)
   --color-text-strong: #f8fafc;

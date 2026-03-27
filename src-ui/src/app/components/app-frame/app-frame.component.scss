@@ -179,14 +179,14 @@ main {
   }
 
   &:hover {
-    background: rgba(255, 255, 255, .64);
+    background: var(--neo-sidebar-hover-bg, rgba(0,0,0,.04));
     color: var(--neo-text-strong);
   }
 
   &.active {
-    background: #ffffff;
+    background: var(--neo-sidebar-active-bg, #ffffff);
     border: none;
-    color: var(--neo-text-strong);
+    color: var(--neo-sidebar-active-text, var(--neo-text-strong));
     font-weight: 600;
     box-shadow: var(--neo-shadow-sm);
   }
@@ -197,21 +197,7 @@ main {
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .1);
-  }
-}
-
-// Dark mode sidebar nav overrides
-:host-context([data-bs-theme="dark"]) .sidebar .nav-link {
-  &:hover {
-    background: rgba(255, 255, 255, .06);
-    color: var(--neo-text-strong);
-  }
-
-  &.active {
-    background: rgba(255, 255, 255, .08);
-    color: #fff;
-    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .05);
+    box-shadow: 0 0 0 .2rem rgba(59, 130, 246, .15);
   }
 }
 
