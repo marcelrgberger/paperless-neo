@@ -1,7 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
+import { Ripple } from 'primeng/ripple'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { delay, takeUntil, tap } from 'rxjs'
 import { Workflow } from 'src/app/data/workflow'
@@ -28,6 +30,8 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     FormsModule,
     ReactiveFormsModule,
     NgbDropdownModule,
+    ButtonDirective,
+    Ripple,
     Menu,
     NgxBootstrapIconsModule,
   ],

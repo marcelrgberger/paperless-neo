@@ -11,7 +11,9 @@ import {
   NgbModalRef,
 } from '@ng-bootstrap/ng-bootstrap'
 import { saveAs } from 'file-saver'
+import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
+import { Ripple } from 'primeng/ripple'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { first, map, Observable, Subject, switchMap, takeUntil } from 'rxjs'
 import { ConfirmDialogComponent } from 'src/app/components/common/confirm-dialog/confirm-dialog.component'
@@ -73,6 +75,8 @@ import { CustomFieldsBulkEditDialogComponent } from './custom-fields-bulk-edit-d
     FormsModule,
     ReactiveFormsModule,
     NgbDropdownModule,
+    ButtonDirective,
+    Ripple,
     Menu,
     NgxBootstrapIconsModule,
   ],

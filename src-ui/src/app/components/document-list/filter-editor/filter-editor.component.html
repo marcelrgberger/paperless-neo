@@ -3,7 +3,7 @@
     <div class="form-inline d-flex align-items-center fade" [class.show]="show">
       <div class="input-group input-group-sm flex-fill w-auto flex-nowrap">
         <div ngbDropdown>
-          <button class="btn btn-sm btn-outline-primary" ngbDropdownToggle>{{textFilterTargetName}}</button>
+          <button pButton pRipple outlined="true" size="small" ngbDropdownToggle>{{textFilterTargetName}}</button>
           <div class="dropdown-menu shadow" ngbDropdownMenu>
             @for (t of textFilterTargets; track t) {
               <button ngbDropdownItem [class.active]="textFilterTarget === t.id" (click)="changeTextFilterTarget(t.id)">{{t.name}}</button>
@@ -18,7 +18,7 @@
           </select>
         }
         @if (_textFilter) {
-          <button class="btn btn-link btn-sm px-2 position-absolute top-0 end-0 z-10" (click)="resetTextField()">
+          <button pButton pRipple [text]="true" size="small" class="px-2 position-absolute top-0 end-0 z-10" (click)="resetTextField()">
             <i-bs width="1em" height="1em" name="x"></i-bs>
           </button>
         }
@@ -103,9 +103,9 @@
         [(selectionModel)]="permissionsSelectionModel"></pngx-permissions-filter-dropdown>
       </div>
       <div class="d-flex flex-wrap d-none d-sm-inline-block">
-        <button class="btn btn-outline-secondary btn-sm" [disabled]="!rulesModified" (click)="resetSelected()">
+        <button pButton pRipple outlined="true" size="small" severity="secondary" [disabled]="!rulesModified" (click)="resetSelected()">
           <i-bs class="ms-n1" name="x"></i-bs><ng-container i18n>Reset filters</ng-container>
-          </button>
+        </button>
         </div>
       </div>
     </div>

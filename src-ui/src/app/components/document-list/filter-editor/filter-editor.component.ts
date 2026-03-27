@@ -15,7 +15,9 @@ import {
   NgbDropdownModule,
   NgbTypeaheadModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
+import { Ripple } from 'primeng/ripple'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { TourNgBootstrap } from 'ngx-ui-tour-ng-bootstrap'
 import { Observable, Subject, from } from 'rxjs'
@@ -249,6 +251,8 @@ const DEFAULT_TEXT_FILTER_MODIFIER_OPTIONS = [
     PermissionsFilterDropdownComponent,
     NgxBootstrapIconsModule,
     NgbDropdownModule,
+    ButtonDirective,
+    Ripple,
     Menu,
     NgbTypeaheadModule,
     FormsModule,

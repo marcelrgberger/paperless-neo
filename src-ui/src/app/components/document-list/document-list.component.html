@@ -1,6 +1,6 @@
 <pngx-page-header [title]="getTitle()">
   <div ngbDropdown class="btn-group flex-fill d-sm-none">
-    <button class="btn btn-sm btn-outline-primary" id="dropdownSelectMobile" ngbDropdownToggle>
+    <button pButton pRipple outlined="true" size="small" id="dropdownSelectMobile" ngbDropdownToggle>
       <i-bs name="text-indent-left"></i-bs><div class="d-none d-sm-inline ms-1"><ng-container i18n>Select</ng-container></div>
       @if (list.selected.size > 0) {
         <pngx-clearable-badge [selected]="list.selected.size > 0" [number]="list.selected.size" (cleared)="list.selectNone()"></pngx-clearable-badge><span class="visually-hidden">selected</span>
@@ -18,20 +18,20 @@
     </div>
     <div class="btn-group btn-group-sm flex-nowrap">
       @if (list.selected.size > 0) {
-        <button class="btn btn-sm btn-outline-secondary" (click)="list.selectNone()">
+        <button pButton pRipple outlined="true" size="small" severity="secondary" (click)="list.selectNone()">
           <i-bs name="slash-circle" class="me-1"></i-bs><ng-container i18n>None</ng-container>
         </button>
       }
-      <button class="btn btn-sm btn-outline-primary" (click)="list.selectPage()">
+      <button pButton pRipple outlined="true" size="small" (click)="list.selectPage()">
         <i-bs name="file-earmark-check" class="me-1"></i-bs><ng-container i18n>Page</ng-container>
       </button>
-      <button class="btn btn-sm btn-outline-primary" (click)="list.selectAll()">
+      <button pButton pRipple outlined="true" size="small" (click)="list.selectAll()">
         <i-bs name="check-all" class="me-1"></i-bs><ng-container i18n>All</ng-container>
       </button>
     </div>
   </div>
   <div ngbDropdown class="btn-group flex-fill">
-    <button class="btn btn-sm btn-outline-primary" id="dropdownDisplayFields" ngbDropdownToggle>
+    <button pButton pRipple outlined="true" size="small" id="dropdownDisplayFields" ngbDropdownToggle>
       <i-bs name="card-heading"></i-bs><div class="d-none d-sm-inline ms-1"><ng-container i18n>Show</ng-container></div>
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownDisplayFields" class="shadow">
@@ -45,35 +45,25 @@
       </div>
     </div>
   </div>
-  <div class="btn-group flex-fill" role="group">
-    <input type="radio" class="btn-check" [(ngModel)]="list.displayMode" value="table" id="displayModeDetails" name="displayModeDetails">
-    <label for="displayModeDetails" class="btn btn-outline-primary btn-sm">
-      <i-bs name="list-ul"></i-bs>
-    </label>
-    <input type="radio" class="btn-check" [(ngModel)]="list.displayMode" value="smallCards" id="displayModeSmall" name="displayModeSmall">
-    <label for="displayModeSmall" class="btn btn-outline-primary btn-sm">
-      <i-bs name="grid"></i-bs>
-    </label>
-    <input type="radio" class="btn-check" [(ngModel)]="list.displayMode" value="largeCards" id="displayModeLarge" name="displayModeLarge">
-    <label for="displayModeLarge" class="btn btn-outline-primary btn-sm">
-      <i-bs name="hdd-stack"></i-bs>
-    </label>
+  <div class="flex-fill">
+    <p-selectButton [options]="displayModeOptions" [(ngModel)]="list.displayMode" optionLabel="label" optionValue="value" [allowEmpty]="false" size="small">
+      <ng-template #item let-item>
+        <i-bs [name]="item.icon"></i-bs>
+      </ng-template>
+    </p-selectButton>
   </div>
 
   <div ngbDropdown class="btn-group flex-fill">
-    <button class="btn btn-outline-primary btn-sm" id="dropdownBasic1" ngbDropdownToggle>
+    <button pButton pRipple outlined="true" size="small" id="dropdownBasic1" ngbDropdownToggle>
       <i-bs name="arrow-down-up"></i-bs><div class="d-none d-sm-inline ms-1"><ng-container i18n>Sort</ng-container></div>
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="shadow dropdown-menu-right">
-      <div class="w-100 d-flex pb-2 mb-1 border-bottom">
-        <input type="radio" class="btn-check" [value]="false" [(ngModel)]="listSortReverse" id="listSortReverseFalse">
-        <label class="btn btn-outline-primary btn-sm mx-2 flex-fill" for="listSortReverseFalse">
-          <i-bs name="sort-alpha-down"></i-bs>
-        </label>
-        <input type="radio" class="btn-check" [value]="true" [(ngModel)]="listSortReverse" id="listSortReverseTrue">
-        <label class="btn btn-outline-primary btn-sm me-2 flex-fill" for="listSortReverseTrue">
-          <i-bs name="sort-alpha-up-alt"></i-bs>
-        </label>
+      <div class="w-100 d-flex pb-2 mb-1 border-bottom px-2">
+        <p-selectButton [options]="sortDirectionOptions" [(ngModel)]="listSortReverse" optionValue="value" [allowEmpty]="false" size="small" styleClass="flex-fill">
+          <ng-template #item let-item>
+            <i-bs [name]="item.icon"></i-bs>
+          </ng-template>
+        </p-selectButton>
       </div>
       <div>
         @for (f of getSortFields(); track f) {
@@ -86,7 +76,7 @@
   </div>
 
   <div class="btn-group flex-fill" *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.SavedView }" ngbDropdown role="group">
-    <button class="btn btn-sm btn-outline-primary dropdown-toggle flex-fill" tourAnchor="tour.documents-views" ngbDropdownToggle>
+    <button pButton pRipple outlined="true" size="small" class="dropdown-toggle flex-fill" tourAnchor="tour.documents-views" ngbDropdownToggle>
       <i-bs name="window-stack"></i-bs><div class="d-none d-sm-inline ms-1"><ng-container i18n>Views</ng-container></div>
       @if (savedViewIsModified) {
         <div class="position-absolute top-0 start-100 p-2 translate-middle badge bg-secondary border border-light rounded-circle">
@@ -138,12 +128,12 @@
         }
       }
       @if (!list.isReloading && isFiltered) {
-        <button class="btn btn-link py-0" (click)="resetFilters()">
+        <button pButton pRipple [text]="true" size="small" severity="secondary" class="py-0" (click)="resetFilters()">
           <i-bs width="1em" height="1em" name="x"></i-bs><small i18n>Reset filters</small>
         </button>
       }
       @if (!list.isReloading && list.selected.size > 0) {
-        <button class="btn btn-link py-0" (click)="list.selectNone()">
+        <button pButton pRipple [text]="true" size="small" severity="secondary" class="py-0" (click)="list.selectNone()">
           <i-bs width="1em" height="1em" name="slash-circle" class="me-1"></i-bs><small i18n>Clear selection</small>
         </button>
       }

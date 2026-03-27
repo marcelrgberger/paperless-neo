@@ -35,7 +35,7 @@
     }
     <pngx-toasts-dropdown></pngx-toasts-dropdown>
     <li ngbDropdown class="nav-item dropdown">
-      <button class="btn ps-1 border-0" id="userDropdown" ngbDropdownToggle>
+      <button pButton pRipple class="p-button-text p-button-sm ps-1 border-0" id="userDropdown" ngbDropdownToggle>
         <i-bs width="1.3em" height="1.3em" name="person-circle"></i-bs>
         <span class="small ms-2 d-none d-sm-inline">
           {{this.settingsService.displayName}}
@@ -72,7 +72,7 @@
       [ngClass]="slimSidebarEnabled ? 'slim' : 'col-md-3 col-lg-2 col-xxxl-1'" [class.animating]="slimSidebarAnimating"
       [ngbCollapse]="isMenuCollapsed">
       @if (canSaveSettings) {
-        <button class="btn btn-sm btn-dark sidebar-slim-toggler" (click)="toggleSlimSidebar()">
+        <button pButton pRipple class="p-button-sm sidebar-slim-toggler" (click)="toggleSlimSidebar()">
           @if (slimSidebarEnabled) {
             <i-bs width="0.9em" height="0.9em" name="chevron-double-right"></i-bs>
           } @else {
@@ -178,8 +178,9 @@
                   </a>
                   @if (!slimSidebarEnabled) {
                     <button
+                      pButton pRipple
                       type="button"
-                      class="btn btn-link btn-sm text-muted p-0 me-3 attributes-expand-btn"
+                      class="p-button-text p-button-sm text-muted p-0 me-3 attributes-expand-btn"
                       (click)="toggleAttributesSections($event)"
                       [attr.aria-label]="attributesSectionsCollapsed ? 'Expand attributes sections' : 'Collapse attributes sections'"
                       i18n-aria-label
@@ -324,8 +325,8 @@
                         <ng-container i18n>Paperless Neo can automatically check for updates</ng-container>
                       </p>
                       <div class="btn-group btn-group-xs flex-fill w-100">
-                        <button class="btn btn-outline-primary" (click)="setUpdateChecking(true)">Enable</button>
-                        <button class="btn btn-outline-secondary" (click)="setUpdateChecking(false)">Disable</button>
+                        <button pButton pRipple class="p-button-outlined p-button-sm" (click)="setUpdateChecking(true)">Enable</button>
+                        <button pButton pRipple class="p-button-outlined p-button-secondary p-button-sm" (click)="setUpdateChecking(false)">Disable</button>
                       </div>
                       <p class="small mb-0 mt-2">
                         <a class="small text-decoration-none fst-italic" routerLink="/settings" fragment="update-checking" i18n>

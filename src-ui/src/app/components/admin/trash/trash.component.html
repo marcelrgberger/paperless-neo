@@ -4,16 +4,16 @@
     info="Manage trashed documents that are pending deletion."
     i18n-info
     infoLink="usage/#document-trash">
-    <button class="btn btn-sm btn-outline-secondary" (click)="clearSelection()" [hidden]="selectedDocuments.size === 0">
+    <button pButton pRipple class="p-button-outlined p-button-secondary p-button-sm" (click)="clearSelection()" [hidden]="selectedDocuments.size === 0">
         <i-bs name="x" class="me-1"></i-bs><ng-container i18n>Clear selection</ng-container>
     </button>
-    <button type="button" class="btn btn-sm btn-outline-primary" (click)="restoreAll(selectedDocuments)" [disabled]="selectedDocuments.size === 0">
+    <button pButton pRipple type="button" class="p-button-outlined p-button-sm" (click)="restoreAll(selectedDocuments)" [disabled]="selectedDocuments.size === 0">
         <i-bs name="arrow-counterclockwise" class="me-1"></i-bs><ng-container i18n>Restore selected</ng-container>
     </button>
-    <button type="button" class="btn btn-sm btn-outline-danger" (click)="emptyTrash(selectedDocuments)" [disabled]="selectedDocuments.size === 0">
+    <button pButton pRipple type="button" class="p-button-outlined p-button-danger p-button-sm" (click)="emptyTrash(selectedDocuments)" [disabled]="selectedDocuments.size === 0">
         <i-bs name="trash" class="me-1"></i-bs><ng-container i18n>Delete selected</ng-container>
     </button>
-    <button type="button" class="btn btn-sm btn-outline-danger" (click)="emptyTrash()" [disabled]="documentsInTrash.length === 0">
+    <button pButton pRipple type="button" class="p-button-outlined p-button-danger p-button-sm" (click)="emptyTrash()" [disabled]="documentsInTrash.length === 0">
         <i-bs name="trash" class="me-1"></i-bs><ng-container i18n>Empty trash</ng-container>
     </button>
 </pngx-page-header>
@@ -71,7 +71,7 @@
                     <td scope="row">
                     <div class="btn-group d-block d-sm-none">
                         <div ngbDropdown container="body" class="d-inline-block">
-                        <button type="button" class="btn btn-link" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
+                        <button type="button" class="p-button-text" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
                             <i-bs name="three-dots-vertical"></i-bs>
                         </button>
                         <div ngbDropdownMenu aria-labelledby="actionsMenuMobile">
@@ -81,10 +81,10 @@
                         </div>
                     </div>
                     <div class="btn-group d-none d-sm-block">
-                        <button class="btn btn-sm btn-outline-secondary" (click)="restore(document); $event.stopPropagation();">
+                        <button pButton pRipple class="p-button-outlined p-button-secondary p-button-sm" (click)="restore(document); $event.stopPropagation();">
                             <i-bs width="1em" height="1em" name="arrow-counterclockwise" class="me-1"></i-bs><ng-container i18n>Restore</ng-container>
                         </button>
-                        <button class="btn btn-sm btn-outline-danger" (click)="delete(document); $event.stopPropagation();">
+                        <button pButton pRipple class="p-button-outlined p-button-danger p-button-sm" (click)="delete(document); $event.stopPropagation();">
                             <i-bs width="1em" height="1em" name="trash" class="me-1"></i-bs><ng-container i18n>Delete</ng-container>
                         </button>
                     </div>

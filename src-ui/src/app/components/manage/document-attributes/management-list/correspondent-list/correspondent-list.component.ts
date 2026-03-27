@@ -3,8 +3,10 @@ import { Component, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
+import { Ripple } from 'primeng/ripple'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { CorrespondentEditDialogComponent } from 'src/app/components/common/edit-dialog/correspondent-edit-dialog/correspondent-edit-dialog.component'
 import { Correspondent } from 'src/app/data/correspondent'
@@ -30,6 +32,8 @@ import { ManagementListComponent } from '../management-list.component'
     NgClass,
     NgTemplateOutlet,
     NgbDropdownModule,
+    ButtonDirective,
+    Ripple,
     Menu,
     NgxBootstrapIconsModule,
     Paginator,

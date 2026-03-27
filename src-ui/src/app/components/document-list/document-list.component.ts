@@ -19,8 +19,11 @@ import {
   NgbDropdownModule,
   NgbModal,
 } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
+import { Ripple } from 'primeng/ripple'
+import { SelectButton } from 'primeng/selectbutton'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { TourNgBootstrap } from 'ngx-ui-tour-ng-bootstrap'
 import { filter, first, map, Subject, switchMap, takeUntil } from 'rxjs'
@@ -100,9 +103,12 @@ import { SaveViewConfigDialogComponent } from './save-view-config-dialog/save-vi
     ReactiveFormsModule,
     NgTemplateOutlet,
     NgbDropdownModule,
+    ButtonDirective,
     Menu,
     NgClass,
     Paginator,
+    Ripple,
+    SelectButton,
     RouterModule,
     TourNgBootstrap,
   ],
@@ -125,6 +131,17 @@ export class DocumentListComponent
 
   DisplayField = DisplayField
   DisplayMode = DisplayMode
+
+  displayModeOptions = [
+    { label: 'Table', value: 'table', icon: 'list-ul' },
+    { label: 'Small Cards', value: 'smallCards', icon: 'grid' },
+    { label: 'Large Cards', value: 'largeCards', icon: 'hdd-stack' },
+  ]
+
+  sortDirectionOptions = [
+    { label: 'Ascending', value: false, icon: 'sort-alpha-down' },
+    { label: 'Descending', value: true, icon: 'sort-alpha-up-alt' },
+  ]
 
   @ViewChild('filterEditor')
   private filterEditor: FilterEditorComponent

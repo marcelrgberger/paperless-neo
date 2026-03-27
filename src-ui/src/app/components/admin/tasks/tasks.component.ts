@@ -9,8 +9,10 @@ import {
   NgbNavModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
+import { Ripple } from 'primeng/ripple'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import {
@@ -64,6 +66,8 @@ const FILTER_TARGETS = [
     NgbDropdownModule,
     NgbNavModule,
     NgbPopoverModule,
+    ButtonDirective,
+    Ripple,
     Menu,
     Paginator,
     NgxBootstrapIconsModule,

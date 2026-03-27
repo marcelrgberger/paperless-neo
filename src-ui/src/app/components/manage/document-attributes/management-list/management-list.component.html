@@ -102,7 +102,7 @@
       @if (depth > 0) {
         <div class="indicator"></div>
       }
-      <button class="btn btn-link ms-0 ps-0 text-start" (click)="userCanEdit(object) ? openEditDialog(object) : null; $event.stopPropagation()">{{ object.name }}</button>
+      <button pButton pRipple class="p-button-text ms-0 ps-0 text-start" (click)="userCanEdit(object) ? openEditDialog(object) : null; $event.stopPropagation()">{{ object.name }}</button>
     </td>
     <td class="d-none d-sm-table-cell">{{ getMatching(object) }}</td>
     <td>{{ getDocumentCount(object) }}</td>
@@ -127,7 +127,7 @@
       <div class="btn-toolbar gap-2">
         <div class="btn-group d-block d-sm-none">
           <div ngbDropdown container="body" class="d-inline-block">
-            <button type="button" class="btn btn-link" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
+            <button type="button" class="p-button-text" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
               <i-bs name="three-dots-vertical"></i-bs>
             </button>
             <div ngbDropdownMenu aria-labelledby="actionsMenuMobile">
@@ -147,17 +147,17 @@
           </div>
         </div>
         <div class="btn-group d-none d-sm-inline-block">
-          <button class="btn btn-sm btn-outline-secondary" (click)="openEditDialog(object); $event.stopPropagation();" *pngxIfPermissions="{ action: PermissionAction.Change, type: permissionType }" [disabled]="!userCanEdit(object)">
+          <button pButton pRipple class="p-button-outlined p-button-secondary p-button-sm" (click)="openEditDialog(object); $event.stopPropagation();" *pngxIfPermissions="{ action: PermissionAction.Change, type: permissionType }" [disabled]="!userCanEdit(object)">
             <i-bs width="1em" height="1em" name="pencil" class="me-1"></i-bs><ng-container i18n>Edit</ng-container>
           </button>
-          <button class="btn btn-sm btn-outline-danger" (click)="openDeleteDialog(object); $event.stopPropagation();" *pngxIfPermissions="{ action: PermissionAction.Delete, type: permissionType }" [disabled]="!userCanDelete(object)">
+          <button pButton pRipple class="p-button-outlined p-button-danger p-button-sm" (click)="openDeleteDialog(object); $event.stopPropagation();" *pngxIfPermissions="{ action: PermissionAction.Delete, type: permissionType }" [disabled]="!userCanDelete(object)">
             <i-bs width="1em" height="1em" name="trash" class="me-1"></i-bs><ng-container i18n>Delete</ng-container>
           </button>
         </div>
         @if (getDocumentCount(object) > 0) {
           <div class="btn-group d-none d-sm-inline-block">
             <a
-              class="btn btn-sm btn-outline-secondary"
+              class="p-button-outlined p-button-secondary p-button-sm"
               *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.Document }"
               [routerLink]="getDocumentFilterUrl(object)"
               (click)="$event?.stopPropagation()"

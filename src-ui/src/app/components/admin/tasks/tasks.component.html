@@ -5,10 +5,10 @@
   i18n-info
   >
   <div class="btn-toolbar col col-md-auto align-items-center gap-2">
-    <button class="btn btn-sm btn-outline-secondary me-2" (click)="clearSelection()" [hidden]="selectedTasks.size === 0">
+    <button pButton pRipple class="p-button-outlined p-button-secondary p-button-sm me-2" (click)="clearSelection()" [hidden]="selectedTasks.size === 0">
       <i-bs name="x" class="me-1"></i-bs><ng-container i18n>Clear selection</ng-container>
     </button>
-    <button class="btn btn-sm btn-outline-primary me-2" (click)="dismissTasks()" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.PaperlessTask }" [disabled]="tasksService.total === 0">
+    <button pButton pRipple class="p-button-outlined p-button-sm me-2" (click)="dismissTasks()" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.PaperlessTask }" [disabled]="tasksService.total === 0">
       <i-bs name="check2-all" class="me-1"></i-bs>{{dismissButtonText}}
     </button>
     <div class="form-inline d-flex align-items-center">
@@ -16,7 +16,7 @@
         <span class="input-group-text text-muted" i18n>Filter by</span>
         @if (filterTargets.length > 1) {
           <div ngbDropdown>
-            <button class="btn btn-sm btn-outline-primary" ngbDropdownToggle>{{filterTargetName}}</button>
+            <button pButton pRipple class="p-button-outlined p-button-sm" ngbDropdownToggle>{{filterTargetName}}</button>
             <div class="dropdown-menu shadow" ngbDropdownMenu>
               @for (t of filterTargets; track t.id) {
                 <button ngbDropdownItem [class.active]="filterTargetID === t.id" (click)="filterTargetID = t.id">{{t.name}}</button>
@@ -27,7 +27,7 @@
           <span class="input-group-text">{{filterTargetName}}</span>
         }
         @if (filterText?.length) {
-          <button class="btn btn-link btn-sm px-2 position-absolute top-0 end-0 z-10" (click)="resetFilter()">
+          <button pButton pRipple class="p-button-text p-button-sm px-2 position-absolute top-0 end-0 z-10" (click)="resetFilter()">
             <i-bs width="1em" height="1em" name="x"></i-bs>
           </button>
         }
@@ -106,18 +106,18 @@
             </td>
           }
           <td class="d-lg-none">
-            <button class="btn btn-link" (click)="expandTask(task); $event.stopPropagation();">
+            <button pButton pRipple class="p-button-text" (click)="expandTask(task); $event.stopPropagation();">
               <i-bs width="1.2em" height="1.2em" name="info-circle"></i-bs>
             </button>
           </td>
           <td scope="row">
             <div class="btn-group" role="group">
-              <button class="btn btn-sm btn-outline-secondary" (click)="dismissTask(task); $event.stopPropagation();" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.PaperlessTask }">
+              <button pButton pRipple class="p-button-outlined p-button-secondary p-button-sm" (click)="dismissTask(task); $event.stopPropagation();" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.PaperlessTask }">
                 <i-bs name="check" class="me-1"></i-bs><ng-container i18n>Dismiss</ng-container>
               </button>
               <ng-container *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.Document }">
                 @if (task.related_document) {
-                  <button class="btn btn-sm btn-outline-primary" (click)="dismissAndGo(task); $event.stopPropagation();">
+                  <button pButton pRipple class="p-button-outlined p-button-sm" (click)="dismissAndGo(task); $event.stopPropagation();">
                     <i-bs name="file-text" class="me-1"></i-bs><ng-container i18n>Open Document</ng-container>
                   </button>
                 }

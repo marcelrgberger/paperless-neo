@@ -27,11 +27,11 @@
                                                 <h6 class="mb-0">
                                                   {{option.title}}
                                                 </h6>
-                                                <a class="btn btn-sm btn-link" title="Read the documentation about this setting" i18n-title [href]="getDocsUrl(option.config_key)" target="_blank" referrerpolicy="no-referrer">
+                                                <a class="p-button-text p-button-sm" title="Read the documentation about this setting" i18n-title [href]="getDocsUrl(option.config_key)" target="_blank" referrerpolicy="no-referrer">
                                                     <i-bs name="info-circle"></i-bs>
                                                 </a>
                                                 @if (isSet(option.key)) {
-                                                  <button type="button" class="btn btn-sm btn-link text-danger ms-auto pe-0" title="Reset" i18n-title (click)="resetOption(option.key)">
+                                                  <button pButton pRipple type="button" class="p-button-text p-button-sm p-button-danger ms-auto pe-0" title="Reset" i18n-title (click)="resetOption(option.key)">
                                                       <i-bs class="me-1" name="x"></i-bs><ng-container i18n>Reset</ng-container>
                                                   </button>
                                                 }
@@ -62,10 +62,10 @@
     </p-tabs>
     <div class="btn-toolbar" role="toolbar">
         <div class="btn-group me-2">
-            <button type="button" (click)="discardChanges()" class="btn btn-outline-secondary" [disabled]="loading || (isDirty$ | async) === false" i18n>Cancel</button>
+            <button pButton pRipple type="button" (click)="discardChanges()" class="p-button-outlined p-button-secondary" [disabled]="loading || (isDirty$ | async) === false" i18n>Cancel</button>
         </div>
         <div class="btn-group">
-            <button type="submit" class="btn btn-primary" [disabled]="loading || !configForm.valid || (isDirty$ | async) === false" i18n>Save</button>
+            <button pButton pRipple type="submit" [disabled]="loading || !configForm.valid || (isDirty$ | async) === false" i18n>Save</button>
         </div>
     </div>
 </form>

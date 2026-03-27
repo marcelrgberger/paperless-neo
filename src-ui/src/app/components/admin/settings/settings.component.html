@@ -4,11 +4,11 @@
   info="Options to customize appearance, notifications and more. Settings apply to the <strong>current user only</strong>."
   i18n-info
   >
-  <button class="btn btn-sm btn-outline-primary" (click)="tourService.start()">
+  <button pButton pRipple class="p-button-outlined p-button-sm" (click)="tourService.start()">
     <i-bs class="me-2" name="airplane"></i-bs><ng-container i18n>Start tour</ng-container>
   </button>
   @if (permissionsService.isAdmin()) {
-    <button class="btn btn-sm btn-outline-primary position-relative ms-md-5 me-1" (click)="showSystemStatus()"
+    <button pButton pRipple class="p-button-outlined p-button-sm position-relative ms-md-5 me-1" (click)="showSystemStatus()"
       [disabled]="!systemStatus">
       @if (!systemStatus) {
         <div class="spinner-border spinner-border-sm me-2 h-75" role="status"></div>
@@ -26,7 +26,7 @@
       }
       <ng-container i18n>System Status</ng-container>
     </button>
-    <a class="btn btn-sm btn-primary" href="admin/" target="_blank">
+    <a class="p-button p-button-sm" href="admin/" target="_blank">
       <ng-container i18n>Open Django Admin</ng-container>
       <i-bs class="ms-2" name="arrow-up-right"></i-bs>
     </a>
@@ -137,7 +137,7 @@
                 <pngx-input-color i18n-title formControlName="themeColor" [error]="null"></pngx-input-color>
               </div>
               <div class="col-2">
-                <button class="btn btn-link btn-sm pt-2 ps-0" [disabled]="!this.settingsForm.get('themeColor').value" (click)="clearThemeColor()">
+                <button pButton pRipple class="p-button-text p-button-sm pt-2 ps-0" [disabled]="!this.settingsForm.get('themeColor').value" (click)="clearThemeColor()">
                   <i-bs width="1em" height="1em" name="x"></i-bs><ng-container i18n>Reset</ng-container>
                 </button>
               </div>
@@ -167,7 +167,7 @@
             <div class="row mb-3">
               <div class="col d-flex flex-row align-items-start">
                 <pngx-input-check i18n-title title="Enable update checking" formControlName="updateCheckingEnabled"></pngx-input-check>
-                <button class="btn btn-sm btn-link text-muted me-auto p-0 ms-2" title="What's this?" i18n-title type="button" triggers="mouseenter:mouseleave" [ngbPopover]="updatesPopover" [autoClose]="true">
+                <button pButton pRipple class="p-button-text p-button-sm text-muted me-auto p-0 ms-2" title="What's this?" i18n-title type="button" triggers="mouseenter:mouseleave" [ngbPopover]="updatesPopover" [autoClose]="true">
                   <i-bs name="question-circle"></i-bs>
                 </button>
                 <ng-template #updatesPopover>
@@ -387,6 +387,6 @@
     </p-tabpanels>
   </p-tabs>
 
-  <button type="button" (click)="reset()" class="btn btn-outline-secondary mb-2" [disabled]="(isDirty$ | async) === false" i18n>Cancel</button>
-  <button type="submit" class="btn btn-primary ms-2 mb-2" [disabled]="(isDirty$ | async) === false" i18n>Save</button>
+  <button pButton pRipple type="button" (click)="reset()" class="p-button-outlined p-button-secondary mb-2" [disabled]="(isDirty$ | async) === false" i18n>Cancel</button>
+  <button pButton pRipple type="submit" class="ms-2 mb-2" [disabled]="(isDirty$ | async) === false" i18n>Save</button>
 </form>

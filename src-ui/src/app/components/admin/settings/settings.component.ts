@@ -19,6 +19,8 @@ import {
   NgbModalRef,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
+import { Ripple } from 'primeng/ripple'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { DirtyComponent, dirtyCheck } from '@ngneat/dirty-check-forms'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
@@ -123,6 +125,8 @@ const documentDetailFieldOptions = [
     TabPanel,
     NgbPopoverModule,
     NgxBootstrapIconsModule,
+    ButtonDirective,
+    Ripple,
   ],
 })
 export class SettingsComponent

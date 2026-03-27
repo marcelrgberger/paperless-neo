@@ -5,8 +5,10 @@ import {
   NgbDropdownModule,
   NgbModal,
 } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
+import { Ripple } from 'primeng/ripple'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { delay, takeUntil, tap } from 'rxjs'
 import { Document } from 'src/app/data/document'
@@ -30,6 +32,8 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     ReactiveFormsModule,
     NgbDropdownModule,
     NgxBootstrapIconsModule,
+    ButtonDirective,
+    Ripple,
     Menu,
     Paginator,
   ],

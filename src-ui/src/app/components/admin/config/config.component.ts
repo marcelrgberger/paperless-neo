@@ -8,6 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap'
+import { ButtonDirective } from 'primeng/button'
+import { Ripple } from 'primeng/ripple'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { DirtyComponent, dirtyCheck } from '@ngneat/dirty-check-forms'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
@@ -59,6 +61,8 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     FormsModule,
     ReactiveFormsModule,
     NgxBootstrapIconsModule,
+    ButtonDirective,
+    Ripple,
   ],
 })
 export class ConfigComponent
