@@ -133,6 +133,17 @@
     .#{$abbrev}e-#{$size}, .#{$abbrev}x-#{$size} { #{$prop}-right: $value !important; }
   }
 }
+// Negative margins
+.mt-n1 { margin-top: -0.25rem !important; }
+.mt-n2 { margin-top: -0.5rem !important; }
+.mb-n1 { margin-bottom: -0.25rem !important; }
+.mb-n2 { margin-bottom: -0.5rem !important; }
+.ms-n1 { margin-left: -0.25rem !important; }
+.ms-n2 { margin-left: -0.5rem !important; }
+.me-n1 { margin-right: -0.25rem !important; }
+.me-n2 { margin-right: -0.5rem !important; }
+.my-n2 { margin-top: -0.5rem !important; margin-bottom: -0.5rem !important; }
+
 .mx-auto { margin-left: auto !important; margin-right: auto !important; }
 .ms-auto { margin-left: auto !important; }
 .me-auto { margin-right: auto !important; }
