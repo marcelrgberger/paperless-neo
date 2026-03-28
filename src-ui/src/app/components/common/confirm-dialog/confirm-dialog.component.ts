@@ -1,6 +1,6 @@
 import { DecimalPipe } from '@angular/common'
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core'
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core'
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog'
 import { Subject } from 'rxjs'
 import { LoadingComponentWithPermissions } from '../../loading-component/loading.component'
 
@@ -10,8 +10,19 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
   styleUrls: ['./confirm-dialog.component.scss'],
   imports: [DecimalPipe],
 })
-export class ConfirmDialogComponent extends LoadingComponentWithPermissions {
-  activeModal = inject(NgbActiveModal)
+export class ConfirmDialogComponent
+  extends LoadingComponentWithPermissions
+  implements OnInit
+{
+  dialogRef = inject(DynamicDialogRef)
+  dialogConfig = inject(DynamicDialogConfig)
+
+  ngOnInit(): void {
+    // Populate @Input() properties from DynamicDialog data
+    if (this.dialogConfig?.data) {
+      Object.assign(this, this.dialogConfig.data)
+    }
+  }
 
   @Output()
   public confirmClicked = new EventEmitter()
@@ -60,7 +71,7 @@ export class ConfirmDialogComponent extends LoadingComponentWithPermissions {
   cancel() {
     this.confirmSubject?.next(false)
     this.confirmSubject?.complete()
-    this.activeModal.close()
+    this.dialogRef.close()
   }
 
   confirm() {

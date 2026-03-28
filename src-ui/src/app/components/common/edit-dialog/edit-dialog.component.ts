@@ -7,7 +7,7 @@ import {
   inject,
 } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog'
 import { Observable } from 'rxjs'
 import {
   MATCHING_ALGORITHMS,
@@ -39,7 +39,8 @@ export abstract class EditDialogComponent<
   protected service = inject<AbstractPaperlessService<T>>(
     AbstractPaperlessService
   )
-  protected activeModal = inject(NgbActiveModal)
+  protected dialogRef = inject(DynamicDialogRef)
+  protected dialogConfig = inject(DynamicDialogConfig)
   protected userService = inject(UserService)
   protected settingsService = inject(SettingsService)
 
@@ -68,6 +69,11 @@ export abstract class EditDialogComponent<
   objectForm: FormGroup = this.getForm()
 
   ngOnInit(): void {
+    // Populate @Input() properties from DynamicDialog data
+    if (this.dialogConfig?.data) {
+      Object.assign(this, this.dialogConfig.data)
+    }
+
     if (this.object != null && this.dialogMode !== EditDialogMode.CREATE) {
       if ((this.object as ObjectWithPermissions).permissions) {
         this.object['set_permissions'] = this.object['permissions']
@@ -176,7 +182,7 @@ export abstract class EditDialogComponent<
     this.networkActive = true
     serverResponse.subscribe({
       next: (result) => {
-        this.activeModal.close()
+        this.dialogRef.close()
         this.succeeded.emit(result)
       },
       error: (error) => {
@@ -188,6 +194,6 @@ export abstract class EditDialogComponent<
   }
 
   cancel() {
-    this.activeModal.close()
+    this.dialogRef.close()
   }
 }
