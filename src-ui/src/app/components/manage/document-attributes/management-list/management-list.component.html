@@ -36,8 +36,8 @@
   <table class="table align-middle mb-0">
     <thead>
       <tr>
-        <th>
-          <div class="form-check m-0 ms-2 me-n2">
+        <th style="width: 40px;">
+          <div class="form-check m-0">
             <input type="checkbox" class="form-check-input" id="all-objects" [(ngModel)]="togggleAll" [disabled]="data.length === 0" (change)="$event.target.checked ? selectPage() : clearSelection(); $event.stopPropagation();">
             <label class="form-check-label" for="all-objects"></label>
           </div>
