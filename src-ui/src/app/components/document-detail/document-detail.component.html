@@ -316,8 +316,8 @@
           <p-tabpanel [value]="DocumentDetailNavIDs.Metadata">
 
             @if (document) {
-              <table class="table table-borderless">
-                <tbody>
+              <p-table [value]="[document]" styleClass="p-datatable-sm">
+                <ng-template pTemplate="body">
                   <tr>
                     <td i18n>Date modified</td>
                     <td>{{document.modified | customDate}}</td>
@@ -358,8 +358,8 @@
                       <td>{{metadata?.archive_size | fileSize}}</td>
                     </tr>
                   }
-                </tbody>
-              </table>
+                </ng-template>
+              </p-table>
             }
 
             @if (metadata?.original_metadata?.length > 0) {

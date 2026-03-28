@@ -19,6 +19,7 @@ import {
   NgbNavModule,
 } from '@ng-bootstrap/ng-bootstrap'
 import { Menu } from 'primeng/menu'
+import { TableModule } from 'primeng/table'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs'
 import { Tooltip } from 'primeng/tooltip'
 import { dirtyCheck, DirtyComponent } from '@ngneat/dirty-check-forms'
@@ -188,6 +189,7 @@ interface IncomingDocumentUpdate {
     NgbNavModule,
     NgbDropdownModule,
     Menu,
+    TableModule,
     NgxBootstrapIconsModule,
     Tabs,
     TabList,

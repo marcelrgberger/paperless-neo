@@ -13,15 +13,13 @@
 
 @if (expand) {
   <div>
-    <table class="table table-borderless">
-      <tbody>
-        @for (m of metadata; track m) {
-          <tr>
-            <td>{{m.prefix}}:{{m.key}}</td>
-            <td class="metadata-column">{{m.value}}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+    <p-table [value]="metadata" [rows]="50" styleClass="p-datatable-sm">
+      <ng-template pTemplate="body" let-m>
+        <tr>
+          <td>{{m.prefix}}:{{m.key}}</td>
+          <td class="metadata-column">{{m.value}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 }
