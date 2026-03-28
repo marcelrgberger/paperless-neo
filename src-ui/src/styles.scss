@@ -64,16 +64,18 @@ $grid-breakpoints: (
 
 // Paperless-ngx styles — Figtree font globally
 *, *::before, *::after {
-  font-family: 'Figtree', sans-serif;
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-  --pngx-body-font-size: 0.875rem;
-  font-family: 'Figtree', sans-serif !important;
+  --pngx-body-font-size: 14px;
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: var(--pngx-body-font-size);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--neo-bg-app-color);
+  color: var(--neo-text-default);
+  background-color: var(--neo-bg-app-color);
   background-image: linear-gradient(180deg, #e0e7f5 0%, rgba(170, 194, 239, .06) 111.26%);
   min-height: 100vh;
 }
