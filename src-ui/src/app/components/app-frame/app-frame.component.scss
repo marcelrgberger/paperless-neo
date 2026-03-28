@@ -55,8 +55,8 @@ main {
 @media (min-width: 768px) {
   main {
     padding-top: 56px;
-    margin-left: calc(var(--pngx-sidebar-width, 200px) + 2rem);
-    padding-left: 0.5rem;
+    margin-left: calc(var(--pngx-sidebar-width, 200px) + 0.5rem);
+    padding-left: 1rem;
     padding-right: 1.5rem;
   }
 }
@@ -124,7 +124,7 @@ main {
   .sidebar-slim-toggler {
     display: block;
     position: fixed;
-    left: calc(var(--pngx-sidebar-width) - 12px);
+    left: calc(var(--pngx-sidebar-width) - 28px);
     top: 60px;
     z-index: 996;
     --bs-btn-padding-x: 0.35rem;
