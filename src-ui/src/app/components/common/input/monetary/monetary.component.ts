@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { InputText } from 'primeng/inputtext'
 import { AbstractInputComponent } from '../abstract-input'
 
 @Component({
@@ -24,6 +25,7 @@ import { AbstractInputComponent } from '../abstract-input'
     FormsModule,
     ReactiveFormsModule,
     NgxBootstrapIconsModule,
+    InputText,
   ],
 })
 export class MonetaryComponent extends AbstractInputComponent<string> {

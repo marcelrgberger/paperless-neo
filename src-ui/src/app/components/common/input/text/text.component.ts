@@ -6,6 +6,7 @@ import {
 } from '@angular/forms'
 import { RouterLink } from '@angular/router'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { InputText } from 'primeng/inputtext'
 import { AbstractInputComponent } from '../abstract-input'
 
 @Component({
@@ -24,6 +25,7 @@ import { AbstractInputComponent } from '../abstract-input'
     ReactiveFormsModule,
     NgxBootstrapIconsModule,
     RouterLink,
+    InputText,
   ],
 })
 export class TextComponent extends AbstractInputComponent<string> {
