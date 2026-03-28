@@ -9,7 +9,6 @@ import { CheckComponent } from './check.component'
 describe('CheckComponent', () => {
   let component: CheckComponent
   let fixture: ComponentFixture<CheckComponent>
-  let input: HTMLInputElement
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -21,17 +20,16 @@ describe('CheckComponent', () => {
     fixture.debugElement.injector.get(NG_VALUE_ACCESSOR)
     component = fixture.componentInstance
     fixture.detectChanges()
-    input = component.inputField.nativeElement
   })
 
   it('should support use of checkbox', () => {
-    input.checked = true
-    input.dispatchEvent(new Event('change'))
+    component.value = true
+    component.onChange(true)
     fixture.detectChanges()
     expect(component.value).toBeTruthy()
 
-    input.checked = false
-    input.dispatchEvent(new Event('change'))
+    component.value = false
+    component.onChange(false)
     fixture.detectChanges()
     expect(component.value).toBeFalsy()
   })

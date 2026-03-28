@@ -16,22 +16,20 @@
       </div>
     }
     <div [ngClass]="{'align-items-center': horizontal, 'd-flex': horizontal}">
-      <div class="form-check form-switch">
-        <input #inputField type="checkbox" class="form-check-input" [id]="inputId" [(ngModel)]="value" (change)="onChange(value)" (blur)="onTouched()" [disabled]="disabled">
+      <div class="d-flex align-items-center gap-2">
+        <p-toggleswitch [(ngModel)]="value" (ngModelChange)="onChange(value)" (onBlur)="onTouched()" [disabled]="disabled" [inputId]="inputId"></p-toggleswitch>
         @if (horizontal) {
-          <label class="form-check-label" [class.text-muted]="showUnsetNote && isUnset" [for]="inputId" [pTooltip]="showUnsetNote && isUnset ? tipText : ''" tooltipPosition="right">
+          <label [class.text-muted]="showUnsetNote && isUnset" [for]="inputId" [pTooltip]="showUnsetNote && isUnset ? tipText : ''" tooltipPosition="right">
             {{title}}
             @if (showUnsetNote && isUnset) {
               <i-bs class="ms-1" width="0.9em" height="0.9em" name="exclamation-triangle"></i-bs>
             }
           </label>
         }
-        @if (hint) {
-          <div class="form-text text-muted">{{hint}}</div>
-        }
       </div>
+      @if (hint) {
+        <div class="form-text text-muted">{{hint}}</div>
+      }
     </div>
   </div>
 </div>
-
-

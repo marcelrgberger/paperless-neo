@@ -5,7 +5,8 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms'
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { ToggleSwitch } from 'primeng/toggleswitch'
 import { Tooltip } from 'primeng/tooltip'
 import { AbstractInputComponent } from '../abstract-input'
 
@@ -20,7 +21,7 @@ import { AbstractInputComponent } from '../abstract-input'
   selector: 'pngx-input-switch',
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgbTooltipModule, Tooltip],
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgxBootstrapIconsModule, ToggleSwitch, Tooltip],
 })
 export class SwitchComponent extends AbstractInputComponent<boolean> {
   @Input()

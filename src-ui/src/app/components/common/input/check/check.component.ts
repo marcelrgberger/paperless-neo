@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { Checkbox } from 'primeng/checkbox'
 import { AbstractInputComponent } from '../abstract-input'
 
 @Component({
@@ -19,7 +20,7 @@ import { AbstractInputComponent } from '../abstract-input'
   selector: 'pngx-input-check',
   templateUrl: './check.component.html',
   styleUrls: ['./check.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgxBootstrapIconsModule],
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgxBootstrapIconsModule, Checkbox],
 })
 export class CheckComponent extends AbstractInputComponent<boolean> {
   constructor() {
