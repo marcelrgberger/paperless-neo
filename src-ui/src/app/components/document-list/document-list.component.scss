@@ -57,6 +57,13 @@ $paperless-card-breakpoints: (
 .sticky-top {
   z-index: 990; // below main navbar
   top: calc(7rem - 2px); // height of navbar (mobile)
+  background: var(--neo-bg-card, rgba(15, 23, 42, .72));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--neo-border-subtle, rgba(148, 163, 184, .08));
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
 
   @media (min-width: 580px) {
     top: 3.5rem; // height of navbar
