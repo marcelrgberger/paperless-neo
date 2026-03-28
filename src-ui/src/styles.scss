@@ -1,16 +1,12 @@
 @use "sass:meta";
 
-// PrimeNG CSS layer for coexistence with Bootstrap
-@layer primeng, bootstrap;
-// bs variables
+// SCSS variables (formerly from Bootstrap)
 $grid-gutter-width: 1.5rem;
-$border-radius: .375rem;
-$btn-border-width: var(--bs-border-width);
+$border-radius: 6px;
+$btn-border-width: 1px;
 
-$form-file-button-bg: var(--bs-body-bg);
-$form-file-button-hover-bg: var(--pngx-bg-alt);
-
-@import "node_modules/bootstrap/dist/css/bootstrap.css";
+// Bootstrap removed — using PrimeFlex + custom compat layer
+@import "bootstrap-compat";
 @include meta.load-css("theme");
 @import "@ng-select/ng-select/themes/default.theme.css";
 @include meta.load-css("print");

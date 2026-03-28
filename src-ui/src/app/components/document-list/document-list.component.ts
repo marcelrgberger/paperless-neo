@@ -15,12 +15,11 @@ import {
   Router,
   RouterModule,
 } from '@angular/router'
-import {
-  NgbDropdownModule,
-  NgbModal,
-} from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
+import { Popover } from 'primeng/popover'
 import { Paginator } from 'primeng/paginator'
 import { Ripple } from 'primeng/ripple'
 import { SelectButton } from 'primeng/selectbutton'
@@ -54,6 +53,7 @@ import { OpenDocumentsService } from 'src/app/services/open-documents.service'
 import {
   PermissionAction,
   PermissionsService,
+  PermissionType,
 } from 'src/app/services/permissions.service'
 import { SavedViewService } from 'src/app/services/rest/saved-view.service'
 import { SettingsService } from 'src/app/services/settings.service'
@@ -102,9 +102,9 @@ import { SaveViewConfigDialogComponent } from './save-view-config-dialog/save-vi
     FormsModule,
     ReactiveFormsModule,
     NgTemplateOutlet,
-    NgbDropdownModule,
     ButtonDirective,
     Menu,
+    Popover,
     NgClass,
     Paginator,
     Ripple,
@@ -131,6 +131,51 @@ export class DocumentListComponent
 
   DisplayField = DisplayField
   DisplayMode = DisplayMode
+
+  selectMobileMenuItems: MenuItem[] = [
+    { label: $localize`Select none`, command: () => this.list.selectNone() },
+    { label: $localize`Select page`, command: () => this.list.selectPage() },
+    { label: $localize`Select all`, command: () => this.list.selectAll() },
+  ]
+
+  get viewsMenuItems(): MenuItem[] {
+    const items: MenuItem[] = []
+    if (!this.list.activeSavedViewId) {
+      for (const view of this.savedViewService.allViews) {
+        items.push({
+          label: view.name,
+          command: () => this.loadViewConfig(view.id),
+        })
+      }
+      if (this.savedViewService.allViews.length > 0) {
+        items.push({ separator: true })
+      }
+    }
+    if (this.list.activeSavedViewId && this.activeSavedViewCanChange) {
+      items.push({
+        label: $localize`Save "${this.list.activeSavedViewTitle}"`,
+        disabled: !this.savedViewIsModified,
+        command: () => this.saveViewConfig(),
+      })
+    }
+    items.push({
+      label: $localize`Save as...`,
+      command: () => this.saveViewConfigAs(),
+      visible: this.permissionService.currentUserCan(
+        PermissionAction.Add,
+        PermissionType.SavedView
+      ),
+    })
+    items.push({
+      label: $localize`All saved views`,
+      routerLink: '/savedviews',
+      visible: this.permissionService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.SavedView
+      ),
+    })
+    return items
+  }
 
   displayModeOptions = [
     { label: 'Table', value: 'table', icon: 'list-ul' },
