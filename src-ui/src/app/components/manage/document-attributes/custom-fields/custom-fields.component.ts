@@ -1,9 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core'
-import { RouterModule } from '@angular/router'
-import {
-  NgbDropdownModule,
-  NgbModal,
-} from '@ng-bootstrap/ng-bootstrap'
+import { Router, RouterModule } from '@angular/router'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { Menu } from 'primeng/menu'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { delay, takeUntil, tap } from 'rxjs'
@@ -32,7 +30,6 @@ import { ToastService } from 'src/app/services/toast.service'
   styleUrls: ['./custom-fields.component.scss'],
   imports: [
     IfPermissionsDirective,
-    NgbDropdownModule,
     Menu,
     NgxBootstrapIconsModule,
     RouterModule,
@@ -50,6 +47,7 @@ export class CustomFieldsComponent
   private readonly settingsService = inject(SettingsService)
   private readonly documentService = inject(DocumentService)
   private readonly savedViewService = inject(SavedViewService)
+  private readonly router = inject(Router)
 
   public fields: CustomField[] = []
 
@@ -124,6 +122,23 @@ export class CustomFieldsComponent
         },
       })
     })
+  }
+
+  getFieldMenuItems(field: CustomField): MenuItem[] {
+    const items: MenuItem[] = []
+    if (this.permissionsService.currentUserCan(this.PermissionAction.Change, this.PermissionType.CustomField)) {
+      items.push({ label: $localize`Edit`, command: () => this.editField(field) })
+    }
+    if (this.permissionsService.currentUserCan(this.PermissionAction.Delete, this.PermissionType.CustomField)) {
+      items.push({ label: $localize`Delete`, styleClass: 'text-danger', command: () => this.deleteField(field) })
+    }
+    if (field.document_count > 0 && this.permissionsService.currentUserCan(this.PermissionAction.View, this.PermissionType.Document)) {
+      items.push({
+        label: $localize`Filter Documents (${field.document_count})`,
+        command: () => this.router.navigateByUrl(this.getDocumentFilterUrl(field)),
+      })
+    }
+    return items
   }
 
   getDataType(field: CustomField): string {

@@ -1,10 +1,8 @@
 import { Component, OnDestroy, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
-import {
-  NgbDropdownModule,
-  NgbModal,
-} from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
@@ -30,7 +28,6 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     PreviewPopupComponent,
     FormsModule,
     ReactiveFormsModule,
-    NgbDropdownModule,
     NgxBootstrapIconsModule,
     ButtonDirective,
     Ripple,
@@ -205,6 +202,13 @@ export class TrashComponent
   onPrimePageChange(event: { first: number; rows: number; page: number }) {
     this.page = event.page + 1
     this.reload()
+  }
+
+  getTrashMenuItems(document: Document): MenuItem[] {
+    return [
+      { label: $localize`Restore`, command: () => this.restore(document) },
+      { label: $localize`Delete`, command: () => this.delete(document) },
+    ]
   }
 
   getDaysRemaining(document: Document): number {

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
-import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Ripple } from 'primeng/ripple'
@@ -16,6 +17,7 @@ import { IfPermissionsDirective } from 'src/app/directives/if-permissions.direct
 import {
   PermissionAction,
   PermissionsService,
+  PermissionType,
 } from 'src/app/services/permissions.service'
 import { AbstractPaperlessService } from 'src/app/services/rest/abstract-paperless-service'
 import { MailAccountService } from 'src/app/services/rest/mail-account.service'
@@ -41,7 +43,6 @@ import { ProcessedMailDialogComponent } from './processed-mail-dialog/processed-
     IfOwnerDirective,
     FormsModule,
     ReactiveFormsModule,
-    NgbDropdownModule,
     ButtonDirective,
     Ripple,
     Menu,
@@ -369,6 +370,40 @@ export class MailComponent
       size: 'xl',
     })
     modal.componentInstance.rule = rule
+  }
+
+  getAccountMenuItems(account: MailAccount): MenuItem[] {
+    const items: MenuItem[] = []
+    if (this.permissionsService.currentUserCan(PermissionAction.Change, PermissionType.MailAccount)) {
+      items.push({ label: $localize`Edit`, disabled: !this.userCanEdit(account), command: () => this.editMailAccount(account) })
+    }
+    if (this.permissionsService.currentUserOwnsObject(account)) {
+      items.push({ label: $localize`Permissions`, command: () => this.editPermissions(account) })
+    }
+    if (this.permissionsService.currentUserCan(PermissionAction.Delete, PermissionType.MailAccount)) {
+      items.push({ label: $localize`Delete`, disabled: !this.userIsOwner(account), command: () => this.deleteMailAccount(account) })
+    }
+    if (this.permissionsService.currentUserCan(PermissionAction.Change, PermissionType.MailAccount)) {
+      items.push({ label: $localize`Process Mail`, disabled: !this.userIsOwner(account), command: () => this.processAccount(account) })
+    }
+    return items
+  }
+
+  getRuleMenuItems(rule: MailRule): MenuItem[] {
+    const items: MenuItem[] = []
+    if (this.permissionsService.currentUserCan(PermissionAction.Change, PermissionType.MailRule)) {
+      items.push({ label: $localize`Edit`, disabled: !this.userCanEdit(rule), command: () => this.editMailRule(rule) })
+    }
+    if (this.permissionsService.currentUserOwnsObject(rule)) {
+      items.push({ label: $localize`Permissions`, command: () => this.editPermissions(rule) })
+    }
+    if (this.permissionsService.currentUserCan(PermissionAction.Delete, PermissionType.MailRule)) {
+      items.push({ label: $localize`Delete`, disabled: !this.userIsOwner(rule), command: () => this.deleteMailRule(rule) })
+    }
+    if (this.permissionsService.currentUserCan(PermissionAction.Add, PermissionType.MailRule)) {
+      items.push({ label: $localize`Copy`, command: () => this.copyMailRule(rule) })
+    }
+    return items
   }
 
   userCanEdit(obj: ObjectWithPermissions): boolean {

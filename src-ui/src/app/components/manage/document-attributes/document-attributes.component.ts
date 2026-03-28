@@ -11,10 +11,10 @@ import {
 } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import {
-  NgbDropdownModule,
   NgbNavChangeEvent,
   NgbNavModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { Menu } from 'primeng/menu'
 import { Tab, TabList, Tabs } from 'primeng/tabs'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
@@ -65,7 +65,6 @@ interface DocumentAttributesSection {
   imports: [
     PageHeaderComponent,
     NgbNavModule,
-    NgbDropdownModule,
     Menu,
     NgComponentOutlet,
     NgxBootstrapIconsModule,
@@ -178,6 +177,14 @@ export class DocumentAttributesComponent
       return null
     const instance = this.activeOutlet?.componentInstance
     return instance instanceof CustomFieldsComponent ? instance : null
+  }
+
+  get selectMenuItems(): MenuItem[] {
+    return [
+      { label: $localize`Select none`, command: () => this.activeManagementList?.selectNone() },
+      { label: $localize`Select page`, command: () => this.activeManagementList?.selectPage() },
+      { label: $localize`Select all`, command: () => this.activeManagementList?.selectAll() },
+    ]
   }
 
   get activeTabLabel(): string {

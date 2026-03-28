@@ -46,16 +46,10 @@
         <div class="col">
 
           <div class="btn-group d-block d-sm-none">
-            <div ngbDropdown container="body" class="d-inline-block">
-              <button type="button" class="p-button-text" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
+              <button type="button" class="p-button-text" (click)="$event.stopPropagation(); workflowActionsMenu.toggle($event)">
                 <i-bs name="three-dots-vertical"></i-bs>
               </button>
-              <div ngbDropdownMenu aria-labelledby="actionsMenuMobile">
-                <button (click)="editWorkflow(workflow)" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.Workflow }" ngbDropdownItem i18n>Edit</button>
-                <button (click)="deleteWorkflow(workflow)" *pngxIfPermissions="{ action: PermissionAction.Delete, type: PermissionType.Workflow }" ngbDropdownItem i18n>Delete</button>
-                <button (click)="copyWorkflow(workflow)" *pngxIfPermissions="{ action: PermissionAction.Add, type: PermissionType.Workflow }" ngbDropdownItem i18n>Copy</button>
-              </div>
-            </div>
+              <p-menu #workflowActionsMenu [model]="getWorkflowMenuItems(workflow)" [popup]="true" appendTo="body"></p-menu>
           </div>
           <div class="btn-toolbar d-none d-sm-flex gap-2" role="toolbar">
             <div class="btn-group">

@@ -57,17 +57,10 @@
           <div class="col d-flex align-items-center d-none d-sm-block">{{account.username}}</div>
           <div class="col">
             <div class="btn-group d-block d-sm-none">
-              <div ngbDropdown container="body" class="d-inline-block">
-                <button type="button" class="p-button-text" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
+                <button type="button" class="p-button-text" (click)="$event.stopPropagation(); accountActionsMenu.toggle($event)">
                   <i-bs name="three-dots-vertical"></i-bs>
                 </button>
-                <div ngbDropdownMenu aria-labelledby="actionsMenuMobile">
-                  <button (click)="editMailAccount(account)" [disabled]="!userCanEdit(account)" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.MailAccount }" ngbDropdownItem i18n>Edit</button>
-                  <button (click)="editPermissions(account)" *pngxIfOwner="account" ngbDropdownItem i18n>Permissions</button>
-                  <button (click)="deleteMailAccount(account)" [disabled]="!userIsOwner(account)" *pngxIfPermissions="{ action: PermissionAction.Delete, type: PermissionType.MailAccount }" ngbDropdownItem i18n>Delete</button>
-                  <button (click)="processAccount(account)" [disabled]="!userIsOwner(account)" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.MailAccount }" ngbDropdownItem i18n>Process Mail</button>
-                </div>
-              </div>
+                <p-menu #accountActionsMenu [model]="getAccountMenuItems(account)" [popup]="true" appendTo="body"></p-menu>
             </div>
             <div class="btn-toolbar d-none d-sm-flex gap-2" role="toolbar">
               <div class="btn-group">
@@ -145,17 +138,10 @@
           </div>
           <div class="col-3">
             <div class="btn-group d-block d-sm-none">
-              <div ngbDropdown container="body" class="d-inline-block">
-                <button type="button" class="p-button-text" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
+                <button type="button" class="p-button-text" (click)="$event.stopPropagation(); ruleActionsMenu.toggle($event)">
                   <i-bs name="three-dots-vertical"></i-bs>
                 </button>
-                <div ngbDropdownMenu aria-labelledby="actionsMenuMobile">
-                  <button (click)="editMailRule(rule)" *pngxIfPermissions="{ action: PermissionAction.Change, type: PermissionType.MailRule }" [disabled]="!userCanEdit(rule)" ngbDropdownItem i18n>Edit</button>
-                  <button (click)="editPermissions(rule)" *pngxIfOwner="rule" ngbDropdownItem i18n>Permissions</button>
-                  <button (click)="deleteMailRule(rule)" *pngxIfPermissions="{ action: PermissionAction.Delete, type: PermissionType.MailRule }" [disabled]="!userIsOwner(rule)" ngbDropdownItem i18n>Delete</button>
-                  <button (click)="copyMailRule(rule)" *pngxIfPermissions="{ action: PermissionAction.Add, type: PermissionType.MailRule }" ngbDropdownItem i18n>Copy</button>
-                </div>
-              </div>
+                <p-menu #ruleActionsMenu [model]="getRuleMenuItems(rule)" [popup]="true" appendTo="body"></p-menu>
             </div>
             <div class="btn-toolbar d-none d-sm-flex gap-2" role="toolbar">
               <div class="btn-group">

@@ -15,14 +15,8 @@
       <div class="input-group input-group-sm flex-fill w-auto flex-nowrap">
         <span class="input-group-text text-muted" i18n>Filter by</span>
         @if (filterTargets.length > 1) {
-          <div ngbDropdown>
-            <button pButton pRipple class="p-button-outlined p-button-sm" ngbDropdownToggle>{{filterTargetName}}</button>
-            <div class="dropdown-menu shadow" ngbDropdownMenu>
-              @for (t of filterTargets; track t.id) {
-                <button ngbDropdownItem [class.active]="filterTargetID === t.id" (click)="filterTargetID = t.id">{{t.name}}</button>
-              }
-            </div>
-          </div>
+          <button pButton pRipple class="p-button-outlined p-button-sm" (click)="filterTargetMenu.toggle($event)">{{filterTargetName}}</button>
+          <p-menu #filterTargetMenu [model]="filterTargetMenuItems" [popup]="true" appendTo="body"></p-menu>
         } @else {
           <span class="input-group-text">{{filterTargetName}}</span>
         }

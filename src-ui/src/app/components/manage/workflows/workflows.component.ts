@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Ripple } from 'primeng/ripple'
@@ -29,7 +30,6 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     IfPermissionsDirective,
     FormsModule,
     ReactiveFormsModule,
-    NgbDropdownModule,
     ButtonDirective,
     Ripple,
     Menu,
@@ -158,6 +158,20 @@ export class WorkflowsComponent
         },
       })
     })
+  }
+
+  getWorkflowMenuItems(workflow: Workflow): MenuItem[] {
+    const items: MenuItem[] = []
+    if (this.permissionsService.currentUserCan(this.PermissionAction.Change, this.PermissionType.Workflow)) {
+      items.push({ label: $localize`Edit`, command: () => this.editWorkflow(workflow) })
+    }
+    if (this.permissionsService.currentUserCan(this.PermissionAction.Delete, this.PermissionType.Workflow)) {
+      items.push({ label: $localize`Delete`, command: () => this.deleteWorkflow(workflow) })
+    }
+    if (this.permissionsService.currentUserCan(this.PermissionAction.Add, this.PermissionType.Workflow)) {
+      items.push({ label: $localize`Copy`, command: () => this.copyWorkflow(workflow) })
+    }
+    return items
   }
 
   toggleWorkflowEnabled(workflow: Workflow) {

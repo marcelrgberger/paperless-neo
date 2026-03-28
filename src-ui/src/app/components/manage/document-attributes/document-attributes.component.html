@@ -6,18 +6,14 @@
   [loading]="activeHeaderLoading"
   >
   @if (activeManagementList) {
-    <div ngbDropdown class="btn-group flex-fill d-sm-none">
-      <button class="btn btn-sm btn-outline-primary" id="dropdownSelectMobile" ngbDropdownToggle>
+    <div class="btn-group flex-fill d-sm-none">
+      <button class="btn btn-sm btn-outline-primary" (click)="selectMenu.toggle($event)">
         <i-bs name="text-indent-left"></i-bs><div class="d-none d-sm-inline ms-1"><ng-container i18n>Select</ng-container></div>
         @if (activeManagementList.selectedObjects.size > 0) {
           <pngx-clearable-badge [selected]="activeManagementList.selectedObjects.size > 0" [number]="activeManagementList.selectedObjects.size" (cleared)="activeManagementList.selectNone()"></pngx-clearable-badge><span class="visually-hidden">selected</span>
         }
       </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownSelectMobile" class="shadow">
-        <button ngbDropdownItem (click)="activeManagementList.selectNone()" i18n>Select none</button>
-        <button ngbDropdownItem (click)="activeManagementList.selectPage(true)" i18n>Select page</button>
-        <button ngbDropdownItem (click)="activeManagementList.selectAll()" i18n>Select all</button>
-      </div>
+      <p-menu #selectMenu [model]="selectMenuItems" [popup]="true" appendTo="body"></p-menu>
     </div>
 
     <div class="d-none d-sm-flex flex-fill me-3">

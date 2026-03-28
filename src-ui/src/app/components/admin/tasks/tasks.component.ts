@@ -4,11 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
 import {
   NgbCollapseModule,
-  NgbDropdownModule,
   NgbModal,
   NgbNavModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
@@ -63,7 +63,6 @@ const FILTER_TARGETS = [
     ReactiveFormsModule,
     NgTemplateOutlet,
     NgbCollapseModule,
-    NgbDropdownModule,
     NgbNavModule,
     NgbPopoverModule,
     ButtonDirective,
@@ -115,6 +114,14 @@ export class TasksComponent
     return [TaskTab.Failed, TaskTab.Completed].includes(this.activeTab)
       ? FILTER_TARGETS
       : FILTER_TARGETS.slice(0, 1)
+  }
+
+  public get filterTargetMenuItems(): MenuItem[] {
+    return this.filterTargets.map((t) => ({
+      label: t.name,
+      styleClass: this.filterTargetID === t.id ? 'active' : '',
+      command: () => { this.filterTargetID = t.id },
+    }))
   }
 
   get dismissButtonText(): string {

@@ -2,7 +2,6 @@ import { NgClass, NgTemplateOutlet } from '@angular/common'
 import { Component, inject } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
 import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Paginator } from 'primeng/paginator'
@@ -29,7 +28,6 @@ import { ManagementListComponent } from '../management-list.component'
     RouterModule,
     NgClass,
     NgTemplateOutlet,
-    NgbDropdownModule,
     ButtonDirective,
     Ripple,
     Menu,

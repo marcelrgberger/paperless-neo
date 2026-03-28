@@ -10,12 +10,12 @@ import { Component, HostListener, inject, OnInit } from '@angular/core'
 import { ActivatedRoute, Router, RouterModule } from '@angular/router'
 import {
   NgbCollapseModule,
-  NgbDropdownModule,
   NgbModal,
   NgbNavModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { MenuItem } from 'primeng/api'
 import { ButtonDirective } from 'primeng/button'
 import { Menu } from 'primeng/menu'
 import { Ripple } from 'primeng/ripple'
@@ -67,7 +67,6 @@ import { ToastsDropdownComponent } from './toasts-dropdown/toasts-dropdown.compo
     ChatComponent,
     RouterModule,
     NgClass,
-    NgbDropdownModule,
     NgbPopoverModule,
     NgbCollapseModule,
     NgbNavModule,
@@ -98,6 +97,8 @@ export class AppFrameComponent
 
   appRemoteVersion: AppRemoteVersion
 
+  userMenuItems: MenuItem[] = []
+
   isMenuCollapsed: boolean = true
 
   slimSidebarAnimating: boolean = false
@@ -119,6 +120,8 @@ export class AppFrameComponent
   }
 
   ngOnInit(): void {
+    this.buildUserMenuItems()
+
     if (this.settingsService.get(SETTINGS_KEYS.UPDATE_CHECKING_ENABLED)) {
       this.checkForUpdates()
     }
@@ -144,6 +147,50 @@ export class AppFrameComponent
           break
       }
     })
+  }
+
+  private buildUserMenuItems(): void {
+    const items: MenuItem[] = [
+      {
+        label: $localize`My Profile`,
+        icon: 'pi pi-user',
+        command: () => this.editProfile(),
+      },
+    ]
+
+    if (
+      this.permissionsService.currentUserCan(
+        PermissionAction.Change,
+        PermissionType.UISettings
+      )
+    ) {
+      items.push({
+        label: $localize`Settings`,
+        icon: 'pi pi-cog',
+        command: () => {
+          this.router.navigate(['/settings'])
+          this.closeMenu()
+        },
+      })
+    }
+
+    items.push({
+      label: $localize`Logout`,
+      icon: 'pi pi-sign-out',
+      url: 'accounts/logout/',
+      command: () => this.onLogout(),
+    })
+
+    items.push({ separator: true })
+
+    items.push({
+      label: $localize`Documentation`,
+      icon: 'pi pi-question-circle',
+      url: 'https://github.com/marcelrgberger/paperless-neo/wiki',
+      target: '_blank',
+    })
+
+    this.userMenuItems = items
   }
 
   toggleSlimSidebar(): void {

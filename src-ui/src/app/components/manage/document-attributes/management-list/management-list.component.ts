@@ -7,7 +7,9 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core'
+import { Router } from '@angular/router'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MenuItem } from 'primeng/api'
 import { Subject } from 'rxjs'
 import {
   debounceTime,
@@ -85,6 +87,7 @@ export abstract class ManagementListComponent<T extends MatchingModel>
   public extraColumns: ManagementListColumn[]
 
   private readonly settingsService = inject(SettingsService)
+  private readonly router: Router = inject(Router)
 
   @ViewChildren(SortableDirective) headers: QueryList<SortableDirective>
 
@@ -318,6 +321,23 @@ export abstract class ManagementListComponent<T extends MatchingModel>
         this.toastService.showError($localize`Error saving settings`, error)
       },
     })
+  }
+
+  getMgmtMenuItems(object: T): MenuItem[] {
+    const items: MenuItem[] = []
+    if (this.permissionsService.currentUserCan(PermissionAction.Change, this.permissionType)) {
+      items.push({ label: $localize`Edit`, command: () => this.openEditDialog(object) })
+    }
+    if (this.permissionsService.currentUserCan(PermissionAction.Delete, this.permissionType)) {
+      items.push({ label: $localize`Delete`, styleClass: 'text-danger', command: () => this.openDeleteDialog(object) })
+    }
+    if (this.getDocumentCount(object) > 0 && this.permissionsService.currentUserCan(PermissionAction.View, PermissionType.Document)) {
+      items.push({
+        label: $localize`Filter Documents (${this.getDocumentCount(object)})`,
+        command: () => this.router.navigateByUrl(this.getDocumentFilterUrl(object)),
+      })
+    }
+    return items
   }
 
   userCanDelete(object: ObjectWithPermissions): boolean {
