@@ -124,7 +124,7 @@ main {
   .sidebar-slim-toggler {
     display: block;
     position: fixed;
-    left: calc(var(--pngx-sidebar-width) - 28px);
+    left: calc(var(--pngx-sidebar-width) - 40px);
     top: 60px;
     z-index: 996;
     --bs-btn-padding-x: 0.35rem;
