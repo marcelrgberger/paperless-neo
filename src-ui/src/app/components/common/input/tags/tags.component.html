@@ -7,19 +7,16 @@
     }
     <div class="position-relative" [class.col-md-9]="horizontal">
       <div class="input-group flex-nowrap">
-        <ng-select #tagSelect name="tags" [items]="tags" bindLabel="name" bindValue="id" [(ngModel)]="value"
+        <p-multiselect #tagSelect name="tags" [options]="tags" optionLabel="name" optionValue="id" [(ngModel)]="value"
           [disabled]="disabled"
-          [multiple]="multiple"
-          [closeOnSelect]="false"
-          [clearSearchOnAdd]="true"
-          [hideSelected]="tags.length > 0"
-          [addTag]="allowCreate ? createTagRef : false"
-          addTagText="Add tag"
-          i18n-addTagText
-          (add)="onAdd($event)"
-          (change)="onChange(value)">
-
-          <ng-template ng-label-tmp let-item="item">
+          [filter]="true"
+          [showClear]="true"
+          display="chip"
+          styleClass="w-100"
+          [emptyMessage]="'No tags found'"
+          (onChange)="onMultiSelectChange($event)"
+          (onFilter)="onFilterChange($event)">
+          <ng-template pTemplate="chip" let-item>
             <button class="tag-wrap btn p-0 d-flex align-items-center" (click)="removeTag(item.id)" (mousedown)="$event.stopImmediatePropagation()" type="button" title="Remove tag" i18n-title>
               <i-bs name="x" style="margin-inline-end: 1px;"></i-bs>
               @if (item.id && tags) {
@@ -27,7 +24,7 @@
               }
             </button>
           </ng-template>
-          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+          <ng-template pTemplate="option" let-item>
             <div class="tag-option-row d-flex align-items-center" [class.w-auto]="!getTag(item.id)?.parent">
               @if (item.id && tags) {
                 @if (getTag(item.id)?.parent) {
@@ -45,7 +42,7 @@
               }
             </div>
           </ng-template>
-        </ng-select>
+        </p-multiselect>
         @if (allowCreate && !hideAddButton) {
           <button class="btn btn-outline-secondary" type="button" (click)="createTag(null, true)" [disabled]="disabled">
             <i-bs width="1.2em" height="1.2em" name="plus"></i-bs>

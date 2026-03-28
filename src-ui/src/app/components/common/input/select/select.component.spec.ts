@@ -10,7 +10,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { RouterTestingModule } from '@angular/router/testing'
-import { NgSelectModule } from '@ng-select/ng-select'
+import { Select } from 'primeng/select'
 import {
   DEFAULT_MATCHING_ALGORITHM,
   MATCH_ALL,
@@ -51,7 +51,7 @@ describe('SelectComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        NgSelectModule,
+        Select,
         RouterTestingModule,
         SelectComponent,
       ],
@@ -102,12 +102,12 @@ describe('SelectComponent', () => {
     let createNewVal
     component.createNew.subscribe((v) => (createNewVal = v))
     expect(component.allowCreateNew).toBeTruthy()
-    component.onSearch({ term: 'foo' })
+    component.onSearch({ filter: 'foo' })
     component.addItem(undefined)
     expect(createNewVal).toEqual('foo')
     component.addItem('bar')
     expect(createNewVal).toEqual('bar')
-    component.onSearch({ term: 'baz' })
+    component.onSearch({ filter: 'baz' })
     component.clickNew()
     expect(createNewVal).toEqual('baz')
   })

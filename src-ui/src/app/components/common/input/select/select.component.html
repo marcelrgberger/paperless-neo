@@ -14,31 +14,30 @@
     }
     <div [class.col-md-9]="horizontal">
       <div [class.input-group]="allowCreateNew || showFilter" [class.is-invalid]="error">
-        <ng-select name="inputId" [(ngModel)]="value"
+        <p-select name="inputId" [(ngModel)]="value"
           [disabled]="disabled"
-          [style.color]="textColor"
-          [style.background]="backgroundColor"
+          [style]="{'color': textColor, 'background': backgroundColor}"
           [class.private]="isPrivate"
-          [clearable]="allowNull"
-          [items]="items"
-          [addTag]="allowCreateNew && addItemRef"
-          addTagText="Add item"
-          i18n-addTagText="Used for both types, correspondents, storage paths"
-          [placeholder]="placeholder"
-          [notFoundText]="notFoundText"
-          [multiple]="multiple"
-          [bindLabel]="bindLabel"
-          bindValue="id"
+          [showClear]="allowNull"
+          [options]="items"
+          [editable]="allowCreateNew"
+          [placeholder]="placeholder || ''"
+          [emptyMessage]="notFoundText"
+          [optionLabel]="bindLabel"
+          optionValue="id"
+          [filter]="true"
           [virtualScroll]="items?.length > 100"
-          (change)="onChange(value)"
-          (search)="onSearch($event)"
-          (focus)="clearLastSearchTerm()"
-          (clear)="clearLastSearchTerm()"
-          (blur)="onBlur()">
-          <ng-template ng-option-tmp let-item="item">
+          [virtualScrollItemSize]="40"
+          styleClass="w-100"
+          (onChange)="onSelectChange($event)"
+          (onFilter)="onSearch($event)"
+          (onFocus)="clearLastSearchTerm()"
+          (onClear)="onClear()"
+          (onBlur)="onBlur()">
+          <ng-template pTemplate="option" let-item>
               <span [title]="item[bindLabel]">{{item[bindLabel]}}</span>
           </ng-template>
-        </ng-select>
+        </p-select>
         @if (allowCreateNew && !hideAddButton) {
           <button class="btn btn-outline-secondary" type="button" (click)="addItem()" [disabled]="disabled">
             <i-bs width="1.2em" height="1.2em" name="plus"></i-bs>

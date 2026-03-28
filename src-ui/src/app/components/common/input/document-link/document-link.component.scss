@@ -1,19 +1,12 @@
-::ng-deep .ng-select-container .ng-value-container {
-    overflow: hidden;
-
-    .ng-value {
-        background-color: transparent !important;
-        border-color: transparent !important;
-    }
+::ng-deep p-autocomplete .p-autocomplete {
+    width: 100%;
 }
 
 .paperless-input-select.disabled {
     --bs-btn-disabled-border-color: transparent;
-    ::ng-deep ng-select {
-        .ng-select-container {
-            div, .ng-arrow-wrapper, input {
-                cursor: not-allowed;
-            }
+    ::ng-deep p-autocomplete {
+        .p-autocomplete-input {
+            cursor: not-allowed;
             background-color: var(--pngx-bg-disabled) !important;
         }
     }
@@ -25,4 +18,10 @@ i-bs {
 
 .badge {
     font-size: .75rem;
+}
+
+.selected-documents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
 }

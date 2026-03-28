@@ -16,7 +16,7 @@ import {
 } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select'
+import { MultiSelect } from 'primeng/multiselect'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { first, firstValueFrom, tap } from 'rxjs'
 import { Tag } from 'src/app/data/tag'
@@ -38,7 +38,7 @@ import { TagComponent } from '../../tag/tag.component'
   styleUrls: ['./tags.component.scss'],
   imports: [
     TagComponent,
-    NgSelectModule,
+    MultiSelect,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
@@ -59,6 +59,7 @@ export class TagsComponent implements OnInit, ControlValueAccessor {
 
   writeValue(newValue: number[]): void {
     this.value = newValue
+    this._previousValue = newValue ? [...newValue] : []
   }
   registerOnChange(fn: any): void {
     this.onChange = fn
@@ -106,7 +107,9 @@ export class TagsComponent implements OnInit, ControlValueAccessor {
   @Output()
   filterDocuments = new EventEmitter<Tag[]>()
 
-  @ViewChild('tagSelect') select: NgSelectComponent
+  @ViewChild('tagSelect') select: MultiSelect
+
+  private _lastSearchTerm: string
 
   value: number[] = []
 
@@ -153,12 +156,34 @@ export class TagsComponent implements OnInit, ControlValueAccessor {
   }
 
   public onAdd(tag: Tag) {
-    if (tag.parent) {
+    if (tag?.parent) {
       // add all parents recursively
       const parent = this.getTag(tag.parent)
-      this.value = [...this.value, parent.id]
-      this.onAdd(parent)
+      if (parent && !this.value.includes(parent.id)) {
+        this.value = [...this.value, parent.id]
+        this.onAdd(parent)
+      }
     }
+  }
+
+  private _previousValue: number[] = []
+
+  onMultiSelectChange($event) {
+    const newValue: number[] = $event.value || []
+    // Detect newly added tag IDs
+    const previousSet = new Set(this._previousValue)
+    for (const id of newValue) {
+      if (!previousSet.has(id)) {
+        const tag = this.getTag(id)
+        if (tag) this.onAdd(tag)
+      }
+    }
+    this._previousValue = [...this.value]
+    this.onChange(this.value)
+  }
+
+  onFilterChange($event) {
+    this._lastSearchTerm = $event.filter
   }
 
   createTag(name: string = null, add: boolean = false) {
@@ -167,10 +192,9 @@ export class TagsComponent implements OnInit, ControlValueAccessor {
     })
     modal.componentInstance.dialogMode = EditDialogMode.CREATE
     if (name) modal.componentInstance.object = { name: name }
-    else if (this.select.searchTerm)
-      modal.componentInstance.object = { name: this.select.searchTerm }
-    this.select.filter(null)
-    this.select.detectChanges()
+    else if (this._lastSearchTerm)
+      modal.componentInstance.object = { name: this._lastSearchTerm }
+    this._lastSearchTerm = null
     return firstValueFrom(
       (modal.componentInstance as TagEditDialogComponent).succeeded.pipe(
         first(),

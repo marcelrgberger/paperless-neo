@@ -1,11 +1,10 @@
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common'
+import { NgTemplateOutlet } from '@angular/common'
 import {
   Component,
   forwardRef,
   inject,
   Input,
   OnDestroy,
-  OnInit,
 } from '@angular/core'
 import {
   FormsModule,
@@ -13,19 +12,14 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { RouterModule } from '@angular/router'
-import { NgSelectModule } from '@ng-select/ng-select'
+import { AutoComplete } from 'primeng/autocomplete'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import {
   catchError,
-  concat,
-  distinctUntilChanged,
   map,
-  Observable,
   of,
   Subject,
-  switchMap,
   takeUntil,
-  tap,
 } from 'rxjs'
 import { Document } from 'src/app/data/document'
 import { FILTER_TITLE } from 'src/app/data/filter-rule-type'
@@ -46,25 +40,23 @@ import { AbstractInputComponent } from '../abstract-input'
   styleUrls: ['./document-link.component.scss'],
   imports: [
     CustomDatePipe,
-    AsyncPipe,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     NgTemplateOutlet,
-    NgSelectModule,
+    AutoComplete,
     NgxBootstrapIconsModule,
   ],
 })
 export class DocumentLinkComponent
   extends AbstractInputComponent<any[]>
-  implements OnInit, OnDestroy
+  implements OnDestroy
 {
   private documentsService = inject(DocumentService)
 
-  documentsInput$ = new Subject<string>()
-  foundDocuments$: Observable<Document[]>
   loading = false
   selectedDocuments: Document[] = []
+  suggestions: Document[] = []
 
   private unsubscribeNotifier: Subject<any> = new Subject()
 
@@ -82,10 +74,6 @@ export class DocumentLinkComponent
 
   get selectedDocumentIDs(): number[] {
     return this.selectedDocuments.map((d) => d.id)
-  }
-
-  ngOnInit() {
-    this.loadDocs()
   }
 
   writeValue(documentIDs: number[]): void {
@@ -107,37 +95,45 @@ export class DocumentLinkComponent
     }
   }
 
-  private loadDocs() {
-    this.foundDocuments$ = concat(
-      of([]), // default items
-      this.documentsInput$.pipe(
-        distinctUntilChanged(),
-        takeUntil(this.unsubscribeNotifier),
-        tap(() => (this.loading = true)),
-        switchMap((title) =>
-          this.documentsService
-            .listFiltered(
-              1,
-              null,
-              'created',
-              true,
-              [{ rule_type: FILTER_TITLE, value: title }],
-              { truncate_content: true }
-            )
-            .pipe(
-              map((results) =>
-                results.results.filter(
-                  (d) =>
-                    d.id !== this.parentDocumentID &&
-                    !this.selectedDocuments.find((sd) => sd.id === d.id)
-                )
-              ),
-              catchError(() => of([])), // empty on error
-              tap(() => (this.loading = false))
-            )
-        )
+  searchDocuments(event: { query: string }) {
+    const title = event.query
+    if (!title || title.length < 2) {
+      this.suggestions = []
+      return
+    }
+    this.loading = true
+    this.documentsService
+      .listFiltered(
+        1,
+        null,
+        'created',
+        true,
+        [{ rule_type: FILTER_TITLE, value: title }],
+        { truncate_content: true }
       )
-    )
+      .pipe(
+        map((results) =>
+          results.results.filter(
+            (d) =>
+              d.id !== this.parentDocumentID &&
+              !this.selectedDocuments.find((sd) => sd.id === d.id)
+          )
+        ),
+        catchError(() => of([])),
+        takeUntil(this.unsubscribeNotifier)
+      )
+      .subscribe((docs) => {
+        this.loading = false
+        this.suggestions = docs
+      })
+  }
+
+  onSelectDocument(event: { value: Document }) {
+    const doc = event.value
+    if (doc && !this.selectedDocuments.find((d) => d.id === doc.id)) {
+      this.selectedDocuments = [...this.selectedDocuments, doc]
+      this.onChange(this.selectedDocumentIDs)
+    }
   }
 
   unselect(document: Document): void {

@@ -12,17 +12,17 @@
       cursor: not-allowed;
   }
 
-  ::ng-deep ng-select {
+  ::ng-deep p-multiselect {
       pointer-events: none;
 
-      .ng-select-container {
+      .p-multiselect {
           background-color: var(--pngx-bg-disabled) !important;
       }
   }
 }
 
-// Dropdown hierarchy reveal for ng-select options
-:host ::ng-deep .ng-dropdown-panel .ng-option {
+// Dropdown hierarchy reveal for p-multiselect options
+:host ::ng-deep .p-multiselect-overlay .p-multiselect-option {
   overflow-x: auto !important;
 
   .tag-option-row {
@@ -41,12 +41,12 @@
   }
 }
 
-:host ::ng-deep .ng-dropdown-panel .ng-option:hover .hierarchy-reveal,
-:host ::ng-deep .ng-dropdown-panel .ng-option.ng-option-marked .hierarchy-reveal {
+:host ::ng-deep .p-multiselect-overlay .p-multiselect-option:hover .hierarchy-reveal,
+:host ::ng-deep .p-multiselect-overlay .p-multiselect-option.p-focus .hierarchy-reveal {
   max-width: 1000px;
 }
 
-::ng-deep .ng-dropdown-panel .ng-option:hover .hierarchy-indicator,
-:host ::ng-deep .ng-dropdown-panel .ng-option.ng-option-marked .hierarchy-indicator {
+:host ::ng-deep .p-multiselect-overlay .p-multiselect-option:hover .hierarchy-indicator,
+:host ::ng-deep .p-multiselect-overlay .p-multiselect-option.p-focus .hierarchy-indicator {
   background: transparent;
 }

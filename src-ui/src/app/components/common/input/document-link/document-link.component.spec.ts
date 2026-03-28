@@ -79,7 +79,7 @@ describe('DocumentLinkComponent', () => {
     expect(component.selectedDocumentIDs).toEqual([1, 12, 16, 23])
   })
 
-  it('should search API on select text input', () => {
+  it('should search API on completeMethod', () => {
     const listSpy = jest.spyOn(documentService, 'listFiltered')
     listSpy.mockImplementation(
       (page, pageSize, sortField, sortReverse, filterRules, extraParams) => {
@@ -93,7 +93,7 @@ describe('DocumentLinkComponent', () => {
         })
       }
     )
-    component.documentsInput$.next('bar')
+    component.searchDocuments({ query: 'bar' })
     expect(listSpy).toHaveBeenCalledWith(
       1,
       null,
@@ -102,8 +102,13 @@ describe('DocumentLinkComponent', () => {
       [{ rule_type: FILTER_TITLE, value: 'bar' }],
       { truncate_content: true }
     )
-    listSpy.mockReturnValueOnce(throwError(() => new Error()))
-    component.documentsInput$.next('foo')
+  })
+
+  it('should not search when query is too short', () => {
+    const listSpy = jest.spyOn(documentService, 'listFiltered')
+    component.searchDocuments({ query: 'a' })
+    expect(listSpy).not.toHaveBeenCalled()
+    expect(component.suggestions).toEqual([])
   })
 
   it('should load values correctly', () => {
@@ -150,8 +155,6 @@ describe('DocumentLinkComponent', () => {
   })
 
   it('should not include the current document or already selected documents in results', () => {
-    let foundDocs
-    component.foundDocuments$.subscribe((found) => (foundDocs = found))
     component.parentDocumentID = 23
     component.selectedDocuments = [documents[2]]
     const listSpy = jest.spyOn(documentService, 'listFiltered')
@@ -167,7 +170,7 @@ describe('DocumentLinkComponent', () => {
         })
       }
     )
-    component.documentsInput$.next('bar')
-    expect(foundDocs).toEqual([documents[1]])
+    component.searchDocuments({ query: 'bar' })
+    expect(component.suggestions).toEqual([documents[1]])
   })
 })

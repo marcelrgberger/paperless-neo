@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { RouterModule } from '@angular/router'
-import { NgSelectModule } from '@ng-select/ng-select'
+import { Select } from 'primeng/select'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { AbstractInputComponent } from '../abstract-input'
 
@@ -27,7 +27,7 @@ import { AbstractInputComponent } from '../abstract-input'
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   imports: [
-    NgSelectModule,
+    Select,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
@@ -154,8 +154,18 @@ export class SelectComponent extends AbstractInputComponent<number> {
     this._lastSearchTerm = null
   }
 
+  onSelectChange($event) {
+    this.onChange(this.value)
+  }
+
+  onClear() {
+    this.value = null
+    this.onChange(this.value)
+    this.clearLastSearchTerm()
+  }
+
   onSearch($event) {
-    this._lastSearchTerm = $event.term
+    this._lastSearchTerm = $event.filter
   }
 
   onBlur() {

@@ -14,7 +14,7 @@ import {
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap'
 import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion'
-import { NgSelectModule } from '@ng-select/ng-select'
+import { MultiSelect } from 'primeng/multiselect'
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
 import { of } from 'rxjs'
 import {
@@ -66,7 +66,7 @@ describe('TagsComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        NgSelectModule,
+        MultiSelect,
         RouterTestingModule,
         NgbModalModule,
         Accordion,
@@ -142,7 +142,7 @@ describe('TagsComponent', () => {
     settingsService.currentUser = { id: 1 }
     let activeInstances: NgbModalRef[]
     modalService.activeInstances.subscribe((v) => (activeInstances = v))
-    component.select.filter('foobar')
+    component.onFilterChange({ filter: 'foobar' })
     component.createTag()
     expect(modalService.hasOpenModals()).toBeTruthy()
     expect(activeInstances[0].componentInstance.object.name).toEqual('foobar')
