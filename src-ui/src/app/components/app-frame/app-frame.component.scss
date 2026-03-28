@@ -55,9 +55,9 @@ main {
 @media (min-width: 768px) {
   main {
     padding-top: 56px;
-    margin-left: var(--pngx-sidebar-width, 200px);
+    margin-left: calc(var(--pngx-sidebar-width, 200px) + 1rem);
     padding-left: 1rem;
-    padding-right: 1rem;
+    padding-right: 1.5rem;
   }
 }
 
