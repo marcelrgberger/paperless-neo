@@ -1,5 +1,7 @@
 import { AsyncPipe } from '@angular/common'
 import { Component, OnDestroy, OnInit, inject } from '@angular/core'
+import { ButtonDirective } from 'primeng/button'
+import { Ripple } from 'primeng/ripple'
 import {
   FormControl,
   FormGroup,
@@ -42,6 +44,8 @@ import { LoadingComponentWithPermissions } from '../../loading-component/loading
     ReactiveFormsModule,
     AsyncPipe,
     NgxBootstrapIconsModule,
+    ButtonDirective,
+    Ripple,
   ],
 })
 export class SavedViewsComponent

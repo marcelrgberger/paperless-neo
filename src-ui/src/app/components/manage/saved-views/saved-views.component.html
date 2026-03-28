@@ -6,7 +6,9 @@
   >
 </pngx-page-header>
 <form [formGroup]="savedViewsForm" (ngSubmit)="save()">
-  <ul class="list-group mb-3" formGroupName="savedViews">
+  <div class="card mb-3">
+  <div class="card-body p-0">
+  <ul class="list-group list-group-flush" formGroupName="savedViews">
     @for (view of savedViews; track view) {
       <li class="list-group-item py-3">
       <div [formGroupName]="view.id">
@@ -78,7 +80,9 @@
       </li>
     }
   </ul>
+  </div>
+  </div>
 
-  <button type="button" (click)="reset()" class="btn btn-outline-secondary mb-2" [disabled]="(isDirty$ | async) === false" i18n>Cancel</button>
-  <button type="submit" class="btn btn-primary ms-2 mb-2" [disabled]="(isDirty$ | async) === false" i18n>Save</button>
+  <button pButton pRipple type="button" (click)="reset()" class="p-button-outlined p-button-secondary me-2 mb-2" [disabled]="(isDirty$ | async) === false" i18n>Cancel</button>
+  <button pButton pRipple type="submit" class="mb-2" [disabled]="(isDirty$ | async) === false" i18n>Save</button>
 </form>
