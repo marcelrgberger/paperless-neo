@@ -68,14 +68,39 @@
 .d-inline-flex { display: inline-flex !important; }
 .d-grid { display: grid !important; }
 
-@each $bp, $min in (sm: 576px, md: 768px, lg: 992px, xl: 1200px) {
+@each $bp, $min in (sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px) {
   @media (min-width: $min) {
     .d-#{$bp}-none { display: none !important; }
     .d-#{$bp}-block { display: block !important; }
     .d-#{$bp}-inline { display: inline !important; }
     .d-#{$bp}-inline-block { display: inline-block !important; }
     .d-#{$bp}-flex { display: flex !important; }
+    .d-#{$bp}-inline-flex { display: inline-flex !important; }
     .d-#{$bp}-table-cell { display: table-cell !important; }
+  }
+}
+
+// Offsets
+@for $i from 1 through 11 {
+  .offset-#{$i} { margin-left: calc(100% / 12 * $i); }
+}
+@each $bp, $min in (md: 768px, lg: 992px, xl: 1200px) {
+  @media (min-width: $min) {
+    @for $i from 1 through 11 {
+      .offset-#{$bp}-#{$i} { margin-left: calc(100% / 12 * $i); }
+    }
+  }
+}
+
+// PE/PS responsive
+@each $bp, $min in (md: 768px, lg: 992px, xl: 1200px) {
+  @media (min-width: $min) {
+    .flex-#{$bp}-row { flex-direction: row !important; }
+    .flex-#{$bp}-column { flex-direction: column !important; }
+    .flex-#{$bp}-nowrap { flex-wrap: nowrap !important; }
+    .justify-content-#{$bp}-between { justify-content: space-between !important; }
+    .justify-content-#{$bp}-end { justify-content: flex-end !important; }
+    .align-items-#{$bp}-center { align-items: center !important; }
   }
 }
 
@@ -476,6 +501,25 @@
 .navbar-expand-md {
   flex-wrap: nowrap;
   justify-content: flex-start;
+
+  .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .navbar-expand-md .navbar-collapse {
+    display: none !important;
+
+    &.show {
+      display: flex !important;
+    }
+  }
 }
 
 .navbar-collapse {
@@ -580,6 +624,14 @@
   margin: 0.5rem 0;
   overflow: hidden;
   border-top: 1px solid var(--neo-border-default);
+}
+
+// --- Button Toolbar ---
+.btn-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 // --- Button Group ---
